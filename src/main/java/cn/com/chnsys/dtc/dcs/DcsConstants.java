@@ -47,7 +47,7 @@ public interface DcsConstants {
      */
     int LIMITE = 100;
     
-  
+    int test = 1;
     
 }
 
