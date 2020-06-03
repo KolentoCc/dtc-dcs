@@ -46,8 +46,6 @@ public interface DcsConstants {
      * 间隔
      */
     int LIMITE = 100;
-    
-    int test = 2;
-    
+
 }
 
