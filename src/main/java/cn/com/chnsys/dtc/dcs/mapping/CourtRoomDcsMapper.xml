@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.CourtRoomDcsDao">
+
+	<sql id="columns">
+		FENGMS,XINHLX,SHIJYXIP,FATBM,JIEKBS,FATFBL,DAIM,YINSPWGBS,SHANCBJ,
+		JIANSRQ,SHANCSJ,FATLX,SHIJC,TINGSZJIP,CHENGJCS,XIANSSX,FATZT,FATID,
+		CHUANGJSJ,YOUX,FATMC,FATYT
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs" id="resultMap">
+				<result column="FENGMS" property="splitMode" />
+				<result column="XINHLX" property="signalType" />
+				<result column="SHIJYXIP" property="judgeIP" />
+				<result column="FATBM" property="courtRoomCode" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="FATFBL" property="resolution" />
+				<result column="DAIM" property="unitCode" />
+				<result column="YINSPWGBS" property="gateWayIdentity" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="JIANSRQ" property="constructionDate" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="FATLX" property="courtRoomType" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="TINGSZJIP" property="masterServerIp" />
+				<result column="CHENGJCS" property="firm" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="FATZT" property="courtState" />
+				<result column="FATID" property="courtRoomId" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="FATMC" property="courtRoomName" />
+				<result column="YOUX" property="valid" />
+				<result column="FATYT" property="purposeOfCourt" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="splitMode != null">AND FENGMS = #{splitMode}</if>
+						<if test="signalType != null">AND XINHLX = #{signalType}</if>
+						<if test="judgeIP != null">AND SHIJYXIP = #{judgeIP}</if>
+						<if test="courtRoomCode != null">AND FATBM = #{courtRoomCode}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="resolution != null">AND FATFBL = #{resolution}</if>
+						<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+						<if test="gateWayIdentity != null">AND YINSPWGBS = #{gateWayIdentity}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="constructionDate != null">AND JIANSRQ = #{constructionDate}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="courtRoomType != null">AND FATLX = #{courtRoomType}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="masterServerIp != null">AND TINGSZJIP = #{masterServerIp}</if>
+						<if test="firm != null">AND CHENGJCS = #{firm}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="courtState != null">AND FATZT = #{courtState}</if>
+						<if test="courtRoomId != null">AND FATID = #{courtRoomId}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="courtRoomName != null">AND FATMC = #{courtRoomName}</if>
+						<if test="valid != null">AND YOUX = #{valid}</if>
+						<if test="purposeOfCourt != null">AND FATYT = #{purposeOfCourt}</if>
+					</where>
+	</sql>
+	<sql id="where_like">
+		<where>1=1
+						<if test="splitMode != null">AND FENGMS = #{splitMode}</if>
+						<if test="signalType != null">AND XINHLX = #{signalType}</if>
+						<if test="judgeIP != null">AND SHIJYXIP = #{judgeIP}</if>
+						<if test="courtRoomCode != null">AND FATBM = #{courtRoomCode}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="resolution != null">AND FATFBL = #{resolution}</if>
+						<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+						<if test="gateWayIdentity != null">AND YINSPWGBS = #{gateWayIdentity}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="constructionDate != null">AND JIANSRQ = #{constructionDate}</if>
+						<if test="deleteTime != null">AND SHANCSJ BETWEEN #{deleteTime} AND date_add(#{deleteTime}, INTERVAL 1 day)</if>
+						<if test="courtRoomType != null">AND FATLX = #{courtRoomType}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="masterServerIp != null">AND TINGSZJIP = #{masterServerIp}</if>
+						<if test="firm != null">AND CHENGJCS = #{firm}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="courtState != null">AND FATZT = #{courtState}</if>
+						<if test="courtRoomId != null">AND FATID = #{courtRoomId}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="courtRoomName != null">AND FATMC = #{courtRoomName}</if>
+						<if test="valid != null">AND YOUX = #{valid}</if>
+						<if test="purposeOfCourt != null">AND FATYT = #{purposeOfCourt}</if>
+						<if test="unitCodeList != null and unitCodeList.size() > 0">
+							and FY_FAT.DAIM IN
+							<foreach collection="unitCodeList" item="item" open="("
+								separator="," close=")">
+								#{item}
+							</foreach>
+		                </if>
+					</where>
+	</sql>
+	
+	<sql id="where_sql_courtRoom">
+		<where>SHANCBJ = 1
+						<if test="signalType != null">AND XINHLX = #{signalType}</if>
+						<if test="firm != null">AND CHENGJCS = #{firm}</if>
+						<if test="courtRoomType != null">AND FATLX = #{courtRoomType}</if>
+					</where>
+	</sql>
+	
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs">
+		INSERT INTO FY_FAT (FATID
+									<if test="splitMode != null">,FENGMS</if>
+												<if test="signalType != null">,XINHLX</if>
+												<if test="judgeIP != null">,SHIJYXIP</if>
+												<if test="courtRoomCode != null">,FATBM</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="resolution != null">,FATFBL</if>
+												<if test="unitCode != null">,DAIM</if>
+												<if test="gateWayIdentity != null">,YINSPWGBS</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="constructionDate != null">,JIANSRQ</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="courtRoomType != null">,FATLX</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="masterServerIp != null">,TINGSZJIP</if>
+												<if test="firm != null">,CHENGJCS</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="courtState != null">,FATZT</if>
+																		<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="courtRoomName != null">,FATMC</if>
+												<if test="valid != null">,YOUX</if>
+												<if test="purposeOfCourt != null">,FATYT</if>
+								)VALUES(#{courtRoomId}
+									<if test="splitMode != null">,#{splitMode}</if>
+												<if test="signalType != null">,#{signalType}</if>
+												<if test="judgeIP != null">,#{judgeIP}</if>
+												<if test="courtRoomCode != null">,#{courtRoomCode}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="resolution != null">,#{resolution}</if>
+												<if test="unitCode != null">,#{unitCode}</if>
+												<if test="gateWayIdentity != null">,#{gateWayIdentity}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="constructionDate != null">,#{constructionDate}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="courtRoomType != null">,#{courtRoomType}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="masterServerIp != null">,#{masterServerIp}</if>
+												<if test="firm != null">,#{firm}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="courtState != null">,#{courtState}</if>
+																		<if test="createTime != null">,#{createTime}</if>
+												<if test="courtRoomName != null">,#{courtRoomName}</if>
+												<if test="valid != null">,#{valid}</if>
+												<if test="purposeOfCourt != null">,#{purposeOfCourt}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_FAT (FATID
+									, FENGMS
+												, XINHLX
+												, SHIJYXIP
+												, FATBM
+												, JIEKBS
+												, FATFBL
+												, DAIM
+												, YINSPWGBS
+												, SHANCBJ
+												, JIANSRQ
+												, SHANCSJ
+												, FATLX
+												, SHIJC
+												, TINGSZJIP
+												, CHENGJCS
+												, XIANSSX
+												, FATZT
+																		, CHUANGJSJ
+												, FATMC
+												, YOUX
+												, FATYT
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.courtRoomId}
+									, #{item.splitMode}
+												, #{item.signalType}
+												, #{item.judgeIP}
+												, #{item.courtRoomCode}
+												, #{item.interfaceId}
+												, #{item.resolution}
+												, #{item.unitCode}
+												, #{item.gateWayIdentity}
+												, #{item.deleteFlag}
+												, #{item.constructionDate}
+												, #{item.deleteTime}
+												, #{item.courtRoomType}
+												, #{item.timestamp}
+												, #{item.masterServerIp}
+												, #{item.firm}
+												, #{item.sortOrder}
+												, #{item.courtState}
+																		, #{item.createTime}
+												, #{item.courtRoomName}
+												, #{item.valid}
+												, #{item.purposeOfCourt}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs">
+		UPDATE FY_FAT SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="splitMode != null">FENGMS = #{splitMode},</if>
+								<if test="signalType != null">XINHLX = #{signalType},</if>
+								<if test="judgeIP != null">SHIJYXIP = #{judgeIP},</if>
+								<if test="courtRoomCode != null">FATBM = #{courtRoomCode},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="resolution != null">FATFBL = #{resolution},</if>
+								<if test="unitCode != null">DAIM = #{unitCode},</if>
+								<if test="gateWayIdentity != null">YINSPWGBS = #{gateWayIdentity},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="constructionDate != null">JIANSRQ = #{constructionDate},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="courtRoomType != null">FATLX = #{courtRoomType},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="masterServerIp != null">TINGSZJIP = #{masterServerIp},</if>
+								<if test="firm != null">CHENGJCS = #{firm},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="courtState != null">FATZT = #{courtState},</if>
+												<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="courtRoomName != null">FATMC = #{courtRoomName},</if>
+								<if test="valid != null">YOUX = #{valid},</if>
+								<if test="purposeOfCourt != null">FATYT = #{purposeOfCourt},</if>
+				</trim>
+		WHERE FATID = #{courtRoomId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_FAT where FATID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_FAT where FATID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FAT
+		<include refid="where_sql" />
+	</select>
+
+    <select id="getCourtRooms" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FAT
+		<include refid="where_like" />
+		order by SHANCSJ desc
+		
+	</select>
+	
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FAT
+		WHERE FATID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FAT
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FAT
+		WHERE FATID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs" resultType="java.lang.Integer">
+		select count(FATID) from
+		FY_FAT 
+		<include refid="where_like" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_FAT
+	</select>
+	
+	<select id="getCourtRoomEntityLists" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_fat
+		<include refid="where_sql_courtRoom" />
+		AND DAIM IN (
+		<foreach collection="courts" item="court" index="index"
+			separator=",">
+			#{court}
+		</foreach>
+		)
+	</select>
+	
+	<select id="getTotalLists" resultType="java.lang.Integer">
+		SELECT
+		count(*)
+		FROM fy_fat
+		<include refid="where_sql_courtRoom" />
+		AND DAIM IN (
+		<foreach collection="courts" item="court" index="index"
+			separator=",">
+			#{court}
+		</foreach>
+		)
+	</select>
+	
+	<select id="getUpdateCourtRoomDcsList" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_fat 
+		 WHERE
+	  SHANCBJ = 1
+	  AND DAIM = #{courtCode} 
+	  <if test="updateTime != null">AND SHIJC >= #{updateTime}</if>
+	</select>
+	
+	<select id="selectCourtRoom" resultMap="resultMap">
+		select
+		<include refid="columns"/>
+		FROM  fy_fat
+		WHERE 1=1
+		<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+		<if test="courtName != null">AND FATMC like '%${courtName}%'</if>
+		AND SHANCBJ = 1
+	</select>
+	
+	<select id="getCourtRoomData" resultType="java.lang.Integer">
+		select
+		count(*)
+		FROM  fy_fat
+		WHERE 1=1
+		<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+		<if test="courtName != null">AND FATMC like '%${courtName}%'</if>
+		AND SHANCBJ = 1
+	</select>
+	
+	<update id="deletCourtRoomByCourtIds">
+	 	UPDATE FY_FAT SET
+	 	SHANCBJ = 2,
+	 	SHANCSJ = (select now()) 
+	 	WHERE FATID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</update>
+	
+	<select id="getListOrderByState" resultMap="resultMap">
+		SELECT *,IF(fatzt=1,4,fatzt) AS fatzt,IF(fatzt=5,2,fatzt) AS fatzt  
+		FROM fy_fat 
+		WHERE shancbj = 1
+		AND daim in
+		<foreach close=")" collection="unitCodeList" item="item" open="(" separator=",">
+                #{item}
+       </foreach>
+		ORDER BY fatzt ASC
+	</select>
+	
+	<select id="getCourtNumGroupByState" resultType="cn.com.chnsys.dtc.dcs.vo.CourtNumVo">
+		SELECT COUNT(*) AS courtNum,  fatzt AS state 
+		FROM fy_fat 
+		WHERE 1=1
+		AND daim in
+		<foreach close=")" collection="unitCodeList" item="item" open="(" separator=",">
+                #{item}
+       </foreach>
+       <if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+       GROUP BY fatzt 
+	</select>
+	
+	</mapper>

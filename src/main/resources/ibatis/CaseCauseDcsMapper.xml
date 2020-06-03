@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.CaseCauseDcsDao">
+
+	<sql id="columns">
+		ANYMC,ANJID,ANJAYID,ANYDM,ANYLX
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.CaseCauseDcs" id="resultMap">
+		<result column="ANYMC" property="causeName" />
+		<result column="ANJID" property="caseId" />
+		<result column="ANJAYID" property="caseCauseId" />
+		<result column="ANYDM" property="causeCode" />
+		<result column="ANYLX" property="causeType" />
+	</resultMap>
+
+	<sql id="where_sql">
+		<where>
+			1=1
+			<if test="causeName != null">AND ANYMC = #{causeName}</if>
+			<if test="caseId != null">AND ANJID = #{caseId}</if>
+			<if test="caseCauseId != null">AND ANJAYID = #{caseCauseId}</if>
+			<if test="causeCode != null">AND ANYDM = #{causeCode}</if>
+			<if test="causeType != null">AND ANYLX = #{causeType}</if>
+		</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CaseCauseDcs">
+		INSERT INTO fy_anay (ANJAYID
+		<if test="causeName != null">,ANYMC</if>
+		<if test="caseId != null">,ANJID</if>
+		<if test="causeCode != null">,ANYDM</if>
+		<if test="causeType != null">,ANYLX</if>
+		)VALUES(#{caseCauseId}
+		<if test="causeName != null">,#{causeName}</if>
+		<if test="caseId != null">,#{caseId}</if>
+		<if test="causeCode != null">,#{causeCode}</if>
+		<if test="causeType != null">,#{causeType}</if>
+		)
+	</insert>
+
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO fy_anay (ANJAYID
+		, ANYMC
+		, ANJID
+		, ANYDM
+		, ANYLX
+		)VALUES
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.caseCauseId}
+			, #{item.causeName}
+			, #{item.caseId}
+			, #{item.causeCode}
+			, #{item.causeType}
+			)
+		</foreach>
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CaseCauseDcs">
+		UPDATE fy_anay SET
+		<trim suffix="" suffixOverrides=",">
+			<if test="causeName != null">ANYMC = #{causeName},</if>
+			<if test="caseId != null">ANJID = #{caseId},</if>
+			<if test="causeCode != null">ANYDM = #{causeCode},</if>
+			<if test="causeType != null">ANYLX = #{causeType},</if>
+		</trim>
+		WHERE ANJAYID = #{caseCauseId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		fy_anay
+		where ANJAYID = #{id}
+	</delete>
+
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		fy_anay where ANJAYID in (
+		<foreach collection="array" item="id" index="index" separator=",">
+			#{id}
+		</foreach>
+		)
+	</delete>
+
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.CaseCauseDcs"
+		resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_anay
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_anay
+		WHERE ANJAYID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_anay
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+
+	<select id="getRecordsByIds" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_anay
+		WHERE ANJAYID in (
+		<foreach collection="array" item="id" index="index" separator=",">
+			#{id}
+		</foreach>
+		)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CaseCauseDcs"
+		resultType="java.lang.Integer">
+		select count(ANJAYID) from
+		fy_anay
+		<include refid="where_sql" />
+	</select>
+
+</mapper>

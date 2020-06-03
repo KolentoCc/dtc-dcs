@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.TrialPlayNumDcsDao">
+
+	<sql id="columns">
+		BOFCSID,ANJID,SHANCSJ,PAIQZT,SHIFYX,BOFCS,PAIQBS,CHUANGJSJ,SHANCBJ,XIANSSX,BOFSJ,JIEKBS,SHIJC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.TrialPlayNumDcs" id="resultMap">
+				<result column="BOFCSID" property="playId" />
+				<result column="ANJID" property="caseId" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="PAIQZT" property="trialState" />
+				<result column="SHIFYX" property="whetherValid" />
+				<result column="BOFCS" property="playNum" />
+				<result column="PAIQBS" property="trialId" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="BOFSJ" property="playTime" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="SHIJC" property="timestamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="playId != null">AND BOFCSID = #{playId}</if>
+						<if test="caseId != null">AND ANJID = #{caseId}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="trialState != null">AND PAIQZT = #{trialState}</if>
+						<if test="whetherValid != null">AND SHIFYX = #{whetherValid}</if>
+						<if test="playNum != null">AND BOFCS = #{playNum}</if>
+						<if test="trialId != null">AND PAIQBS = #{trialId}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="playTime != null">AND BOFSJ = #{playTime}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialPlayNumDcs">
+		INSERT INTO rcs_bofcs (BOFCSID
+															<if test="caseId != null">,ANJID</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="trialState != null">,PAIQZT</if>
+												<if test="whetherValid != null">,SHIFYX</if>
+												<if test="playNum != null">,BOFCS</if>
+												<if test="trialId != null">,PAIQBS</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="playTime != null">,BOFSJ</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="timestamp != null">,SHIJC</if>
+								)VALUES(#{playId}
+															<if test="caseId != null">,#{caseId}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="trialState != null">,#{trialState}</if>
+												<if test="whetherValid != null">,#{whetherValid}</if>
+												<if test="playNum != null">,#{playNum}</if>
+												<if test="trialId != null">,#{trialId}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="playTime != null">,#{playTime}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO rcs_bofcs (BOFCSID
+															, ANJID
+												, SHANCSJ
+												, PAIQZT
+												, SHIFYX
+												, BOFCS
+												, PAIQBS
+												, CHUANGJSJ
+												, SHANCBJ
+												, XIANSSX
+												, BOFSJ
+												, JIEKBS
+												, SHIJC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.playId}
+															, #{item.caseId}
+												, #{item.deleteTime}
+												, #{item.trialState}
+												, #{item.whetherValid}
+												, #{item.playNum}
+												, #{item.trialId}
+												, #{item.createTime}
+												, #{item.deleteFlag}
+												, #{item.sortOrder}
+												, #{item.playTime}
+												, #{item.interfaceId}
+												, #{item.timestamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialPlayNumDcs">
+		UPDATE rcs_bofcs SET
+		 <trim suffix="" suffixOverrides=",">
+										<if test="caseId != null">ANJID = #{caseId},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="trialState != null">PAIQZT = #{trialState},</if>
+								<if test="whetherValid != null">SHIFYX = #{whetherValid},</if>
+								<if test="playNum != null">BOFCS = #{playNum},</if>
+								<if test="trialId != null">PAIQBS = #{trialId},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="playTime != null">BOFSJ = #{playTime},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+				</trim>
+		WHERE BOFCSID = #{playId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		rcs_bofcs where BOFCSID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		rcs_bofcs where BOFCSID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialPlayNumDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM rcs_bofcs
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM rcs_bofcs
+		WHERE BOFCSID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM rcs_bofcs
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM rcs_bofcs
+		WHERE BOFCSID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialPlayNumDcs" resultType="java.lang.Integer">
+		select count(BOFCSID) from
+		rcs_bofcs 
+		<include refid="where_sql" />
+	</select>
+	
+	<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(xianssx) from
+		rcs_bofcs
+	</select>
+	
+	<select id="getTrialPlayNumDcsByTrialId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM rcs_bofcs
+		WHERE 1=1
+		<if test="trialId != null">AND PAIQBS = #{trialId}</if>
+		<if test="trialStatus != null">AND PAIQZT = #{trialStatus}</if>
+		<if test="deleteflag!= null">AND SHANCBJ = #{deleteflag}</if>
+		<if test="day!= null">AND BOFSJ = #{day}</if>
+	</select>
+	
+	</mapper>

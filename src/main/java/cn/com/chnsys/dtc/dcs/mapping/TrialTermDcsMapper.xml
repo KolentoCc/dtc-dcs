@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.TrialTermDcsDao">
+
+	<sql id="columns">
+		ANJID,CHAOSXYY,SHANCSJ,SHIJSLTS,FADSXTS,CHAOSXTS,SHENXQSRQ,CHUANGJSJ,CHAOSXBS,SHANCBJ,XIANSSX,SHENXJMRQ,JIEKBS,SHIJC,FABBB
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.TrialTermDcs" id="resultMap">
+				<result column="ANJID" property="caseId" />
+				<result column="CHAOSXYY" property="overTrialTermReason" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="SHIJSLTS" property="actualTryingDays" />
+				<result column="FADSXTS" property="legalTrialTermDays" />
+				<result column="CHAOSXTS" property="overTrialTermDays" />
+				<result column="SHENXQSRQ" property="trialTermStartDate" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="CHAOSXBS" property="overTrialTermMultiple" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="SHENXJMRQ" property="trialTermExpiryDate" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="FABBB" property="version" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="caseId != null">AND ANJID = #{caseId}</if>
+						<if test="overTrialTermReason != null">AND CHAOSXYY = #{overTrialTermReason}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="actualTryingDays != null">AND SHIJSLTS = #{actualTryingDays}</if>
+						<if test="legalTrialTermDays != null">AND FADSXTS = #{legalTrialTermDays}</if>
+						<if test="overTrialTermDays != null">AND CHAOSXTS = #{overTrialTermDays}</if>
+						<if test="trialTermStartDate != null">AND SHENXQSRQ = #{trialTermStartDate}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="overTrialTermMultiple != null">AND CHAOSXBS = #{overTrialTermMultiple}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="trialTermExpiryDate != null">AND SHENXJMRQ = #{trialTermExpiryDate}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="version != null">AND FABBB = #{version}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialTermDcs">
+		INSERT INTO FY_SHENXXX (ANJID
+															<if test="overTrialTermReason != null">,CHAOSXYY</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="actualTryingDays != null">,SHIJSLTS</if>
+												<if test="legalTrialTermDays != null">,FADSXTS</if>
+												<if test="overTrialTermDays != null">,CHAOSXTS</if>
+												<if test="trialTermStartDate != null">,SHENXQSRQ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="overTrialTermMultiple != null">,CHAOSXBS</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="trialTermExpiryDate != null">,SHENXJMRQ</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="version != null">,FABBB</if>
+								)VALUES(#{caseId}
+															<if test="overTrialTermReason != null">,#{overTrialTermReason}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="actualTryingDays != null">,#{actualTryingDays}</if>
+												<if test="legalTrialTermDays != null">,#{legalTrialTermDays}</if>
+												<if test="overTrialTermDays != null">,#{overTrialTermDays}</if>
+												<if test="trialTermStartDate != null">,#{trialTermStartDate}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="overTrialTermMultiple != null">,#{overTrialTermMultiple}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="trialTermExpiryDate != null">,#{trialTermExpiryDate}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="version != null">,#{version}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_SHENXXX (ANJID
+															, CHAOSXYY
+												, SHANCSJ
+												, SHIJSLTS
+												, FADSXTS
+												, CHAOSXTS
+												, SHENXQSRQ
+												, CHUANGJSJ
+												, CHAOSXBS
+												, SHANCBJ
+												, XIANSSX
+												, SHENXJMRQ
+												, JIEKBS
+												, SHIJC
+												, FABBB
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.caseId}
+															, #{item.overTrialTermReason}
+												, #{item.deleteTime}
+												, #{item.actualTryingDays}
+												, #{item.legalTrialTermDays}
+												, #{item.overTrialTermDays}
+												, #{item.trialTermStartDate}
+												, #{item.createTime}
+												, #{item.overTrialTermMultiple}
+												, #{item.deleteFlag}
+												, #{item.sortOrder}
+												, #{item.trialTermExpiryDate}
+												, #{item.interfaceId}
+												, #{item.timestamp}
+												, #{item.version}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialTermDcs">
+		UPDATE FY_SHENXXX SET
+		 <trim suffix="" suffixOverrides=",">
+										<if test="overTrialTermReason != null">CHAOSXYY = #{overTrialTermReason},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="actualTryingDays != null">SHIJSLTS = #{actualTryingDays},</if>
+								<if test="legalTrialTermDays != null">FADSXTS = #{legalTrialTermDays},</if>
+								<if test="overTrialTermDays != null">CHAOSXTS = #{overTrialTermDays},</if>
+								<if test="trialTermStartDate != null">SHENXQSRQ = #{trialTermStartDate},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="overTrialTermMultiple != null">CHAOSXBS = #{overTrialTermMultiple},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="trialTermExpiryDate != null">SHENXJMRQ = #{trialTermExpiryDate},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="version != null">FABBB = #{version},</if>
+				</trim>
+		WHERE ANJID = #{caseId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_SHENXXX where ANJID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_SHENXXX where ANJID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialTermDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_SHENXXX
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_SHENXXX
+		WHERE ANJID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_SHENXXX
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_SHENXXX
+		WHERE ANJID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialTermDcs" resultType="java.lang.Integer">
+		select count(ANJID) from
+		FY_SHENXXX 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_SHENXXX
+	</select>
+	</mapper>

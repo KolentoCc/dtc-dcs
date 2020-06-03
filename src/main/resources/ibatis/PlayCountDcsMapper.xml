@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.PlayCountDcsDao">
+
+	<sql id="columns">
+		ANJID,DIANBCS,CHUANGJSJ,SHANCSJ,SHANCBJ,KAITXXID,XIANSSX,ZHIBCS,JIEKBS,SHIJC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.PlayCountDcs" id="resultMap">
+				<result column="ANJID" property="caseId" />
+				<result column="DIANBCS" property="demandCount" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="KAITXXID" property="openCourtInfoId" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="ZHIBCS" property="liveCount" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="SHIJC" property="timestamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="caseId != null">AND ANJID = #{caseId}</if>
+						<if test="demandCount != null">AND DIANBCS = #{demandCount}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="openCourtInfoId != null">AND KAITXXID = #{openCourtInfoId}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="liveCount != null">AND ZHIBCS = #{liveCount}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.PlayCountDcs">
+		INSERT INTO fy_bofjs (KAITXXID
+									<if test="caseId != null">,ANJID</if>
+												<if test="demandCount != null">,DIANBCS</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+																		<if test="sortOrder != null">,XIANSSX</if>
+												<if test="liveCount != null">,ZHIBCS</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="timestamp != null">,SHIJC</if>
+								)VALUES(#{openCourtInfoId}
+									<if test="caseId != null">,#{caseId}</if>
+												<if test="demandCount != null">,#{demandCount}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+																		<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="liveCount != null">,#{liveCount}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO fy_bofjs (KAITXXID
+									, ANJID
+												, DIANBCS
+												, CHUANGJSJ
+												, SHANCSJ
+												, SHANCBJ
+																		, XIANSSX
+												, ZHIBCS
+												, JIEKBS
+												, SHIJC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.openCourtInfoId}
+									, #{item.caseId}
+												, #{item.demandCount}
+												, #{item.createTime}
+												, #{item.deleteTime}
+												, #{item.deleteFlag}
+																		, #{item.sortOrder}
+												, #{item.liveCount}
+												, #{item.interfaceId}
+												, #{item.timestamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.PlayCountDcs">
+		UPDATE fy_bofjs SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="caseId != null">ANJID = #{caseId},</if>
+								<if test="demandCount != null">DIANBCS = #{demandCount},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+												<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="liveCount != null">ZHIBCS = #{liveCount},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+				</trim>
+		WHERE KAITXXID = #{openCourtInfoId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		fy_bofjs where KAITXXID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		fy_bofjs where KAITXXID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.PlayCountDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_bofjs
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_bofjs
+		WHERE KAITXXID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_bofjs
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_bofjs
+		WHERE KAITXXID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.PlayCountDcs" resultType="java.lang.Integer">
+		select count(KAITXXID) from
+		fy_bofjs 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(xianssx) from
+		fy_bofjs
+	</select>
+	</mapper>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.EvidenceInfoDcsDao">
+
+	<sql id="columns">
+		ZHENGJMC,BURZLY,JUZRQ,RENZJG,SHANCBJ,SHOUZRMC,AJID,ZHENGJSS,ZHENGJLX,XUH,JUZMD,RENZLY,JUZRMC,QUZDD,ZHENGJXXID,JIEKBS,WEITJD,JUZRID,JIAOHRQ,SHANCSJ,ZHIZTC,YUANWYJ,SHIJC,QUZQD,FABBB,XIANSSX,CHUANGJSJ,DANGTRZ,SHOUZRID,QUZSJ
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.EvidenceInfoDcs" id="resultMap">
+				<result column="ZHENGJMC" property="evidenceName" />
+				<result column="BURZLY" property="notAttestedReason" />
+				<result column="JUZRQ" property="proofDate" />
+				<result column="RENZJG" property="attestationResult" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="SHOUZRMC" property="getProofPersonName" />
+				<result column="AJID" property="caseId" />
+				<result column="ZHENGJSS" property="evidenceFact" />
+				<result column="ZHENGJLX" property="evidenceType" />
+				<result column="XUH" property="evidenceNum" />
+				<result column="RENZLY" property="attestReason" />
+				<result column="JUZMD" property="proofPurpose" />
+				<result column="JUZRMC" property="proofPersonName" />
+				<result column="QUZDD" property="obtainEvidenceSite" />
+				<result column="ZHENGJXXID" property="evidenceId" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="WEITJD" property="entrustAppraisal" />
+				<result column="JUZRID" property="proofPersonId" />
+				<result column="JIAOHRQ" property="transferDate" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="ZHIZTC" property="questionWitnessCourtNum" />
+				<result column="YUANWYJ" property="originalEvidence" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="QUZQD" property="obtainEvidenceChannel" />
+				<result column="FABBB" property="courtStdVersion" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="DANGTRZ" property="attestedInCourt" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHOUZRID" property="getProofPersonID" />
+				<result column="QUZSJ" property="obtainEvidenceTime" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="evidenceName != null">AND ZHENGJMC = #{evidenceName}</if>
+						<if test="notAttestedReason != null">AND BURZLY = #{notAttestedReason}</if>
+						<if test="proofDate != null">AND JUZRQ = #{proofDate}</if>
+						<if test="attestationResult != null">AND RENZJG = #{attestationResult}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="getProofPersonName != null">AND SHOUZRMC = #{getProofPersonName}</if>
+						<if test="caseId != null">AND AJID = #{caseId}</if>
+						<if test="evidenceFact != null">AND ZHENGJSS = #{evidenceFact}</if>
+						<if test="evidenceType != null">AND ZHENGJLX = #{evidenceType}</if>
+						<if test="evidenceNum != null">AND XUH = #{evidenceNum}</if>
+						<if test="attestReason != null">AND RENZLY = #{attestReason}</if>
+						<if test="proofPurpose != null">AND JUZMD = #{proofPurpose}</if>
+						<if test="proofPersonName != null">AND JUZRMC = #{proofPersonName}</if>
+						<if test="obtainEvidenceSite != null">AND QUZDD = #{obtainEvidenceSite}</if>
+						<if test="evidenceId != null">AND ZHENGJXXID = #{evidenceId}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="entrustAppraisal != null">AND WEITJD = #{entrustAppraisal}</if>
+						<if test="proofPersonId != null">AND JUZRID = #{proofPersonId}</if>
+						<if test="transferDate != null">AND JIAOHRQ = #{transferDate}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="questionWitnessCourtNum != null">AND ZHIZTC = #{questionWitnessCourtNum}</if>
+						<if test="originalEvidence != null">AND YUANWYJ = #{originalEvidence}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="obtainEvidenceChannel != null">AND QUZQD = #{obtainEvidenceChannel}</if>
+						<if test="courtStdVersion != null">AND FABBB = #{courtStdVersion}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="attestedInCourt != null">AND DANGTRZ = #{attestedInCourt}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="getProofPersonID != null">AND SHOUZRID = #{getProofPersonID}</if>
+						<if test="obtainEvidenceTime != null">AND QUZSJ = #{obtainEvidenceTime}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.EvidenceInfoDcs">
+		INSERT INTO FY_ZHENGJXX (ZHENGJXXID
+									<if test="evidenceName != null">,ZHENGJMC</if>
+												<if test="notAttestedReason != null">,BURZLY</if>
+												<if test="proofDate != null">,JUZRQ</if>
+												<if test="attestationResult != null">,RENZJG</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="getProofPersonName != null">,SHOUZRMC</if>
+												<if test="caseId != null">,AJID</if>
+												<if test="evidenceFact != null">,ZHENGJSS</if>
+												<if test="evidenceType != null">,ZHENGJLX</if>
+												<if test="evidenceNum != null">,XUH</if>
+												<if test="attestReason != null">,RENZLY</if>
+												<if test="proofPurpose != null">,JUZMD</if>
+												<if test="proofPersonName != null">,JUZRMC</if>
+												<if test="obtainEvidenceSite != null">,QUZDD</if>
+																		<if test="interfaceId != null">,JIEKBS</if>
+												<if test="entrustAppraisal != null">,WEITJD</if>
+												<if test="proofPersonId != null">,JUZRID</if>
+												<if test="transferDate != null">,JIAOHRQ</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="questionWitnessCourtNum != null">,ZHIZTC</if>
+												<if test="originalEvidence != null">,YUANWYJ</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="obtainEvidenceChannel != null">,QUZQD</if>
+												<if test="courtStdVersion != null">,FABBB</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="attestedInCourt != null">,DANGTRZ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="getProofPersonID != null">,SHOUZRID</if>
+												<if test="obtainEvidenceTime != null">,QUZSJ</if>
+								)VALUES(#{evidenceId}
+									<if test="evidenceName != null">,#{evidenceName}</if>
+												<if test="notAttestedReason != null">,#{notAttestedReason}</if>
+												<if test="proofDate != null">,#{proofDate}</if>
+												<if test="attestationResult != null">,#{attestationResult}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="getProofPersonName != null">,#{getProofPersonName}</if>
+												<if test="caseId != null">,#{caseId}</if>
+												<if test="evidenceFact != null">,#{evidenceFact}</if>
+												<if test="evidenceType != null">,#{evidenceType}</if>
+												<if test="evidenceNum != null">,#{evidenceNum}</if>
+												<if test="attestReason != null">,#{attestReason}</if>
+												<if test="proofPurpose != null">,#{proofPurpose}</if>
+												<if test="proofPersonName != null">,#{proofPersonName}</if>
+												<if test="obtainEvidenceSite != null">,#{obtainEvidenceSite}</if>
+																		<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="entrustAppraisal != null">,#{entrustAppraisal}</if>
+												<if test="proofPersonId != null">,#{proofPersonId}</if>
+												<if test="transferDate != null">,#{transferDate}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="questionWitnessCourtNum != null">,#{questionWitnessCourtNum}</if>
+												<if test="originalEvidence != null">,#{originalEvidence}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="obtainEvidenceChannel != null">,#{obtainEvidenceChannel}</if>
+												<if test="courtStdVersion != null">,#{courtStdVersion}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="attestedInCourt != null">,#{attestedInCourt}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="getProofPersonID != null">,#{getProofPersonID}</if>
+												<if test="obtainEvidenceTime != null">,#{obtainEvidenceTime}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_ZHENGJXX (ZHENGJXXID
+									, ZHENGJMC
+												, BURZLY
+												, JUZRQ
+												, RENZJG
+												, SHANCBJ
+												, SHOUZRMC
+												, AJID
+												, ZHENGJSS
+												, ZHENGJLX
+												, XUH
+												, RENZLY
+												, JUZMD
+												, JUZRMC
+												, QUZDD
+																		, JIEKBS
+												, WEITJD
+												, JUZRID
+												, JIAOHRQ
+												, SHANCSJ
+												, ZHIZTC
+												, YUANWYJ
+												, SHIJC
+												, QUZQD
+												, FABBB
+												, XIANSSX
+												, DANGTRZ
+												, CHUANGJSJ
+												, SHOUZRID
+												, QUZSJ
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.evidenceId}
+									, #{item.evidenceName}
+												, #{item.notAttestedReason}
+												, #{item.proofDate}
+												, #{item.attestationResult}
+												, #{item.deleteFlag}
+												, #{item.getProofPersonName}
+												, #{item.caseId}
+												, #{item.evidenceFact}
+												, #{item.evidenceType}
+												, #{item.evidenceNum}
+												, #{item.attestReason}
+												, #{item.proofPurpose}
+												, #{item.proofPersonName}
+												, #{item.obtainEvidenceSite}
+																		, #{item.interfaceId}
+												, #{item.entrustAppraisal}
+												, #{item.proofPersonId}
+												, #{item.transferDate}
+												, #{item.deleteTime}
+												, #{item.questionWitnessCourtNum}
+												, #{item.originalEvidence}
+												, #{item.timestamp}
+												, #{item.obtainEvidenceChannel}
+												, #{item.courtStdVersion}
+												, #{item.sortOrder}
+												, #{item.attestedInCourt}
+												, #{item.createTime}
+												, #{item.getProofPersonID}
+												, #{item.obtainEvidenceTime}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.EvidenceInfoDcs">
+		UPDATE FY_ZHENGJXX SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="evidenceName != null">ZHENGJMC = #{evidenceName},</if>
+								<if test="notAttestedReason != null">BURZLY = #{notAttestedReason},</if>
+								<if test="proofDate != null">JUZRQ = #{proofDate},</if>
+								<if test="attestationResult != null">RENZJG = #{attestationResult},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="getProofPersonName != null">SHOUZRMC = #{getProofPersonName},</if>
+								<if test="caseId != null">AJID = #{caseId},</if>
+								<if test="evidenceFact != null">ZHENGJSS = #{evidenceFact},</if>
+								<if test="evidenceType != null">ZHENGJLX = #{evidenceType},</if>
+								<if test="evidenceNum != null">XUH = #{evidenceNum},</if>
+								<if test="attestReason != null">RENZLY = #{attestReason},</if>
+								<if test="proofPurpose != null">JUZMD = #{proofPurpose},</if>
+								<if test="proofPersonName != null">JUZRMC = #{proofPersonName},</if>
+								<if test="obtainEvidenceSite != null">QUZDD = #{obtainEvidenceSite},</if>
+												<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="entrustAppraisal != null">WEITJD = #{entrustAppraisal},</if>
+								<if test="proofPersonId != null">JUZRID = #{proofPersonId},</if>
+								<if test="transferDate != null">JIAOHRQ = #{transferDate},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="questionWitnessCourtNum != null">ZHIZTC = #{questionWitnessCourtNum},</if>
+								<if test="originalEvidence != null">YUANWYJ = #{originalEvidence},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="obtainEvidenceChannel != null">QUZQD = #{obtainEvidenceChannel},</if>
+								<if test="courtStdVersion != null">FABBB = #{courtStdVersion},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="attestedInCourt != null">DANGTRZ = #{attestedInCourt},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="getProofPersonID != null">SHOUZRID = #{getProofPersonID},</if>
+								<if test="obtainEvidenceTime != null">QUZSJ = #{obtainEvidenceTime},</if>
+				</trim>
+		WHERE ZHENGJXXID = #{evidenceId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_ZHENGJXX where ZHENGJXXID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_ZHENGJXX where ZHENGJXXID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.EvidenceInfoDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHENGJXX
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHENGJXX
+		WHERE ZHENGJXXID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHENGJXX
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHENGJXX
+		WHERE ZHENGJXXID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.EvidenceInfoDcs" resultType="java.lang.Integer">
+		select count(ZHENGJXXID) from
+		FY_ZHENGJXX 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_ZHENGJXX
+	</select>
+	</mapper>

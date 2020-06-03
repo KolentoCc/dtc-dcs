@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.IllegalDataDao">
+
+	<sql id="columns">
+		dataId,data,ms,sjlx,id,sjc
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.IllegalData" id="resultMap">
+				<result column="dataId" property="dataId" />
+				<result column="data" property="dataJson" />
+				<result column="ms" property="description" />
+				<result column="sjlx" property="dataType" />
+				<result column="id" property="id" />
+				<result column="sjc" property="timeStamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="dataId != null">AND dataId = #{dataId}</if>
+						<if test="dataJson != null">AND data = #{dataJson}</if>
+						<if test="description != null">AND ms = #{description}</if>
+						<if test="dataType != null">AND sjlx = #{dataType}</if>
+						<if test="id != null">AND id = #{id}</if>
+						<if test="timeStamp != null">AND sjc = #{timeStamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.IllegalData">
+		INSERT INTO PT_FFSJ (id
+									<if test="dataId != null">,dataId</if>
+												<if test="dataJson != null">,data</if>
+												<if test="description != null">,ms</if>
+												<if test="dataType != null">,sjlx</if>
+																		<if test="timeStamp != null">,sjc</if>
+								)VALUES(#{id}
+									<if test="dataId != null">,#{dataId}</if>
+												<if test="dataJson != null">,#{dataJson}</if>
+												<if test="description != null">,#{description}</if>
+												<if test="dataType != null">,#{dataType}</if>
+																		<if test="timeStamp != null">,#{timeStamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO PT_FFSJ (id
+									, dataId
+												, data
+												, ms
+												, sjlx
+																		, sjc
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.id}
+									, #{item.dataId}
+												, #{item.dataJson}
+												, #{item.description}
+												, #{item.dataType}
+																		, #{item.timeStamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.IllegalData">
+		UPDATE PT_FFSJ SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="dataId != null">dataId = #{dataId},</if>
+								<if test="dataJson != null">data = #{dataJson},</if>
+								<if test="description != null">ms = #{description},</if>
+								<if test="dataType != null">sjlx = #{dataType},</if>
+												<if test="timeStamp != null">sjc = #{timeStamp},</if>
+				</trim>
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		PT_FFSJ where id = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		PT_FFSJ where id in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.IllegalData" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM PT_FFSJ
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM PT_FFSJ
+		WHERE id = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM PT_FFSJ
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM PT_FFSJ
+		WHERE id in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.IllegalData" resultType="java.lang.Integer">
+		select count(id) from
+		PT_FFSJ 
+		<include refid="where_sql" />
+	</select>
+	
+	</mapper>

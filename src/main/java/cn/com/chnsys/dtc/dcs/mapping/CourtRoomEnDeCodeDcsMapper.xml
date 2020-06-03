@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.CourtRoomEnDeCodeDcsDao">
+
+	<sql id="columns">
+		ID,FATID,FUWQID
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.CourtRoomEnDeCodeDcs" id="resultMap">
+				<result column="ID" property="id" />
+				<result column="FATID" property="courtRoomId" />
+				<result column="FUWQID" property="serverId" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="id != null">AND ID = #{id}</if>
+						<if test="courtRoomId != null">AND FATID = #{courtRoomId}</if>
+						<if test="serverId != null">AND FUWQID = #{serverId}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomEnDeCodeDcs">
+		INSERT INTO FY_FATBJMQ (ID
+															<if test="courtRoomId != null">,FATID</if>
+												<if test="serverId != null">,FUWQID</if>
+								)VALUES(#{id}
+															<if test="courtRoomId != null">,#{courtRoomId}</if>
+												<if test="serverId != null">,#{serverId}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_FATBJMQ (ID
+															, FATID
+												, FUWQID
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.id}
+															, #{item.courtRoomId}
+												, #{item.serverId}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomEnDeCodeDcs">
+		UPDATE FY_FATBJMQ SET
+		 <trim suffix="" suffixOverrides=",">
+										<if test="courtRoomId != null">FATID = #{courtRoomId},</if>
+								<if test="serverId != null">FUWQID = #{serverId},</if>
+				</trim>
+		WHERE ID = #{id}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_FATBJMQ where ID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_FATBJMQ where ID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomEnDeCodeDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATBJMQ
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATBJMQ
+		WHERE ID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATBJMQ
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATBJMQ
+		WHERE ID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomEnDeCodeDcs" resultType="java.lang.Integer">
+		select count(ID) from
+		FY_FATBJMQ 
+		<include refid="where_sql" />
+	</select>
+	
+	</mapper>

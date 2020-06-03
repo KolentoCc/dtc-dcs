@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.CourtRoomSignalConfigDcsDao">
+
+	<sql id="columns">
+		ZIMNRWZ,SHANCSJ,ZIMNRXSSC,HUAMLX,FATID,TONGDID,ZIDYZM,SHIJ,YOUX,CHUANGJSJ,SHIJZMYS,SHANCBJ,ZIMNR,XIANSSX,XINGHMC,ZIMNRYS,SHIJZMXSSC,SHIFLZ,XIANSSJZM,SHIJZMWZ,JIEKBS,SHIJC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.CourtRoomSignalConfigDcs" id="resultMap">
+				<result column="ZIMNRWZ" property="subtitleContentLocation" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="ZIMNRXSSC" property="subtitleContentDisplayTime" />
+				<result column="HUAMLX" property="pictureType" />
+				<result column="FATID" property="courtRoomId" />
+				<result column="TONGDID" property="channelId" />
+				<result column="ZIDYZM" property="customCaption" />
+				<result column="SHIJ" property="perspective" />
+				<result column="YOUX" property="valid" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHIJZMYS" property="timeSubtitleColor" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="ZIMNR" property="subtitleContent" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="XINGHMC" property="signalName" />
+				<result column="ZIMNRYS" property="subtitleContentColor" />
+				<result column="SHIJZMXSSC" property="timeSubtitleDisplayPeriod" />
+				<result column="SHIFLZ" property="isRecord" />
+				<result column="XIANSSJZM" property="showTimeSubtitle" />
+				<result column="SHIJZMWZ" property="timeSubtitleLocation" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="SHIJC" property="timestamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="subtitleContentLocation != null">AND ZIMNRWZ = #{subtitleContentLocation}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="subtitleContentDisplayTime != null">AND ZIMNRXSSC = #{subtitleContentDisplayTime}</if>
+						<if test="pictureType != null">AND HUAMLX = #{pictureType}</if>
+						<if test="courtRoomId != null">AND FATID = #{courtRoomId}</if>
+						<if test="channelId != null">AND TONGDID = #{channelId}</if>
+						<if test="customCaption != null">AND ZIDYZM = #{customCaption}</if>
+						<if test="perspective != null">AND SHIJ = #{perspective}</if>
+						<if test="valid != null">AND YOUX = #{valid}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="timeSubtitleColor != null">AND SHIJZMYS = #{timeSubtitleColor}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="subtitleContent != null">AND ZIMNR = #{subtitleContent}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="signalName != null">AND XINGHMC = #{signalName}</if>
+						<if test="subtitleContentColor != null">AND ZIMNRYS = #{subtitleContentColor}</if>
+						<if test="timeSubtitleDisplayPeriod != null">AND SHIJZMXSSC = #{timeSubtitleDisplayPeriod}</if>
+						<if test="isRecord != null">AND SHIFLZ = #{isRecord}</if>
+						<if test="showTimeSubtitle != null">AND XIANSSJZM = #{showTimeSubtitle}</if>
+						<if test="timeSubtitleLocation != null">AND SHIJZMWZ = #{timeSubtitleLocation}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomSignalConfigDcs">
+		INSERT INTO FY_FATXHPZ (TONGDID
+									<if test="subtitleContentLocation != null">,ZIMNRWZ</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="subtitleContentDisplayTime != null">,ZIMNRXSSC</if>
+												<if test="pictureType != null">,HUAMLX</if>
+												<if test="courtRoomId != null">,FATID</if>
+																		<if test="customCaption != null">,ZIDYZM</if>
+												<if test="perspective != null">,SHIJ</if>
+												<if test="valid != null">,YOUX</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="timeSubtitleColor != null">,SHIJZMYS</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="subtitleContent != null">,ZIMNR</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="signalName != null">,XINGHMC</if>
+												<if test="subtitleContentColor != null">,ZIMNRYS</if>
+												<if test="timeSubtitleDisplayPeriod != null">,SHIJZMXSSC</if>
+												<if test="isRecord != null">,SHIFLZ</if>
+												<if test="showTimeSubtitle != null">,XIANSSJZM</if>
+												<if test="timeSubtitleLocation != null">,SHIJZMWZ</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="timestamp != null">,SHIJC</if>
+								)VALUES(#{channelId}
+									<if test="subtitleContentLocation != null">,#{subtitleContentLocation}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="subtitleContentDisplayTime != null">,#{subtitleContentDisplayTime}</if>
+												<if test="pictureType != null">,#{pictureType}</if>
+												<if test="courtRoomId != null">,#{courtRoomId}</if>
+																		<if test="customCaption != null">,#{customCaption}</if>
+												<if test="perspective != null">,#{perspective}</if>
+												<if test="valid != null">,#{valid}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="timeSubtitleColor != null">,#{timeSubtitleColor}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="subtitleContent != null">,#{subtitleContent}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="signalName != null">,#{signalName}</if>
+												<if test="subtitleContentColor != null">,#{subtitleContentColor}</if>
+												<if test="timeSubtitleDisplayPeriod != null">,#{timeSubtitleDisplayPeriod}</if>
+												<if test="isRecord != null">,#{isRecord}</if>
+												<if test="showTimeSubtitle != null">,#{showTimeSubtitle}</if>
+												<if test="timeSubtitleLocation != null">,#{timeSubtitleLocation}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_FATXHPZ (TONGDID
+									, ZIMNRWZ
+												, SHANCSJ
+												, ZIMNRXSSC
+												, HUAMLX
+												, FATID
+																		, ZIDYZM
+												, SHIJ
+												, YOUX
+												, CHUANGJSJ
+												, SHIJZMYS
+												, SHANCBJ
+												, ZIMNR
+												, XIANSSX
+												, XINGHMC
+												, ZIMNRYS
+												, SHIJZMXSSC
+												, SHIFLZ
+												, XIANSSJZM
+												, SHIJZMWZ
+												, JIEKBS
+												, SHIJC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.channelId}
+									, #{item.subtitleContentLocation}
+												, #{item.deleteTime}
+												, #{item.subtitleContentDisplayTime}
+												, #{item.pictureType}
+												, #{item.courtRoomId}
+																		, #{item.customCaption}
+												, #{item.perspective}
+												, #{item.valid}
+												, #{item.createTime}
+												, #{item.timeSubtitleColor}
+												, #{item.deleteFlag}
+												, #{item.subtitleContent}
+												, #{item.sortOrder}
+												, #{item.signalName}
+												, #{item.subtitleContentColor}
+												, #{item.timeSubtitleDisplayPeriod}
+												, #{item.isRecord}
+												, #{item.showTimeSubtitle}
+												, #{item.timeSubtitleLocation}
+												, #{item.interfaceId}
+												, #{item.timestamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomSignalConfigDcs">
+		UPDATE FY_FATXHPZ SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="subtitleContentLocation != null">ZIMNRWZ = #{subtitleContentLocation},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="subtitleContentDisplayTime != null">ZIMNRXSSC = #{subtitleContentDisplayTime},</if>
+								<if test="pictureType != null">HUAMLX = #{pictureType},</if>
+								<if test="courtRoomId != null">FATID = #{courtRoomId},</if>
+												<if test="customCaption != null">ZIDYZM = #{customCaption},</if>
+								<if test="perspective != null">SHIJ = #{perspective},</if>
+								<if test="valid != null">YOUX = #{valid},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="timeSubtitleColor != null">SHIJZMYS = #{timeSubtitleColor},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="subtitleContent != null">ZIMNR = #{subtitleContent},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="signalName != null">XINGHMC = #{signalName},</if>
+								<if test="subtitleContentColor != null">ZIMNRYS = #{subtitleContentColor},</if>
+								<if test="timeSubtitleDisplayPeriod != null">SHIJZMXSSC = #{timeSubtitleDisplayPeriod},</if>
+								<if test="isRecord != null">SHIFLZ = #{isRecord},</if>
+								<if test="showTimeSubtitle != null">XIANSSJZM = #{showTimeSubtitle},</if>
+								<if test="timeSubtitleLocation != null">SHIJZMWZ = #{timeSubtitleLocation},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+				</trim>
+		WHERE TONGDID = #{channelId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_FATXHPZ where TONGDID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_FATXHPZ where TONGDID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomSignalConfigDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATXHPZ
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATXHPZ
+		WHERE TONGDID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATXHPZ
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATXHPZ
+		WHERE TONGDID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomSignalConfigDcs" resultType="java.lang.Integer">
+		select count(TONGDID) from
+		FY_FATXHPZ 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_FATXHPZ
+	</select>
+	</mapper>

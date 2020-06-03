@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.CourtRoomLiveConfigDcsDao">
+
+	<sql id="columns">
+		DISFZBURL,SHANCSJ,FATID,KEHUDZBPDM,YOUX,CHUANGJSJ,SHANCBJ,XIANSSX,DISFZBPDM,WEBZBPDM,KAIQDSFZB,JIEKBS,SHIJC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.CourtRoomLiveConfigDcs" id="resultMap">
+				<result column="DISFZBURL" property="otherLiveUrl" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="FATID" property="courtRoomId" />
+				<result column="KEHUDZBPDM" property="clientLiveChannName" />
+				<result column="YOUX" property="valid" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="DISFZBPDM" property="otherLiveChannName" />
+				<result column="WEBZBPDM" property="webLiveChannName" />
+				<result column="KAIQDSFZB" property="openOtherLive" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="SHIJC" property="timestamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="otherLiveUrl != null">AND DISFZBURL = #{otherLiveUrl}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="courtRoomId != null">AND FATID = #{courtRoomId}</if>
+						<if test="clientLiveChannName != null">AND KEHUDZBPDM = #{clientLiveChannName}</if>
+						<if test="valid != null">AND YOUX = #{valid}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="otherLiveChannName != null">AND DISFZBPDM = #{otherLiveChannName}</if>
+						<if test="webLiveChannName != null">AND WEBZBPDM = #{webLiveChannName}</if>
+						<if test="openOtherLive != null">AND KAIQDSFZB = #{openOtherLive}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomLiveConfigDcs">
+		INSERT INTO FY_FATZBPZ (FATID
+									<if test="otherLiveUrl != null">,DISFZBURL</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+																		<if test="clientLiveChannName != null">,KEHUDZBPDM</if>
+												<if test="valid != null">,YOUX</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="otherLiveChannName != null">,DISFZBPDM</if>
+												<if test="webLiveChannName != null">,WEBZBPDM</if>
+												<if test="openOtherLive != null">,KAIQDSFZB</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="timestamp != null">,SHIJC</if>
+								)VALUES(#{courtRoomId}
+									<if test="otherLiveUrl != null">,#{otherLiveUrl}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+																		<if test="clientLiveChannName != null">,#{clientLiveChannName}</if>
+												<if test="valid != null">,#{valid}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="otherLiveChannName != null">,#{otherLiveChannName}</if>
+												<if test="webLiveChannName != null">,#{webLiveChannName}</if>
+												<if test="openOtherLive != null">,#{openOtherLive}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_FATZBPZ (FATID
+									, DISFZBURL
+												, SHANCSJ
+																		, KEHUDZBPDM
+												, YOUX
+												, CHUANGJSJ
+												, SHANCBJ
+												, XIANSSX
+												, DISFZBPDM
+												, WEBZBPDM
+												, KAIQDSFZB
+												, JIEKBS
+												, SHIJC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.courtRoomId}
+									, #{item.otherLiveUrl}
+												, #{item.deleteTime}
+																		, #{item.clientLiveChannName}
+												, #{item.valid}
+												, #{item.createTime}
+												, #{item.deleteFlag}
+												, #{item.sortOrder}
+												, #{item.otherLiveChannName}
+												, #{item.webLiveChannName}
+												, #{item.openOtherLive}
+												, #{item.interfaceId}
+												, #{item.timestamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomLiveConfigDcs">
+		UPDATE FY_FATZBPZ SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="otherLiveUrl != null">DISFZBURL = #{otherLiveUrl},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+												<if test="clientLiveChannName != null">KEHUDZBPDM = #{clientLiveChannName},</if>
+								<if test="valid != null">YOUX = #{valid},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="otherLiveChannName != null">DISFZBPDM = #{otherLiveChannName},</if>
+								<if test="webLiveChannName != null">WEBZBPDM = #{webLiveChannName},</if>
+								<if test="openOtherLive != null">KAIQDSFZB = #{openOtherLive},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+				</trim>
+		WHERE FATID = #{courtRoomId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_FATZBPZ where FATID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_FATZBPZ where FATID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomLiveConfigDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATZBPZ
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATZBPZ
+		WHERE FATID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATZBPZ
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATZBPZ
+		WHERE FATID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomLiveConfigDcs" resultType="java.lang.Integer">
+		select count(FATID) from
+		FY_FATZBPZ 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_FATZBPZ
+	</select>
+	</mapper>

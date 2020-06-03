@@ -1,0 +1,144 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.com.chnsys</groupId>
+	<artifactId>dtc-dcs</artifactId>
+	<version>1.3.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>dtc-dcs</name>
+	<url>http://maven.apache.org</url>
+	
+	<repositories>
+       <repository>
+           <id>nexus</id>
+            <name>Public Repository</name>
+            <url>http://10.1.2.250:8081/nexus/content/groups/public/</url>
+       </repository>
+    </repositories>
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://10.1.2.250:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://10.1.2.250:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<properties>
+		<coding>UTF-8</coding>
+		<source_version>1.7</source_version>
+		<compile_version>1.7</compile_version>
+		<spring_version>4.1.9.RELEASE</spring_version>
+		<servlet_version>3.0.1</servlet_version>
+		<jackson_version>2.6.7</jackson_version>
+		<mysql_version>5.1.39</mysql_version>
+		<xstream_version>1.4.8</xstream_version>
+		<slf4j_version>1.7.14</slf4j_version>
+		<log4j_version>1.2.17</log4j_version>
+		<mybatis_version>3.3.1</mybatis_version>
+		<mybatis_spring_version>1.2.2</mybatis_spring_version>
+		<cglib_version>3.2.0</cglib_version>
+		<druid_version>1.0.16</druid_version>
+		<aspectj_version>1.8.7</aspectj_version>
+		<junit_version>4.11</junit_version>
+	</properties>
+
+	<!-- plugin -->
+	<build>
+		<finalName>dtc-dcs</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<!-- <include>spring/**/*.xml</include> -->
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+				
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<encoding>${coding}</encoding>
+				</configuration>
+			</plugin>
+			<!-- maven编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- maven编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${source_version}</source>
+					<target>${compile_version}</target>
+					<encoding>${coding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit_version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>cn.com.chnsys</groupId>
+			<artifactId>cif-core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.1.9.RELEASE</version>
+		</dependency>
+		<dependency>
+		  <groupId>cn.com.chnsys</groupId>
+		  <artifactId>dtc-cache</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+	</dependencies>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+</project>

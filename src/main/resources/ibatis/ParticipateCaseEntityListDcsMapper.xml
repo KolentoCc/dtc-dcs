@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.ParticipateCaseEntityListDcsDao">
+
+	<sql id="columns">
+		DANGSRLX,JIEKBS,YUASTMLID,SHANCBJ,SHEHTYXYDM,SHANCSJ,AJID,SHIJC,FABBB,XUH,MINGC,XIANSSX,YUASTID,SUSCYRLX,CHUANGJSJ
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.ParticipateCaseEntityListDcs" id="resultMap">
+				<result column="DANGSRLX" property="partyType" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="YUASTMLID" property="participateCaseEntityListID" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="SHEHTYXYDM" property="societyUnificationCreditCode" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="AJID" property="caseId" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="FABBB" property="courtStdVersion" />
+				<result column="XUH" property="num" />
+				<result column="MINGC" property="name" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="SUSCYRLX" property="litigationParticipantType" />
+				<result column="YUASTID" property="entityId" />
+				<result column="CHUANGJSJ" property="createTime" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="partyType != null">AND DANGSRLX = #{partyType}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="participateCaseEntityListID != null">AND YUASTMLID = #{participateCaseEntityListID}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="societyUnificationCreditCode != null">AND SHEHTYXYDM = #{societyUnificationCreditCode}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="caseId != null">AND AJID = #{caseId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="courtStdVersion != null">AND FABBB = #{courtStdVersion}</if>
+						<if test="num != null">AND XUH = #{num}</if>
+						<if test="name != null">AND MINGC = #{name}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="litigationParticipantType != null">AND SUSCYRLX = #{litigationParticipantType}</if>
+						<if test="entityId != null">AND YUASTID = #{entityId}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.ParticipateCaseEntityListDcs">
+		INSERT INTO FY_YUASTML (YUASTMLID
+									<if test="partyType != null">,DANGSRLX</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+																		<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="societyUnificationCreditCode != null">,SHEHTYXYDM</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="caseId != null">,AJID</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="courtStdVersion != null">,FABBB</if>
+												<if test="num != null">,XUH</if>
+												<if test="name != null">,MINGC</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="litigationParticipantType != null">,SUSCYRLX</if>
+												<if test="entityId != null">,YUASTID</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+								)VALUES(#{participateCaseEntityListID}
+									<if test="partyType != null">,#{partyType}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+																		<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="societyUnificationCreditCode != null">,#{societyUnificationCreditCode}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="caseId != null">,#{caseId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="courtStdVersion != null">,#{courtStdVersion}</if>
+												<if test="num != null">,#{num}</if>
+												<if test="name != null">,#{name}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="litigationParticipantType != null">,#{litigationParticipantType}</if>
+												<if test="entityId != null">,#{entityId}</if>
+												<if test="createTime != null">,#{createTime}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_YUASTML (YUASTMLID
+									, DANGSRLX
+												, JIEKBS
+																		, SHANCBJ
+												, SHEHTYXYDM
+												, SHANCSJ
+												, AJID
+												, SHIJC
+												, FABBB
+												, XUH
+												, MINGC
+												, XIANSSX
+												, SUSCYRLX
+												, YUASTID
+												, CHUANGJSJ
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.participateCaseEntityListID}
+									, #{item.partyType}
+												, #{item.interfaceId}
+																		, #{item.deleteFlag}
+												, #{item.societyUnificationCreditCode}
+												, #{item.deleteTime}
+												, #{item.caseId}
+												, #{item.timestamp}
+												, #{item.courtStdVersion}
+												, #{item.num}
+												, #{item.name}
+												, #{item.sortOrder}
+												, #{item.litigationParticipantType}
+												, #{item.entityId}
+												, #{item.createTime}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.ParticipateCaseEntityListDcs">
+		UPDATE FY_YUASTML SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="partyType != null">DANGSRLX = #{partyType},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+												<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="societyUnificationCreditCode != null">SHEHTYXYDM = #{societyUnificationCreditCode},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="caseId != null">AJID = #{caseId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="courtStdVersion != null">FABBB = #{courtStdVersion},</if>
+								<if test="num != null">XUH = #{num},</if>
+								<if test="name != null">MINGC = #{name},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="litigationParticipantType != null">SUSCYRLX = #{litigationParticipantType},</if>
+								<if test="entityId != null">YUASTID = #{entityId},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+				</trim>
+		WHERE YUASTMLID = #{participateCaseEntityListID}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_YUASTML where YUASTMLID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_YUASTML where YUASTMLID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.ParticipateCaseEntityListDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_YUASTML
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_YUASTML
+		WHERE YUASTMLID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_YUASTML
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_YUASTML
+		WHERE YUASTMLID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.ParticipateCaseEntityListDcs" resultType="java.lang.Integer">
+		select count(YUASTMLID) from
+		FY_YUASTML 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(xianssx) from
+		FY_YUASTML
+	</select>
+	</mapper>

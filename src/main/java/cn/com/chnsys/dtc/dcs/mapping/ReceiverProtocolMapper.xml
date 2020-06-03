@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.ReceiverProtocolDao">
+
+	<sql id="columns">
+		FASZIP,FASSJ,ZHUANGT,DANWDM,XIEYGS,UUID,CHULWCSJ,XIEYID,XIEYNR,JIESSJ,URI
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.ReceiverProtocol" id="resultMap">
+				<result column="FASZIP" property="senderIp" />
+				<result column="FASSJ" property="sendTime" />
+				<result column="UUID" property="uuid" />
+				<result column="XIEYGS" property="type" />
+				<result column="DANWDM" property="unitCode" />
+				<result column="ZHUANGT" property="status" />
+				<result column="XIEYID" property="protocolId" />
+				<result column="CHULWCSJ" property="completeTime" />
+				<result column="XIEYNR" property="content" />
+				<result column="URI" property="uri" />
+				<result column="JIESSJ" property="receiveTime" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="senderIp != null">AND FASZIP = #{senderIp}</if>
+						<if test="sendTime != null">AND FASSJ = #{sendTime}</if>
+						<if test="uuid != null">AND UUID = #{uuid}</if>
+						<if test="type != null">AND XIEYGS = #{type}</if>
+						<if test="unitCode != null">AND DANWDM = #{unitCode}</if>
+						<if test="status != null">AND ZHUANGT = #{status}</if>
+						<if test="protocolId != null">AND XIEYID = #{protocolId}</if>
+						<if test="completeTime != null">AND CHULWCSJ = #{completeTime}</if>
+						<if test="content != null">AND XIEYNR = #{content}</if>
+						<if test="uri != null">AND URI = #{uri}</if>
+						<if test="receiveTime != null">AND JIESSJ = #{receiveTime}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.ReceiverProtocol">
+		INSERT INTO dtc_caijdxy (XIEYID
+									<if test="senderIp != null">,FASZIP</if>
+												<if test="sendTime != null">,FASSJ</if>
+												<if test="uuid != null">,UUID</if>
+												<if test="type != null">,XIEYGS</if>
+												<if test="unitCode != null">,DANWDM</if>
+												<if test="status != null">,ZHUANGT</if>
+																		<if test="completeTime != null">,CHULWCSJ</if>
+												<if test="content != null">,XIEYNR</if>
+												<if test="uri != null">,URI</if>
+												<if test="receiveTime != null">,JIESSJ</if>
+								)VALUES(#{protocolId}
+									<if test="senderIp != null">,#{senderIp}</if>
+												<if test="sendTime != null">,#{sendTime}</if>
+												<if test="uuid != null">,#{uuid}</if>
+												<if test="type != null">,#{type}</if>
+												<if test="unitCode != null">,#{unitCode}</if>
+												<if test="status != null">,#{status}</if>
+																		<if test="completeTime != null">,#{completeTime}</if>
+												<if test="content != null">,#{content}</if>
+												<if test="uri != null">,#{uri}</if>
+												<if test="receiveTime != null">,#{receiveTime}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO dtc_caijdxy (XIEYID
+									, FASZIP
+												, FASSJ
+												, UUID
+												, XIEYGS
+												, DANWDM
+												, ZHUANGT
+																		, CHULWCSJ
+												, XIEYNR
+												, URI
+												, JIESSJ
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.protocolId}
+									, #{item.senderIp}
+												, #{item.sendTime}
+												, #{item.uuid}
+												, #{item.type}
+												, #{item.unitCode}
+												, #{item.status}
+																		, #{item.completeTime}
+												, #{item.content}
+												, #{item.uri}
+												, #{item.receiveTime}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.ReceiverProtocol">
+		UPDATE dtc_caijdxy SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="senderIp != null">FASZIP = #{senderIp},</if>
+								<if test="sendTime != null">FASSJ = #{sendTime},</if>
+								<if test="uuid != null">UUID = #{uuid},</if>
+								<if test="type != null">XIEYGS = #{type},</if>
+								<if test="unitCode != null">DANWDM = #{unitCode},</if>
+								<if test="status != null">ZHUANGT = #{status},</if>
+												<if test="completeTime != null">CHULWCSJ = #{completeTime},</if>
+								<if test="content != null">XIEYNR = #{content},</if>
+								<if test="uri != null">URI = #{uri},</if>
+								<if test="receiveTime != null">JIESSJ = #{receiveTime},</if>
+				</trim>
+		WHERE XIEYID = #{protocolId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		dtc_caijdxy where XIEYID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		dtc_caijdxy where XIEYID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.ReceiverProtocol" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM dtc_caijdxy
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM dtc_caijdxy
+		WHERE XIEYID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM dtc_caijdxy
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM dtc_caijdxy
+		WHERE XIEYID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.ReceiverProtocol" resultType="java.lang.Integer">
+		select count(XIEYID) from
+		dtc_caijdxy 
+		<include refid="where_sql" />
+	</select>
+	
+	</mapper>

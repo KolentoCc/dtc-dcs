@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.TrialTranscriptFileDcsDao">
+
+	<sql id="columns">
+		SCSJ,CCJLJ,SJC,JKBS,SCBJ,CCLJID,KTXXID,FBBB,CJSJ,WJDX,WJM,BLGS
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.TrialTranscriptFileDcs" id="resultMap">
+				<result column="SCSJ" property="deleteTime" />
+				<result column="CCJLJ" property="storageBasePath" />
+				<result column="SJC" property="timestamp" />
+				<result column="JKBS" property="interfaceCode" />
+				<result column="CCLJID" property="storagePathId" />
+				<result column="SCBJ" property="deleteTag" />
+				<result column="KTXXID" property="trialId" />
+				<result column="FBBB" property="version" />
+				<result column="CJSJ" property="createTime" />
+				<result column="WJM" property="fileName" />
+				<result column="WJDX" property="fileSize" />
+				<result column="BLGS" property="format" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="deleteTime != null">AND SCSJ = #{deleteTime}</if>
+						<if test="storageBasePath != null">AND CCJLJ = #{storageBasePath}</if>
+						<if test="timestamp != null">AND SJC = #{timestamp}</if>
+						<if test="interfaceCode != null">AND JKBS = #{interfaceCode}</if>
+						<if test="storagePathId != null">AND CCLJID = #{storagePathId}</if>
+						<if test="deleteTag != null">AND SCBJ = #{deleteTag}</if>
+						<if test="trialId != null">AND KTXXID = #{trialId}</if>
+						<if test="version != null">AND FBBB = #{version}</if>
+						<if test="createTime != null">AND CJSJ = #{createTime}</if>
+						<if test="fileName != null">AND WJM = #{fileName}</if>
+						<if test="fileSize != null">AND WJDX = #{fileSize}</if>
+						<if test="format != null">AND BLGS = #{format}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialTranscriptFileDcs">
+		INSERT INTO t_tingsbl (KTXXID
+									<if test="deleteTime != null">,SCSJ</if>
+												<if test="storageBasePath != null">,CCJLJ</if>
+												<if test="timestamp != null">,SJC</if>
+												<if test="interfaceCode != null">,JKBS</if>
+												<if test="storagePathId != null">,CCLJID</if>
+												<if test="deleteTag != null">,SCBJ</if>
+																		<if test="version != null">,FBBB</if>
+												<if test="createTime != null">,CJSJ</if>
+												<if test="fileName != null">,WJM</if>
+												<if test="fileSize != null">,WJDX</if>
+												<if test="format != null">,BLGS</if>
+								)VALUES(#{trialId}
+									<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="storageBasePath != null">,#{storageBasePath}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="interfaceCode != null">,#{interfaceCode}</if>
+												<if test="storagePathId != null">,#{storagePathId}</if>
+												<if test="deleteTag != null">,#{deleteTag}</if>
+																		<if test="version != null">,#{version}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="fileName != null">,#{fileName}</if>
+												<if test="fileSize != null">,#{fileSize}</if>
+												<if test="format != null">,#{format}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO t_tingsbl (KTXXID
+									, SCSJ
+												, CCJLJ
+												, SJC
+												, JKBS
+												, CCLJID
+												, SCBJ
+																		, FBBB
+												, CJSJ
+												, WJM
+												, WJDX
+												, BLGS
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.trialId}
+									, #{item.deleteTime}
+												, #{item.storageBasePath}
+												, #{item.timestamp}
+												, #{item.interfaceCode}
+												, #{item.storagePathId}
+												, #{item.deleteTag}
+																		, #{item.version}
+												, #{item.createTime}
+												, #{item.fileName}
+												, #{item.fileSize}
+												, #{item.format}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialTranscriptFileDcs">
+		UPDATE t_tingsbl SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="deleteTime != null">SCSJ = #{deleteTime},</if>
+								<if test="storageBasePath != null">CCJLJ = #{storageBasePath},</if>
+								<if test="timestamp != null">SJC = #{timestamp},</if>
+								<if test="interfaceCode != null">JKBS = #{interfaceCode},</if>
+								<if test="storagePathId != null">CCLJID = #{storagePathId},</if>
+								<if test="deleteTag != null">SCBJ = #{deleteTag},</if>
+												<if test="version != null">FBBB = #{version},</if>
+								<if test="createTime != null">CJSJ = #{createTime},</if>
+								<if test="fileName != null">WJM = #{fileName},</if>
+								<if test="fileSize != null">WJDX = #{fileSize},</if>
+								<if test="format != null">BLGS = #{format},</if>
+				</trim>
+		WHERE KTXXID = #{trialId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		t_tingsbl where KTXXID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		t_tingsbl where KTXXID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialTranscriptFileDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM t_tingsbl
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM t_tingsbl
+		WHERE KTXXID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM t_tingsbl
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM t_tingsbl
+		WHERE KTXXID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialTranscriptFileDcs" resultType="java.lang.Integer">
+		select count(KTXXID) from
+		t_tingsbl 
+		<include refid="where_sql" />
+	</select>
+	
+	</mapper>

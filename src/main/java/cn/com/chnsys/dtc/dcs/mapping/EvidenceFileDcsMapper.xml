@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.EvidenceFileDcsDao">
+
+	<sql id="columns">
+		SHANCSJ,ZHENGJWJID,ZHENGJWJMC,WENJLX,CHUANGJSJ,ZHENGJLY,SHANCBJ,XIANSSX,MIAOS,NEIRZY,WENJDX,ZHENGJXXID,SHIFLSSC,CUNCMC,JIEKBS,SHIJC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.EvidenceFileDcs" id="resultMap">
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="ZHENGJWJID" property="evidenceFileId" />
+				<result column="ZHENGJWJMC" property="fileName" />
+				<result column="WENJLX" property="fileType" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="ZHENGJLY" property="fileSource" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="MIAOS" property="description" />
+				<result column="NEIRZY" property="contentAbstract" />
+				<result column="WENJDX" property="fileSize" />
+				<result column="ZHENGJXXID" property="evidenceInfoId" />
+				<result column="SHIFLSSC" property="isTemporaryUpload" />
+				<result column="CUNCMC" property="storageName" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="SHIJC" property="timestamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="evidenceFileId != null">AND ZHENGJWJID = #{evidenceFileId}</if>
+						<if test="fileName != null">AND ZHENGJWJMC = #{fileName}</if>
+						<if test="fileType != null">AND WENJLX = #{fileType}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="fileSource != null">AND ZHENGJLY = #{fileSource}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="description != null">AND MIAOS = #{description}</if>
+						<if test="contentAbstract != null">AND NEIRZY = #{contentAbstract}</if>
+						<if test="fileSize != null">AND WENJDX = #{fileSize}</if>
+						<if test="evidenceInfoId != null">AND ZHENGJXXID = #{evidenceInfoId}</if>
+						<if test="isTemporaryUpload != null">AND SHIFLSSC = #{isTemporaryUpload}</if>
+						<if test="storageName != null">AND CUNCMC = #{storageName}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.EvidenceFileDcs">
+		INSERT INTO FY_ZHENGJWJ (ZHENGJWJID
+									<if test="deleteTime != null">,SHANCSJ</if>
+																		<if test="fileName != null">,ZHENGJWJMC</if>
+												<if test="fileType != null">,WENJLX</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="fileSource != null">,ZHENGJLY</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="description != null">,MIAOS</if>
+												<if test="contentAbstract != null">,NEIRZY</if>
+												<if test="fileSize != null">,WENJDX</if>
+												<if test="evidenceInfoId != null">,ZHENGJXXID</if>
+												<if test="isTemporaryUpload != null">,SHIFLSSC</if>
+												<if test="storageName != null">,CUNCMC</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="timestamp != null">,SHIJC</if>
+								)VALUES(#{evidenceFileId}
+									<if test="deleteTime != null">,#{deleteTime}</if>
+																		<if test="fileName != null">,#{fileName}</if>
+												<if test="fileType != null">,#{fileType}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="fileSource != null">,#{fileSource}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="description != null">,#{description}</if>
+												<if test="contentAbstract != null">,#{contentAbstract}</if>
+												<if test="fileSize != null">,#{fileSize}</if>
+												<if test="evidenceInfoId != null">,#{evidenceInfoId}</if>
+												<if test="isTemporaryUpload != null">,#{isTemporaryUpload}</if>
+												<if test="storageName != null">,#{storageName}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_ZHENGJWJ (ZHENGJWJID
+									, SHANCSJ
+																		, ZHENGJWJMC
+												, WENJLX
+												, CHUANGJSJ
+												, ZHENGJLY
+												, SHANCBJ
+												, XIANSSX
+												, MIAOS
+												, NEIRZY
+												, WENJDX
+												, ZHENGJXXID
+												, SHIFLSSC
+												, CUNCMC
+												, JIEKBS
+												, SHIJC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.evidenceFileId}
+									, #{item.deleteTime}
+																		, #{item.fileName}
+												, #{item.fileType}
+												, #{item.createTime}
+												, #{item.fileSource}
+												, #{item.deleteFlag}
+												, #{item.sortOrder}
+												, #{item.description}
+												, #{item.contentAbstract}
+												, #{item.fileSize}
+												, #{item.evidenceInfoId}
+												, #{item.isTemporaryUpload}
+												, #{item.storageName}
+												, #{item.interfaceId}
+												, #{item.timestamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.EvidenceFileDcs">
+		UPDATE FY_ZHENGJWJ SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+												<if test="fileName != null">ZHENGJWJMC = #{fileName},</if>
+								<if test="fileType != null">WENJLX = #{fileType},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="fileSource != null">ZHENGJLY = #{fileSource},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="description != null">MIAOS = #{description},</if>
+								<if test="contentAbstract != null">NEIRZY = #{contentAbstract},</if>
+								<if test="fileSize != null">WENJDX = #{fileSize},</if>
+								<if test="evidenceInfoId != null">ZHENGJXXID = #{evidenceInfoId},</if>
+								<if test="isTemporaryUpload != null">SHIFLSSC = #{isTemporaryUpload},</if>
+								<if test="storageName != null">CUNCMC = #{storageName},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+				</trim>
+		WHERE ZHENGJWJID = #{evidenceFileId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_ZHENGJWJ where ZHENGJWJID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_ZHENGJWJ where ZHENGJWJID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.EvidenceFileDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHENGJWJ
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHENGJWJ
+		WHERE ZHENGJWJID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHENGJWJ
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHENGJWJ
+		WHERE ZHENGJWJID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.EvidenceFileDcs" resultType="java.lang.Integer">
+		select count(ZHENGJWJID) from
+		FY_ZHENGJWJ 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_ZHENGJWJ
+	</select>
+	</mapper>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.ServerConfigInfoDao">
+
+	<sql id="columns">
+		CHUANGJSJ,SHANCSJ,PEIZID,DANWID,SHANCBJ,FUWQIP,FUWQDK,XIANSXX,FUWQLX,JIEKBS,SHIJC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.ServerConfigInfo" id="resultMap">
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="PEIZID" property="configId" />
+				<result column="DANWID" property="unitId" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="FUWQIP" property="serverIp" />
+				<result column="FUWQDK" property="serverPort" />
+				<result column="XIANSXX" property="sortOrder" />
+				<result column="FUWQLX" property="serverType" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="SHIJC" property="timestamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="configId != null">AND PEIZID = #{configId}</if>
+						<if test="unitId != null">AND DANWID = #{unitId}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="serverIp != null">AND FUWQIP = #{serverIp}</if>
+						<if test="serverPort != null">AND FUWQDK = #{serverPort}</if>
+						<if test="sortOrder != null">AND XIANSXX = #{sortOrder}</if>
+						<if test="serverType != null">AND FUWQLX = #{serverType}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.ServerConfigInfo">
+		INSERT INTO pt_fuwqpzxx (PEIZID
+									<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+																		<if test="unitId != null">,DANWID</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="serverIp != null">,FUWQIP</if>
+												<if test="serverPort != null">,FUWQDK</if>
+												<if test="sortOrder != null">,XIANSXX</if>
+												<if test="serverType != null">,FUWQLX</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="timestamp != null">,SHIJC</if>
+								)VALUES(#{configId}
+									<if test="createTime != null">,#{createTime}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+																		<if test="unitId != null">,#{unitId}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="serverIp != null">,#{serverIp}</if>
+												<if test="serverPort != null">,#{serverPort}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="serverType != null">,#{serverType}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO pt_fuwqpzxx (PEIZID
+									, CHUANGJSJ
+												, SHANCSJ
+																		, DANWID
+												, SHANCBJ
+												, FUWQIP
+												, FUWQDK
+												, XIANSXX
+												, FUWQLX
+												, JIEKBS
+												, SHIJC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.configId}
+									, #{item.createTime}
+												, #{item.deleteTime}
+																		, #{item.unitId}
+												, #{item.deleteFlag}
+												, #{item.serverIp}
+												, #{item.serverPort}
+												, #{item.sortOrder}
+												, #{item.serverType}
+												, #{item.interfaceId}
+												, #{item.timestamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.ServerConfigInfo">
+		UPDATE pt_fuwqpzxx SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+												<if test="unitId != null">DANWID = #{unitId},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="serverIp != null">FUWQIP = #{serverIp},</if>
+								<if test="serverPort != null">FUWQDK = #{serverPort},</if>
+								<if test="sortOrder != null">XIANSXX = #{sortOrder},</if>
+								<if test="serverType != null">FUWQLX = #{serverType},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+				</trim>
+		WHERE PEIZID = #{configId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		pt_fuwqpzxx where PEIZID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		pt_fuwqpzxx where PEIZID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.ServerConfigInfo" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM pt_fuwqpzxx
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM pt_fuwqpzxx
+		WHERE PEIZID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM pt_fuwqpzxx
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM pt_fuwqpzxx
+		WHERE PEIZID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.ServerConfigInfo" resultType="java.lang.Integer">
+		select count(PEIZID) from
+		pt_fuwqpzxx 
+		<include refid="where_sql" />
+	</select>
+	
+	<select id="getAllRecords" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM pt_fuwqpzxx
+	</select>
+	
+	</mapper>

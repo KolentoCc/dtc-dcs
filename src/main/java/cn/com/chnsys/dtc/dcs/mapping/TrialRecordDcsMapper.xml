@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.TrialRecordDcsDao">
+
+	<sql id="columns">
+		SHANCSJ,BILID,BILLJ,CUNCLJID,CHUANGJSJ,SHANCBJ,KAITXXID,BILGS,XIANSXX,JIEKBS,SHIJC,BILMC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.TrialRecordDcs" id="resultMap">
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="BILID" property="noteId" />
+				<result column="KAITXXID" property="trialId" />
+				<result column="BILGS" property="noteFormat" />
+				<result column="BILLJ" property="notePath" />
+				<result column="XIANSXX" property="sortOrder" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="CUNCLJID" property="storagePathId" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="BILMC" property="noteName" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="noteId != null">AND BILID = #{noteId}</if>
+						<if test="trialId != null">AND KAITXXID = #{trialId}</if>
+						<if test="noteFormat != null">AND BILGS = #{noteFormat}</if>
+						<if test="notePath != null">AND BILLJ = #{notePath}</if>
+						<if test="sortOrder != null">AND XIANSXX = #{sortOrder}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="storagePathId != null">AND CUNCLJID = #{storagePathId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="noteName != null">AND BILMC = #{noteName}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialRecordDcs">
+		INSERT INTO fy_bilxx (BILID
+									<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+																		<if test="trialId != null">,KAITXXID</if>
+												<if test="noteFormat != null">,BILGS</if>
+												<if test="notePath != null">,BILLJ</if>
+												<if test="sortOrder != null">,XIANSXX</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="storagePathId != null">,CUNCLJID</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="noteName != null">,BILMC</if>
+								)VALUES(#{noteId}
+									<if test="createTime != null">,#{createTime}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+																		<if test="trialId != null">,#{trialId}</if>
+												<if test="noteFormat != null">,#{noteFormat}</if>
+												<if test="notePath != null">,#{notePath}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="storagePathId != null">,#{storagePathId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="noteName != null">,#{noteName}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO fy_bilxx (BILID
+									, CHUANGJSJ
+												, SHANCSJ
+												, SHANCBJ
+																		, KAITXXID
+												, BILGS
+												, BILLJ
+												, XIANSXX
+												, JIEKBS
+												, CUNCLJID
+												, SHIJC
+												, BILMC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.noteId}
+									, #{item.createTime}
+												, #{item.deleteTime}
+												, #{item.deleteFlag}
+																		, #{item.trialId}
+												, #{item.noteFormat}
+												, #{item.notePath}
+												, #{item.sortOrder}
+												, #{item.interfaceId}
+												, #{item.storagePathId}
+												, #{item.timestamp}
+												, #{item.noteName}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialRecordDcs">
+		UPDATE fy_bilxx SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+												<if test="trialId != null">KAITXXID = #{trialId},</if>
+								<if test="noteFormat != null">BILGS = #{noteFormat},</if>
+								<if test="notePath != null">BILLJ = #{notePath},</if>
+								<if test="sortOrder != null">XIANSXX = #{sortOrder},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="storagePathId != null">CUNCLJID = #{storagePathId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="noteName != null">BILMC = #{noteName},</if>
+				</trim>
+		WHERE BILID = #{noteId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		fy_bilxx where BILID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		fy_bilxx where BILID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialRecordDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_bilxx
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_bilxx
+		WHERE BILID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_bilxx
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_bilxx
+		WHERE BILID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialRecordDcs" resultType="java.lang.Integer">
+		select count(BILID) from
+		fy_bilxx 
+		<include refid="where_sql" />
+	</select>
+	
+	</mapper>

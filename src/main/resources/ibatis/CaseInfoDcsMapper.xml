@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.CaseInfoDcsDao">
+
+	<sql id="columns">
+		ANQ,SHIYCX,XUNHJDSP,JIEAFS,CHENGBR,LIAAY,DANGSR,JIEKBS,YEWLXBS,BUGKSLYY,FABBB,ANJID,SHANCSJ,ANJMC,CHENGBBM,ANJLX,JIEARQ,CHUANGJSJ,LIARQ,SHANCBJ,XIANSSX,CHENGBRBS,JIEAAY,ANH,CHENGBBMBS,DAIM,SHIJC,BUGKSL
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.CaseInfoDcs" id="resultMap">
+				<result column="ANQ" property="caseDetail" />
+				<result column="SHIYCX" property="suitableProgram" />
+				<result column="XUNHJDSP" property="tourLocalTrial" />
+				<result column="JIEAFS" property="closeManner" />
+				<result column="CHENGBR" property="undertakerName" />
+				<result column="LIAAY" property="fileCaseNatureList" />
+				<result column="DANGSR" property="party" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="YEWLXBS" property="businessTypeId" />
+				<result column="BUGKSLYY" property="noPublicTrialReason" />
+				<result column="FABBB" property="version" />
+				<result column="ANJID" property="caseId" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="ANJMC" property="caseName" />
+				<result column="CHENGBBM" property="undertakeDeptName" />
+				<result column="ANJLX" property="caseType" />
+				<result column="JIEARQ" property="closeData" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="LIARQ" property="registerCaseDate" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="CHENGBRBS" property="undertakerId" />
+				<result column="JIEAAY" property="closedCaseNatureList" />
+				<result column="ANH" property="caseNum" />
+				<result column="CHENGBBMBS" property="undertakeDeptId" />
+				<result column="DAIM" property="unitCode" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="BUGKSL" property="noPublicTrial" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="suitableProgram != null">AND SHIYCX = #{suitableProgram}</if>
+						<if test="tourLocalTrial != null">AND XUNHJDSP = #{tourLocalTrial}</if>
+						<if test="closeManner != null">AND JIEAFS = #{closeManner}</if>
+						<if test="undertakerName != null">AND CHENGBR = #{undertakerName}</if>
+						<if test="fileCaseNatureList != null">AND LIAAY = #{fileCaseNatureList}</if>
+						<if test="party != null">AND DANGSR = #{party}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="businessTypeId != null">AND YEWLXBS = #{businessTypeId}</if>
+						<if test="noPublicTrialReason != null">AND BUGKSLYY = #{noPublicTrialReason}</if>
+						<if test="version != null">AND FABBB = #{version}</if>
+						<if test="caseId != null">AND ANJID = #{caseId}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="caseName != null">AND ANJMC = #{caseName}</if>
+						<if test="undertakeDeptName != null">AND CHENGBBM = #{undertakeDeptName}</if>
+						<if test="caseType != null">AND ANJLX = #{caseType}</if>
+						<if test="closeData != null">AND JIEARQ = #{closeData}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="registerCaseDate != null">AND LIARQ = #{registerCaseDate}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="undertakerId != null">AND CHENGBRBS = #{undertakerId}</if>
+						<if test="closedCaseNatureList != null">AND JIEAAY = #{closedCaseNatureList}</if>
+						<if test="caseNum != null">AND ANH = #{caseNum}</if>
+						<if test="undertakeDeptId != null">AND CHENGBBMBS = #{undertakeDeptId}</if>
+						<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="noPublicTrial != null">AND BUGKSL = #{noPublicTrial}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CaseInfoDcs">
+		INSERT INTO fy_anjxx (ANJID
+									<if test="suitableProgram != null">,SHIYCX</if>
+												<if test="tourLocalTrial != null">,XUNHJDSP</if>
+												<if test="closeManner != null">,JIEAFS</if>
+												<if test="undertakerName != null">,CHENGBR</if>
+												<if test="fileCaseNatureList != null">,LIAAY</if>
+												<if test="party != null">,DANGSR</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="businessTypeId != null">,YEWLXBS</if>
+												<if test="noPublicTrialReason != null">,BUGKSLYY</if>
+												<if test="version != null">,FABBB</if>
+																		<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="caseName != null">,ANJMC</if>
+												<if test="undertakeDeptName != null">,CHENGBBM</if>
+												<if test="caseType != null">,ANJLX</if>
+												<if test="closeData != null">,JIEARQ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="registerCaseDate != null">,LIARQ</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="undertakerId != null">,CHENGBRBS</if>
+												<if test="closedCaseNatureList != null">,JIEAAY</if>
+												<if test="caseNum != null">,ANH</if>
+												<if test="undertakeDeptId != null">,CHENGBBMBS</if>
+												<if test="unitCode != null">,DAIM</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="noPublicTrial != null">,BUGKSL</if>
+								)VALUES(#{caseId}
+									<if test="suitableProgram != null">,#{suitableProgram}</if>
+												<if test="tourLocalTrial != null">,#{tourLocalTrial}</if>
+												<if test="closeManner != null">,#{closeManner}</if>
+												<if test="undertakerName != null">,#{undertakerName}</if>
+												<if test="fileCaseNatureList != null">,#{fileCaseNatureList}</if>
+												<if test="party != null">,#{party}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="businessTypeId != null">,#{businessTypeId}</if>
+												<if test="noPublicTrialReason != null">,#{noPublicTrialReason}</if>
+												<if test="version != null">,#{version}</if>
+																		<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="caseName != null">,#{caseName}</if>
+												<if test="undertakeDeptName != null">,#{undertakeDeptName}</if>
+												<if test="caseType != null">,#{caseType}</if>
+												<if test="closeData != null">,#{closeData}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="registerCaseDate != null">,#{registerCaseDate}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="undertakerId != null">,#{undertakerId}</if>
+												<if test="closedCaseNatureList != null">,#{closedCaseNatureList}</if>
+												<if test="caseNum != null">,#{caseNum}</if>
+												<if test="undertakeDeptId != null">,#{undertakeDeptId}</if>
+												<if test="unitCode != null">,#{unitCode}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="noPublicTrial != null">,#{noPublicTrial}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO fy_anjxx (ANJID
+									, SHIYCX
+												, XUNHJDSP
+												, JIEAFS
+												, CHENGBR
+												, LIAAY
+												, DANGSR
+												, JIEKBS
+												, YEWLXBS
+												, BUGKSLYY
+												, FABBB
+																		, SHANCSJ
+												, ANJMC
+												, CHENGBBM
+												, ANJLX
+												, JIEARQ
+												, CHUANGJSJ
+												, LIARQ
+												, SHANCBJ
+												, XIANSSX
+												, CHENGBRBS
+												, JIEAAY
+												, ANH
+												, CHENGBBMBS
+												, DAIM
+												, SHIJC
+												, BUGKSL
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.caseId}
+									, #{item.suitableProgram}
+												, #{item.tourLocalTrial}
+												, #{item.closeManner}
+												, #{item.undertakerName}
+												, #{item.fileCaseNatureList}
+												, #{item.party}
+												, #{item.interfaceId}
+												, #{item.businessTypeId}
+												, #{item.noPublicTrialReason}
+												, #{item.version}
+																		, #{item.deleteTime}
+												, #{item.caseName}
+												, #{item.undertakeDeptName}
+												, #{item.caseType}
+												, #{item.closeData}
+												, #{item.createTime}
+												, #{item.registerCaseDate}
+												, #{item.deleteFlag}
+												, #{item.sortOrder}
+												, #{item.undertakerId}
+												, #{item.closedCaseNatureList}
+												, #{item.caseNum}
+												, #{item.undertakeDeptId}
+												, #{item.unitCode}
+												, #{item.timestamp}
+												, #{item.noPublicTrial}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CaseInfoDcs">
+		UPDATE fy_anjxx SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="suitableProgram != null">SHIYCX = #{suitableProgram},</if>
+								<if test="tourLocalTrial != null">XUNHJDSP = #{tourLocalTrial},</if>
+								<if test="closeManner != null">JIEAFS = #{closeManner},</if>
+								<if test="undertakerName != null">CHENGBR = #{undertakerName},</if>
+								<if test="fileCaseNatureList != null">LIAAY = #{fileCaseNatureList},</if>
+								<if test="party != null">DANGSR = #{party},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="businessTypeId != null">YEWLXBS = #{businessTypeId},</if>
+								<if test="noPublicTrialReason != null">BUGKSLYY = #{noPublicTrialReason},</if>
+								<if test="version != null">FABBB = #{version},</if>
+												<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="caseName != null">ANJMC = #{caseName},</if>
+								<if test="undertakeDeptName != null">CHENGBBM = #{undertakeDeptName},</if>
+								<if test="caseType != null">ANJLX = #{caseType},</if>
+								<if test="closeData != null">JIEARQ = #{closeData},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="registerCaseDate != null">LIARQ = #{registerCaseDate},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="undertakerId != null">CHENGBRBS = #{undertakerId},</if>
+								<if test="closedCaseNatureList != null">JIEAAY = #{closedCaseNatureList},</if>
+								<if test="caseNum != null">ANH = #{caseNum},</if>
+								<if test="undertakeDeptId != null">CHENGBBMBS = #{undertakeDeptId},</if>
+								<if test="unitCode != null">DAIM = #{unitCode},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="noPublicTrial != null">BUGKSL = #{noPublicTrial},</if>
+				</trim>
+		WHERE ANJID = #{caseId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		fy_anjxx where ANJID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		fy_anjxx where ANJID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.CaseInfoDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_anjxx
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_anjxx
+		WHERE ANJID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_anjxx
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_anjxx
+		WHERE ANJID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CaseInfoDcs" resultType="java.lang.Integer">
+		select count(ANJID) from
+		fy_anjxx 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(xianssx) from
+		fy_anjxx
+	</select>
+	</mapper>

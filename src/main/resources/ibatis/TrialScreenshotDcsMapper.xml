@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.TrialScreenshotDcsDao">
+
+	<sql id="columns">
+		SHANCSJ,SHIJC,JIEKBS,XIANSSX,TUPDZ,KAITXXID,CHUANGJSJ,SHANCBJ
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.TrialScreenshotDcs" id="resultMap">
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="TUPDZ" property="pictureLocation" />
+				<result column="KAITXXID" property="trialId" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="CHUANGJSJ" property="createTime" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="pictureLocation != null">AND TUPDZ = #{pictureLocation}</if>
+						<if test="trialId != null">AND KAITXXID = #{trialId}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialScreenshotDcs">
+		INSERT INTO fy_kaitjt (KAITXXID
+									<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="pictureLocation != null">,TUPDZ</if>
+																		<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+								)VALUES(#{trialId}
+									<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="pictureLocation != null">,#{pictureLocation}</if>
+																		<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="createTime != null">,#{createTime}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO fy_kaitjt (KAITXXID
+									, SHANCSJ
+												, SHIJC
+												, JIEKBS
+												, XIANSSX
+												, TUPDZ
+																		, SHANCBJ
+												, CHUANGJSJ
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.trialId}
+									, #{item.deleteTime}
+												, #{item.timestamp}
+												, #{item.interfaceId}
+												, #{item.sortOrder}
+												, #{item.pictureLocation}
+																		, #{item.deleteFlag}
+												, #{item.createTime}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialScreenshotDcs">
+		UPDATE fy_kaitjt SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="pictureLocation != null">TUPDZ = #{pictureLocation},</if>
+												<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+				</trim>
+		WHERE KAITXXID = #{trialId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		fy_kaitjt where KAITXXID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		fy_kaitjt where KAITXXID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialScreenshotDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_kaitjt
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_kaitjt
+		WHERE KAITXXID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_kaitjt
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_kaitjt
+		WHERE KAITXXID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialScreenshotDcs" resultType="java.lang.Integer">
+		select count(KAITXXID) from
+		fy_kaitjt 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(xianssx) from
+		fy_kaitjt
+	</select>
+	</mapper>

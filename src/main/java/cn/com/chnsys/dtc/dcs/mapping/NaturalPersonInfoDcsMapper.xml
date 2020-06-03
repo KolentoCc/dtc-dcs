@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.NaturalPersonInfoDcsDao">
+
+	<sql id="columns">
+		XIANYJRSF,XINGWNL,RENDHZXCJ,WENHCD,TESSF,WAIJHR,TESSLHBL,WEICNRJTBJ,QITLXFF,YOUZBM,SHEQGJHDQ,CENGYM,JUNGHWZGBJB,YUASTID,BIEM,CHUSRQ,CHUANGJSJ,SHEQLX,XIANSSX,DIANZYX,SHENFZJLX,RENDDB,ZHENGZMM,JIGLX,SONGDDZ,NIANL,XINGZJB,MINZ,CHUANZ,LIUDRY,ZHENGXZW,SHENFZJZRQ,SHENFBZ,XIANZZ,SUOZDW,JINGCJZD,JIEKBS,ZHAOP,QITLXDH,XINGB,SHANCSJ,HUNYZK,SHEQ,GUOJ,ZHENGJHM,HUJSZD,SHANCBJ,DIZ,GUOJZYJG,ZHIY,JUNGZWXZ,ZHIW,SHOUJHM,WAIGJDSRRJSJ,JUNX,RENDZW,SUOZDWLX,SHIJC,ZHENGXWY
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.NaturalPersonInfoDcs" id="resultMap">
+				<result column="XIANYJRSF" property="activeDutyStatus" />
+				<result column="XINGWNL" property="behaviour" />
+				<result column="RENDHZXCJ" property="NPCOrCPPCCLevel" />
+				<result column="WENHCD" property="educationDegree" />
+				<result column="TESSF" property="specialIdentity" />
+				<result column="WAIJHR" property="overseasChinese" />
+				<result column="TESSLHBL" property="specialPhysiology" />
+				<result column="WEICNRJTBJ" property="minorFamilyBg" />
+				<result column="QITLXFF" property="otherContactMethod" />
+				<result column="YOUZBM" property="postcode" />
+				<result column="SHEQGJHDQ" property="relatedOverseasChineseCountryOrRegion" />
+				<result column="CENGYM" property="formerName" />
+				<result column="JUNGHWZGBJB" property="officerOrCivilianCadresLevel" />
+				<result column="YUASTID" property="entityId" />
+				<result column="BIEM" property="name" />
+				<result column="CHUSRQ" property="birthday" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHEQLX" property="involvingOverseasChineseType" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="DIANZYX" property="email" />
+				<result column="SHENFZJLX" property="identityType" />
+				<result column="RENDDB" property="NPCRepresentative" />
+				<result column="ZHENGZMM" property="politicStatus" />
+				<result column="JIGLX" property="organizationType" />
+				<result column="SONGDDZ" property="serveAddress" />
+				<result column="NIANL" property="age" />
+				<result column="XINGZJB" property="administrativeLevel" />
+				<result column="MINZ" property="nation" />
+				<result column="CHUANZ" property="fax" />
+				<result column="LIUDRY" property="isMigrantPerson" />
+				<result column="ZHENGXZW" property="CPPCCPost" />
+				<result column="SHENFZJZRQ" property="iDExpiryDate" />
+				<result column="SHENFBZ" property="identityEstablishment" />
+				<result column="XIANZZ" property="nowAddress" />
+				<result column="SUOZDW" property="unit" />
+				<result column="JINGCJZD" property="habitualResidence" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="ZHAOP" property="photo" />
+				<result column="QITLXDH" property="otherContactPhone" />
+				<result column="XINGB" property="sex" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="HUNYZK" property="marriageStatus" />
+				<result column="SHEQ" property="relatedOverseasChinese" />
+				<result column="GUOJ" property="nationality" />
+				<result column="ZHENGJHM" property="identificationNum" />
+				<result column="HUJSZD" property="permanentAddress" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="DIZ" property="address" />
+				<result column="GUOJZYJG" property="nationalCentralAuthority" />
+				<result column="ZHIY" property="occupation" />
+				<result column="JUNGZWXZ" property="officerCharacterNature" />
+				<result column="ZHIW" property="job" />
+				<result column="SHOUJHM" property="phoneNum" />
+				<result column="WAIGJDSRRJSJ" property="foreignNationalityPartyEntryTime" />
+				<result column="JUNX" property="militaryRank" />
+				<result column="RENDZW" property="NPCPost" />
+				<result column="SUOZDWLX" property="theInstitutionType" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="ZHENGXWY" property="CPPCCMember" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="activeDutyStatus != null">AND XIANYJRSF = #{activeDutyStatus}</if>
+						<if test="behaviour != null">AND XINGWNL = #{behaviour}</if>
+						<if test="NPCOrCPPCCLevel != null">AND RENDHZXCJ = #{NPCOrCPPCCLevel}</if>
+						<if test="educationDegree != null">AND WENHCD = #{educationDegree}</if>
+						<if test="specialIdentity != null">AND TESSF = #{specialIdentity}</if>
+						<if test="overseasChinese != null">AND WAIJHR = #{overseasChinese}</if>
+						<if test="specialPhysiology != null">AND TESSLHBL = #{specialPhysiology}</if>
+						<if test="minorFamilyBg != null">AND WEICNRJTBJ = #{minorFamilyBg}</if>
+						<if test="otherContactMethod != null">AND QITLXFF = #{otherContactMethod}</if>
+						<if test="postcode != null">AND YOUZBM = #{postcode}</if>
+						<if test="relatedOverseasChineseCountryOrRegion != null">AND SHEQGJHDQ = #{relatedOverseasChineseCountryOrRegion}</if>
+						<if test="formerName != null">AND CENGYM = #{formerName}</if>
+						<if test="officerOrCivilianCadresLevel != null">AND JUNGHWZGBJB = #{officerOrCivilianCadresLevel}</if>
+						<if test="entityId != null">AND YUASTID = #{entityId}</if>
+						<if test="name != null">AND BIEM = #{name}</if>
+						<if test="birthday != null">AND CHUSRQ = #{birthday}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="involvingOverseasChineseType != null">AND SHEQLX = #{involvingOverseasChineseType}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="email != null">AND DIANZYX = #{email}</if>
+						<if test="identityType != null">AND SHENFZJLX = #{identityType}</if>
+						<if test="NPCRepresentative != null">AND RENDDB = #{NPCRepresentative}</if>
+						<if test="politicStatus != null">AND ZHENGZMM = #{politicStatus}</if>
+						<if test="organizationType != null">AND JIGLX = #{organizationType}</if>
+						<if test="serveAddress != null">AND SONGDDZ = #{serveAddress}</if>
+						<if test="age != null">AND NIANL = #{age}</if>
+						<if test="administrativeLevel != null">AND XINGZJB = #{administrativeLevel}</if>
+						<if test="nation != null">AND MINZ = #{nation}</if>
+						<if test="fax != null">AND CHUANZ = #{fax}</if>
+						<if test="isMigrantPerson != null">AND LIUDRY = #{isMigrantPerson}</if>
+						<if test="CPPCCPost != null">AND ZHENGXZW = #{CPPCCPost}</if>
+						<if test="iDExpiryDate != null">AND SHENFZJZRQ = #{iDExpiryDate}</if>
+						<if test="identityEstablishment != null">AND SHENFBZ = #{identityEstablishment}</if>
+						<if test="nowAddress != null">AND XIANZZ = #{nowAddress}</if>
+						<if test="unit != null">AND SUOZDW = #{unit}</if>
+						<if test="habitualResidence != null">AND JINGCJZD = #{habitualResidence}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="photo != null">AND ZHAOP = #{photo}</if>
+						<if test="otherContactPhone != null">AND QITLXDH = #{otherContactPhone}</if>
+						<if test="sex != null">AND XINGB = #{sex}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="marriageStatus != null">AND HUNYZK = #{marriageStatus}</if>
+						<if test="relatedOverseasChinese != null">AND SHEQ = #{relatedOverseasChinese}</if>
+						<if test="nationality != null">AND GUOJ = #{nationality}</if>
+						<if test="identificationNum != null">AND ZHENGJHM = #{identificationNum}</if>
+						<if test="permanentAddress != null">AND HUJSZD = #{permanentAddress}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="address != null">AND DIZ = #{address}</if>
+						<if test="nationalCentralAuthority != null">AND GUOJZYJG = #{nationalCentralAuthority}</if>
+						<if test="occupation != null">AND ZHIY = #{occupation}</if>
+						<if test="officerCharacterNature != null">AND JUNGZWXZ = #{officerCharacterNature}</if>
+						<if test="job != null">AND ZHIW = #{job}</if>
+						<if test="phoneNum != null">AND SHOUJHM = #{phoneNum}</if>
+						<if test="foreignNationalityPartyEntryTime != null">AND WAIGJDSRRJSJ = #{foreignNationalityPartyEntryTime}</if>
+						<if test="militaryRank != null">AND JUNX = #{militaryRank}</if>
+						<if test="NPCPost != null">AND RENDZW = #{NPCPost}</if>
+						<if test="theInstitutionType != null">AND SUOZDWLX = #{theInstitutionType}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="CPPCCMember != null">AND ZHENGXWY = #{CPPCCMember}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.NaturalPersonInfoDcs">
+		INSERT INTO FY_ZHIRRXX (YUASTID
+									<if test="activeDutyStatus != null">,XIANYJRSF</if>
+												<if test="behaviour != null">,XINGWNL</if>
+												<if test="NPCOrCPPCCLevel != null">,RENDHZXCJ</if>
+												<if test="educationDegree != null">,WENHCD</if>
+												<if test="specialIdentity != null">,TESSF</if>
+												<if test="overseasChinese != null">,WAIJHR</if>
+												<if test="specialPhysiology != null">,TESSLHBL</if>
+												<if test="minorFamilyBg != null">,WEICNRJTBJ</if>
+												<if test="otherContactMethod != null">,QITLXFF</if>
+												<if test="postcode != null">,YOUZBM</if>
+												<if test="relatedOverseasChineseCountryOrRegion != null">,SHEQGJHDQ</if>
+												<if test="formerName != null">,CENGYM</if>
+												<if test="officerOrCivilianCadresLevel != null">,JUNGHWZGBJB</if>
+																		<if test="name != null">,BIEM</if>
+												<if test="birthday != null">,CHUSRQ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="involvingOverseasChineseType != null">,SHEQLX</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="email != null">,DIANZYX</if>
+												<if test="identityType != null">,SHENFZJLX</if>
+												<if test="NPCRepresentative != null">,RENDDB</if>
+												<if test="politicStatus != null">,ZHENGZMM</if>
+												<if test="organizationType != null">,JIGLX</if>
+												<if test="serveAddress != null">,SONGDDZ</if>
+												<if test="age != null">,NIANL</if>
+												<if test="administrativeLevel != null">,XINGZJB</if>
+												<if test="nation != null">,MINZ</if>
+												<if test="fax != null">,CHUANZ</if>
+												<if test="isMigrantPerson != null">,LIUDRY</if>
+												<if test="CPPCCPost != null">,ZHENGXZW</if>
+												<if test="iDExpiryDate != null">,SHENFZJZRQ</if>
+												<if test="identityEstablishment != null">,SHENFBZ</if>
+												<if test="nowAddress != null">,XIANZZ</if>
+												<if test="unit != null">,SUOZDW</if>
+												<if test="habitualResidence != null">,JINGCJZD</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="photo != null">,ZHAOP</if>
+												<if test="otherContactPhone != null">,QITLXDH</if>
+												<if test="sex != null">,XINGB</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="marriageStatus != null">,HUNYZK</if>
+												<if test="relatedOverseasChinese != null">,SHEQ</if>
+												<if test="nationality != null">,GUOJ</if>
+												<if test="identificationNum != null">,ZHENGJHM</if>
+												<if test="permanentAddress != null">,HUJSZD</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="address != null">,DIZ</if>
+												<if test="nationalCentralAuthority != null">,GUOJZYJG</if>
+												<if test="occupation != null">,ZHIY</if>
+												<if test="officerCharacterNature != null">,JUNGZWXZ</if>
+												<if test="job != null">,ZHIW</if>
+												<if test="phoneNum != null">,SHOUJHM</if>
+												<if test="foreignNationalityPartyEntryTime != null">,WAIGJDSRRJSJ</if>
+												<if test="militaryRank != null">,JUNX</if>
+												<if test="NPCPost != null">,RENDZW</if>
+												<if test="theInstitutionType != null">,SUOZDWLX</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="CPPCCMember != null">,ZHENGXWY</if>
+								)VALUES(#{entityId}
+									<if test="activeDutyStatus != null">,#{activeDutyStatus}</if>
+												<if test="behaviour != null">,#{behaviour}</if>
+												<if test="NPCOrCPPCCLevel != null">,#{NPCOrCPPCCLevel}</if>
+												<if test="educationDegree != null">,#{educationDegree}</if>
+												<if test="specialIdentity != null">,#{specialIdentity}</if>
+												<if test="overseasChinese != null">,#{overseasChinese}</if>
+												<if test="specialPhysiology != null">,#{specialPhysiology}</if>
+												<if test="minorFamilyBg != null">,#{minorFamilyBg}</if>
+												<if test="otherContactMethod != null">,#{otherContactMethod}</if>
+												<if test="postcode != null">,#{postcode}</if>
+												<if test="relatedOverseasChineseCountryOrRegion != null">,#{relatedOverseasChineseCountryOrRegion}</if>
+												<if test="formerName != null">,#{formerName}</if>
+												<if test="officerOrCivilianCadresLevel != null">,#{officerOrCivilianCadresLevel}</if>
+																		<if test="name != null">,#{name}</if>
+												<if test="birthday != null">,#{birthday}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="involvingOverseasChineseType != null">,#{involvingOverseasChineseType}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="email != null">,#{email}</if>
+												<if test="identityType != null">,#{identityType}</if>
+												<if test="NPCRepresentative != null">,#{NPCRepresentative}</if>
+												<if test="politicStatus != null">,#{politicStatus}</if>
+												<if test="organizationType != null">,#{organizationType}</if>
+												<if test="serveAddress != null">,#{serveAddress}</if>
+												<if test="age != null">,#{age}</if>
+												<if test="administrativeLevel != null">,#{administrativeLevel}</if>
+												<if test="nation != null">,#{nation}</if>
+												<if test="fax != null">,#{fax}</if>
+												<if test="isMigrantPerson != null">,#{isMigrantPerson}</if>
+												<if test="CPPCCPost != null">,#{CPPCCPost}</if>
+												<if test="iDExpiryDate != null">,#{iDExpiryDate}</if>
+												<if test="identityEstablishment != null">,#{identityEstablishment}</if>
+												<if test="nowAddress != null">,#{nowAddress}</if>
+												<if test="unit != null">,#{unit}</if>
+												<if test="habitualResidence != null">,#{habitualResidence}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="photo != null">,#{photo}</if>
+												<if test="otherContactPhone != null">,#{otherContactPhone}</if>
+												<if test="sex != null">,#{sex}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="marriageStatus != null">,#{marriageStatus}</if>
+												<if test="relatedOverseasChinese != null">,#{relatedOverseasChinese}</if>
+												<if test="nationality != null">,#{nationality}</if>
+												<if test="identificationNum != null">,#{identificationNum}</if>
+												<if test="permanentAddress != null">,#{permanentAddress}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="address != null">,#{address}</if>
+												<if test="nationalCentralAuthority != null">,#{nationalCentralAuthority}</if>
+												<if test="occupation != null">,#{occupation}</if>
+												<if test="officerCharacterNature != null">,#{officerCharacterNature}</if>
+												<if test="job != null">,#{job}</if>
+												<if test="phoneNum != null">,#{phoneNum}</if>
+												<if test="foreignNationalityPartyEntryTime != null">,#{foreignNationalityPartyEntryTime}</if>
+												<if test="militaryRank != null">,#{militaryRank}</if>
+												<if test="NPCPost != null">,#{NPCPost}</if>
+												<if test="theInstitutionType != null">,#{theInstitutionType}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="CPPCCMember != null">,#{CPPCCMember}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_ZHIRRXX (YUASTID
+									, XIANYJRSF
+												, XINGWNL
+												, RENDHZXCJ
+												, WENHCD
+												, TESSF
+												, WAIJHR
+												, TESSLHBL
+												, WEICNRJTBJ
+												, QITLXFF
+												, YOUZBM
+												, SHEQGJHDQ
+												, CENGYM
+												, JUNGHWZGBJB
+																		, BIEM
+												, CHUSRQ
+												, CHUANGJSJ
+												, SHEQLX
+												, XIANSSX
+												, DIANZYX
+												, SHENFZJLX
+												, RENDDB
+												, ZHENGZMM
+												, JIGLX
+												, SONGDDZ
+												, NIANL
+												, XINGZJB
+												, MINZ
+												, CHUANZ
+												, LIUDRY
+												, ZHENGXZW
+												, SHENFZJZRQ
+												, SHENFBZ
+												, XIANZZ
+												, SUOZDW
+												, JINGCJZD
+												, JIEKBS
+												, ZHAOP
+												, QITLXDH
+												, XINGB
+												, SHANCSJ
+												, HUNYZK
+												, SHEQ
+												, GUOJ
+												, ZHENGJHM
+												, HUJSZD
+												, SHANCBJ
+												, DIZ
+												, GUOJZYJG
+												, ZHIY
+												, JUNGZWXZ
+												, ZHIW
+												, SHOUJHM
+												, WAIGJDSRRJSJ
+												, JUNX
+												, RENDZW
+												, SUOZDWLX
+												, SHIJC
+												, ZHENGXWY
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.entityId}
+									, #{item.activeDutyStatus}
+												, #{item.behaviour}
+												, #{item.NPCOrCPPCCLevel}
+												, #{item.educationDegree}
+												, #{item.specialIdentity}
+												, #{item.overseasChinese}
+												, #{item.specialPhysiology}
+												, #{item.minorFamilyBg}
+												, #{item.otherContactMethod}
+												, #{item.postcode}
+												, #{item.relatedOverseasChineseCountryOrRegion}
+												, #{item.formerName}
+												, #{item.officerOrCivilianCadresLevel}
+																		, #{item.name}
+												, #{item.birthday}
+												, #{item.createTime}
+												, #{item.involvingOverseasChineseType}
+												, #{item.sortOrder}
+												, #{item.email}
+												, #{item.identityType}
+												, #{item.NPCRepresentative}
+												, #{item.politicStatus}
+												, #{item.organizationType}
+												, #{item.serveAddress}
+												, #{item.age}
+												, #{item.administrativeLevel}
+												, #{item.nation}
+												, #{item.fax}
+												, #{item.isMigrantPerson}
+												, #{item.CPPCCPost}
+												, #{item.iDExpiryDate}
+												, #{item.identityEstablishment}
+												, #{item.nowAddress}
+												, #{item.unit}
+												, #{item.habitualResidence}
+												, #{item.interfaceId}
+												, #{item.photo}
+												, #{item.otherContactPhone}
+												, #{item.sex}
+												, #{item.deleteTime}
+												, #{item.marriageStatus}
+												, #{item.relatedOverseasChinese}
+												, #{item.nationality}
+												, #{item.identificationNum}
+												, #{item.permanentAddress}
+												, #{item.deleteFlag}
+												, #{item.address}
+												, #{item.nationalCentralAuthority}
+												, #{item.occupation}
+												, #{item.officerCharacterNature}
+												, #{item.job}
+												, #{item.phoneNum}
+												, #{item.foreignNationalityPartyEntryTime}
+												, #{item.militaryRank}
+												, #{item.NPCPost}
+												, #{item.theInstitutionType}
+												, #{item.timestamp}
+												, #{item.CPPCCMember}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.NaturalPersonInfoDcs">
+		UPDATE FY_ZHIRRXX SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="activeDutyStatus != null">XIANYJRSF = #{activeDutyStatus},</if>
+								<if test="behaviour != null">XINGWNL = #{behaviour},</if>
+								<if test="NPCOrCPPCCLevel != null">RENDHZXCJ = #{NPCOrCPPCCLevel},</if>
+								<if test="educationDegree != null">WENHCD = #{educationDegree},</if>
+								<if test="specialIdentity != null">TESSF = #{specialIdentity},</if>
+								<if test="overseasChinese != null">WAIJHR = #{overseasChinese},</if>
+								<if test="specialPhysiology != null">TESSLHBL = #{specialPhysiology},</if>
+								<if test="minorFamilyBg != null">WEICNRJTBJ = #{minorFamilyBg},</if>
+								<if test="otherContactMethod != null">QITLXFF = #{otherContactMethod},</if>
+								<if test="postcode != null">YOUZBM = #{postcode},</if>
+								<if test="relatedOverseasChineseCountryOrRegion != null">SHEQGJHDQ = #{relatedOverseasChineseCountryOrRegion},</if>
+								<if test="formerName != null">CENGYM = #{formerName},</if>
+								<if test="officerOrCivilianCadresLevel != null">JUNGHWZGBJB = #{officerOrCivilianCadresLevel},</if>
+												<if test="name != null">BIEM = #{name},</if>
+								<if test="birthday != null">CHUSRQ = #{birthday},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="involvingOverseasChineseType != null">SHEQLX = #{involvingOverseasChineseType},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="email != null">DIANZYX = #{email},</if>
+								<if test="identityType != null">SHENFZJLX = #{identityType},</if>
+								<if test="NPCRepresentative != null">RENDDB = #{NPCRepresentative},</if>
+								<if test="politicStatus != null">ZHENGZMM = #{politicStatus},</if>
+								<if test="organizationType != null">JIGLX = #{organizationType},</if>
+								<if test="serveAddress != null">SONGDDZ = #{serveAddress},</if>
+								<if test="age != null">NIANL = #{age},</if>
+								<if test="administrativeLevel != null">XINGZJB = #{administrativeLevel},</if>
+								<if test="nation != null">MINZ = #{nation},</if>
+								<if test="fax != null">CHUANZ = #{fax},</if>
+								<if test="isMigrantPerson != null">LIUDRY = #{isMigrantPerson},</if>
+								<if test="CPPCCPost != null">ZHENGXZW = #{CPPCCPost},</if>
+								<if test="iDExpiryDate != null">SHENFZJZRQ = #{iDExpiryDate},</if>
+								<if test="identityEstablishment != null">SHENFBZ = #{identityEstablishment},</if>
+								<if test="nowAddress != null">XIANZZ = #{nowAddress},</if>
+								<if test="unit != null">SUOZDW = #{unit},</if>
+								<if test="habitualResidence != null">JINGCJZD = #{habitualResidence},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="photo != null">ZHAOP = #{photo},</if>
+								<if test="otherContactPhone != null">QITLXDH = #{otherContactPhone},</if>
+								<if test="sex != null">XINGB = #{sex},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="marriageStatus != null">HUNYZK = #{marriageStatus},</if>
+								<if test="relatedOverseasChinese != null">SHEQ = #{relatedOverseasChinese},</if>
+								<if test="nationality != null">GUOJ = #{nationality},</if>
+								<if test="identificationNum != null">ZHENGJHM = #{identificationNum},</if>
+								<if test="permanentAddress != null">HUJSZD = #{permanentAddress},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="address != null">DIZ = #{address},</if>
+								<if test="nationalCentralAuthority != null">GUOJZYJG = #{nationalCentralAuthority},</if>
+								<if test="occupation != null">ZHIY = #{occupation},</if>
+								<if test="officerCharacterNature != null">JUNGZWXZ = #{officerCharacterNature},</if>
+								<if test="job != null">ZHIW = #{job},</if>
+								<if test="phoneNum != null">SHOUJHM = #{phoneNum},</if>
+								<if test="foreignNationalityPartyEntryTime != null">WAIGJDSRRJSJ = #{foreignNationalityPartyEntryTime},</if>
+								<if test="militaryRank != null">JUNX = #{militaryRank},</if>
+								<if test="NPCPost != null">RENDZW = #{NPCPost},</if>
+								<if test="theInstitutionType != null">SUOZDWLX = #{theInstitutionType},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="CPPCCMember != null">ZHENGXWY = #{CPPCCMember},</if>
+				</trim>
+		WHERE YUASTID = #{entityId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_ZHIRRXX where YUASTID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_ZHIRRXX where YUASTID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.NaturalPersonInfoDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIRRXX
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIRRXX
+		WHERE YUASTID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIRRXX
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIRRXX
+		WHERE YUASTID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.NaturalPersonInfoDcs" resultType="java.lang.Integer">
+		select count(YUASTID) from
+		FY_ZHIRRXX 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_ZHIRRXX
+	</select>
+	</mapper>

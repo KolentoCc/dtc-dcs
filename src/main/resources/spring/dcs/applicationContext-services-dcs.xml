@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        ">
+
+	<bean id="illegalDataService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.IllegalDataServiceImpl">
+		<property name="illegalDataDao" ref="illegalDataDao"></property>
+	</bean>
+
+	<bean id="caseInfoDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.CaseInfoDcsServiceImpl">
+		<property name="caseInfoDcsDao" ref="caseInfoDcsDao"></property>
+	</bean>
+
+	<bean id="courtRoomBackImageDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.CourtRoomBackImageDcsServiceImpl">
+		<property name="courtRoomBackImageDcsDao" ref="courtRoomBackImageDcsDao"></property>
+	</bean>
+
+	<bean id="courtRoomConfigDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.CourtRoomConfigDcsServiceImpl">
+		<property name="courtRoomConfigDcsDao" ref="courtRoomConfigDcsDao"></property>
+	</bean>
+
+	<bean id="courtRoomEnDeCodeDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.CourtRoomEnDeCodeDcsServiceImpl">
+		<property name="courtRoomEnDeCodeDcsDao" ref="courtRoomEnDeCodeDcsDao"></property>
+	</bean>
+
+	<bean id="courtRoomLiveConfigDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.CourtRoomLiveConfigDcsServiceImpl">
+		<property name="courtRoomLiveConfigDcsDao" ref="courtRoomLiveConfigDcsDao"></property>
+	</bean>
+
+	<bean id="courtRoomDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.CourtRoomDcsServiceImpl">
+		<property name="courtRoomDcsDao" ref="courtRoomDcsDao"></property>
+	</bean>
+
+	<bean id="courtRoomSignalConfigDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.CourtRoomSignalConfigDcsServiceImpl">
+		<property name="courtRoomSignalConfigDcsDao" ref="courtRoomSignalConfigDcsDao"></property>
+	</bean>
+
+	<bean id="courtUserDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.CourtUserDcsServiceImpl">
+		<property name="courtUserDcsDao" ref="courtUserDcsDao"></property>
+	</bean>
+
+	<bean id="demondLogDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.DemondLogDcsServiceImpl">
+		<property name="demondLogDcsDao" ref="demondLogDcsDao"></property>
+	</bean>
+
+	<bean id="demondProtocolDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.DemondProtocolDcsServiceImpl">
+		<property name="demondProtocolDcsDao" ref="demondProtocolDcsDao"></property>
+	</bean>
+
+	<bean id="departmentDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.DepartmentDcsServiceImpl">
+		<property name="departmentDcsDao" ref="departmentDcsDao"></property>
+	</bean>
+
+	<bean id="deviceAlarmDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.DeviceAlarmDcsServiceImpl">
+		<property name="deviceAlarmDcsDao" ref="deviceAlarmDcsDao"></property>
+	</bean>
+
+	<bean id="evidenceFileDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.EvidenceFileDcsServiceImpl">
+		<property name="evidenceFileDcsDao" ref="evidenceFileDcsDao"></property>
+	</bean>
+
+	<bean id="evidenceInfoDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.EvidenceInfoDcsServiceImpl">
+		<property name="evidenceInfoDcsDao" ref="evidenceInfoDcsDao"></property>
+	</bean>
+
+	<bean id="witnessInfoDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.WitnessInfoDcsServiceImpl">
+		<property name="witnessInfoDcsDao" ref="witnessInfoDcsDao"></property>
+	</bean>
+
+	<bean id="judicialOrganMemberDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.JudicialOrganMemberDcsServiceImpl">
+		<property name="judicialOrganMemberDcsDao" ref="judicialOrganMemberDcsDao"></property>
+	</bean>
+
+	<bean id="legalPersonOrganInfoDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.LegalPersonOrganInfoDcsServiceImpl">
+		<property name="legalPersonOrganInfoDcsDao" ref="legalPersonOrganInfoDcsDao"></property>
+	</bean>
+
+	<bean id="liveLogDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.LiveLogDcsServiceImpl">
+		<property name="liveLogDcsDao" ref="liveLogDcsDao"></property>
+	</bean>
+
+	<bean id="liveProtocolDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.LiveProtocolDcsServiceImpl">
+		<property name="liveProtocolDcsDao" ref="liveProtocolDcsDao"></property>
+	</bean>
+
+	<bean id="naturalPersonInfoDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.NaturalPersonInfoDcsServiceImpl">
+		<property name="naturalPersonInfoDcsDao" ref="naturalPersonInfoDcsDao"></property>
+	</bean>
+
+	<bean id="participateCaseEntityListDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.ParticipateCaseEntityListDcsServiceImpl">
+		<property name="participateCaseEntityListDcsDao" ref="participateCaseEntityListDcsDao"></property>
+	</bean>
+
+	<bean id="playCountDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.PlayCountDcsServiceImpl">
+		<property name="playCountDcsDao" ref="playCountDcsDao"></property>
+	</bean>
+
+	<bean id="trialBurnConfigDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.TrialBurnConfigDcsServiceImpl">
+		<property name="trialBurnConfigDcsDao" ref="trialBurnConfigDcsDao"></property>
+	</bean>
+
+	<bean id="trialLiveDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.TrialLiveDcsServiceImpl">
+		<property name="trialLiveDcsDao" ref="trialLiveDcsDao"></property>
+	</bean>
+
+	<bean id="trialScreenshotDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.TrialScreenshotDcsServiceImpl">
+		<property name="trialScreenshotDcsDao" ref="trialScreenshotDcsDao"></property>
+	</bean>
+
+	<bean id="trialDcsService" class="cn.com.chnsys.dtc.dcs.service.impl.TrialDcsServiceImpl">
+		<property name="trialDcsDao" ref="trialDcsDao"></property>
+	</bean>
+
+	<bean id="trialTermDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.TrialTermDcsServiceImpl">
+		<property name="trialTermDcsDao" ref="trialTermDcsDao"></property>
+	</bean>
+
+	<bean id="trialVideoDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.TrialVideoDcsServiceImpl">
+		<property name="trialVideoDcsDao" ref="trialVideoDcsDao"></property>
+	</bean>
+
+	<bean id="caseCauseDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.CaseCauseDcsServiceImpl">
+		<property name="caseCauseDcsDao" ref="caseCauseDcsDao"></property>
+	</bean>
+
+	<bean id="trialTranscriptFileDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.TrialTranscriptFileDcsServiceImpl">
+		<property name="trialTranscriptFileDcsDao" ref="trialTranscriptFileDcsDao"></property>
+	</bean>
+
+	<bean id="unitStructDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.UnitStructDcsServiceImpl">
+		<property name="unitStructDcsDao" ref="unitStructDcsDao"></property>
+	</bean>
+	<bean id="receiverProtocolService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.ReceiverProtocolServiceImpl">
+		<property name="receiverProtocolDao" ref="receiverProtocolDao"></property>
+	</bean>
+	
+	<bean id="trialPlayNumDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.TrialPlayNumDcsServiceImpl">
+		<property name="trialPlayNumDcsDao" ref="trialPlayNumDcsDao"></property>
+	</bean>
+	
+	<bean id="trialRecordDcsService"
+		class="cn.com.chnsys.dtc.dcs.service.impl.TrialRecordDcsServiceImpl">
+		<property name="trialRecordDcsDao" ref="trialRecordDcsDao"></property>
+	</bean>
+	<bean id="serverConfigInfoService" 
+	    class="cn.com.chnsys.dtc.dcs.service.impl.ServerConfigInfoServiceImpl">
+	    <property name="serverConfigInfoDao" ref="serverConfigInfoDao"></property>
+	</bean>
+	    
+</beans>

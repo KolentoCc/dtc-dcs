@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.JudicialOrganMemberDcsDao">
+
+	<sql id="columns">
+		SHANCSJ,PAIQID,RENYID,CHENGYID,SHIJC,JUES,FABBB,JIEKBS,XIANSSX,ANJID,XINGM,CHUANGJSJ,SHANCBJ
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.JudicialOrganMemberDcs" id="resultMap">
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="PAIQID" property="trailId" />
+				<result column="RENYID" property="userId" />
+				<result column="CHENGYID" property="memberId" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="JUES" property="role" />
+				<result column="FABBB" property="version" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="ANJID" property="caseId" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="XINGM" property="userName" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="CHUANGJSJ" property="createTime" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="trailId != null">AND PAIQID = #{trailId}</if>
+						<if test="userId != null">AND RENYID = #{userId}</if>
+						<if test="memberId != null">AND CHENGYID = #{memberId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="role != null">AND JUES = #{role}</if>
+						<if test="version != null">AND FABBB = #{version}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="caseId != null">AND ANJID = #{caseId}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="userName != null">AND XINGM = #{userName}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.JudicialOrganMemberDcs">
+		INSERT INTO FY_SHENPZZCY (CHENGYID
+									<if test="deleteTime != null">,SHANCSJ</if>
+									<if test="trailId != null">,PAIQID</if>
+												<if test="userId != null">,RENYID</if>
+																		<if test="timestamp != null">,SHIJC</if>
+												<if test="role != null">,JUES</if>
+												<if test="version != null">,FABBB</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="caseId != null">,ANJID</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="userName != null">,XINGM</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+								)VALUES(#{memberId}
+									<if test="deleteTime != null">,#{deleteTime}</if>
+									<if test="trailId != null">,#{trailId}</if>
+												<if test="userId != null">,#{userId}</if>
+																		<if test="timestamp != null">,#{timestamp}</if>
+												<if test="role != null">,#{role}</if>
+												<if test="version != null">,#{version}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="caseId != null">,#{caseId}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="userName != null">,#{userName}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="createTime != null">,#{createTime}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_SHENPZZCY (CHENGYID
+									, SHANCSJ
+									,PAIQID
+												, RENYID
+																		, SHIJC
+												, JUES
+												, FABBB
+												, JIEKBS
+												, ANJID
+												, XIANSSX
+												, XINGM
+												, SHANCBJ
+												, CHUANGJSJ
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.memberId}
+									, #{item.deleteTime}
+									, #{item.trailId}
+												, #{item.userId}
+																		, #{item.timestamp}
+												, #{item.role}
+												, #{item.version}
+												, #{item.interfaceId}
+												, #{item.caseId}
+												, #{item.sortOrder}
+												, #{item.userName}
+												, #{item.deleteFlag}
+												, #{item.createTime}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.JudicialOrganMemberDcs">
+		UPDATE FY_SHENPZZCY SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+						<if test="trailId != null">PAIQID = #{trailId},</if>
+								<if test="userId != null">RENYID = #{userId},</if>
+												<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="role != null">JUES = #{role},</if>
+								<if test="version != null">FABBB = #{version},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="caseId != null">ANJID = #{caseId},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="userName != null">XINGM = #{userName},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+				</trim>
+		WHERE CHENGYID = #{memberId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_SHENPZZCY where CHENGYID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_SHENPZZCY where CHENGYID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.JudicialOrganMemberDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_SHENPZZCY
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_SHENPZZCY
+		WHERE CHENGYID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_SHENPZZCY
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_SHENPZZCY
+		WHERE CHENGYID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.JudicialOrganMemberDcs" resultType="java.lang.Integer">
+		select count(CHENGYID) from
+		FY_SHENPZZCY 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_SHENPZZCY
+	</select>
+	</mapper>

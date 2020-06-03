@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.UnitStructDcsDao">
+
+	<sql id="columns">
+		SHIFYZJD,DANWJC,FJM,YOUX,SHIFZBDL,PINGTDK,JIEKBS,DAIM,PINGTIP,SHANGJDWID,SHANCBJ,SHANCSJ,SHIJC,SHIFYPT,DANWMC,XIANSSX,DANWBM,CHUANGJSJ,DANWID,ZIYUANGLXTIP,MIAOS
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.UnitStructDcs" id="resultMap">
+				<result column="SHIFYZJD" property="isLeaf" />
+				<result column="DANWJC" property="shortName" />
+				<result column="SHIFZBDL" property="isLiveAgent" />
+				<result column="PINGTDK" property="platformPort" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="DAIM" property="unitCode" />
+				<result column="PINGTIP" property="platformIp" />
+				<result column="SHANGJDWID" property="parentUnitId" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="SHIFYPT" property="hasPlatform" />
+				<result column="DANWMC" property="unitName" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="DANWBM" property="unitAlias" />
+				<result column="ZIYUANGLXTIP" property="rmsIp" />
+				<result column="DANWID" property="unitId" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="MIAOS" property="describe" />
+				<result column="FJM" property="classificationCode" />
+				<result column="YOUX" property="valid" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="isLeaf != null">AND SHIFYZJD = #{isLeaf}</if>
+						<if test="shortName != null">AND DANWJC = #{shortName}</if>
+						<if test="isLiveAgent != null">AND SHIFZBDL = #{isLiveAgent}</if>
+						<if test="platformPort != null">AND PINGTDK = #{platformPort}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+						<if test="platformIp != null">AND PINGTIP = #{platformIp}</if>
+						<if test="parentUnitId != null">AND SHANGJDWID = #{parentUnitId}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="hasPlatform != null">AND SHIFYPT = #{hasPlatform}</if>
+						<if test="unitName != null">AND DANWMC = #{unitName}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="unitAlias != null">AND DANWBM = #{unitAlias}</if>
+						<if test="rmsIp != null">AND ZIYUANGLXTIP = #{rmsIp}</if>
+						<if test="unitId != null">AND DANWID = #{unitId}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="describe != null">AND MIAOS = #{describe}</if>
+						<if test="classificationCode != null">AND FJM = #{classificationCode}</if>
+						<if test="valid != null">AND YOUX = #{valid}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.UnitStructDcs">
+		INSERT INTO FY_DANWJG (DANWID
+									<if test="isLeaf != null">,SHIFYZJD</if>
+												<if test="shortName != null">,DANWJC</if>
+												<if test="isLiveAgent != null">,SHIFZBDL</if>
+												<if test="platformPort != null">,PINGTDK</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="unitCode != null">,DAIM</if>
+												<if test="platformIp != null">,PINGTIP</if>
+												<if test="parentUnitId != null">,SHANGJDWID</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="hasPlatform != null">,SHIFYPT</if>
+												<if test="unitName != null">,DANWMC</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="unitAlias != null">,DANWBM</if>
+												<if test="rmsIp != null">,ZIYUANGLXTIP</if>
+																		<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="describe != null">,MIAOS</if>
+												<if test="classificationCode != null">,FJM</if>
+												<if test="valid != null">,YOUX</if>
+								)VALUES(#{unitId}
+									<if test="isLeaf != null">,#{isLeaf}</if>
+												<if test="shortName != null">,#{shortName}</if>
+												<if test="isLiveAgent != null">,#{isLiveAgent}</if>
+												<if test="platformPort != null">,#{platformPort}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="unitCode != null">,#{unitCode}</if>
+												<if test="platformIp != null">,#{platformIp}</if>
+												<if test="parentUnitId != null">,#{parentUnitId}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="hasPlatform != null">,#{hasPlatform}</if>
+												<if test="unitName != null">,#{unitName}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="unitAlias != null">,#{unitAlias}</if>
+												<if test="rmsIp != null">,#{rmsIp}</if>
+																		<if test="createTime != null">,#{createTime}</if>
+												<if test="describe != null">,#{describe}</if>
+												<if test="classificationCode != null">,#{classificationCode}</if>
+												<if test="valid != null">,#{valid}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_DANWJG (DANWID
+									, SHIFYZJD
+												, DANWJC
+												, SHIFZBDL
+												, PINGTDK
+												, JIEKBS
+												, DAIM
+												, PINGTIP
+												, SHANGJDWID
+												, SHANCBJ
+												, SHANCSJ
+												, SHIJC
+												, SHIFYPT
+												, DANWMC
+												, XIANSSX
+												, DANWBM
+												, ZIYUANGLXTIP
+																		, CHUANGJSJ
+												, MIAOS
+												, FJM
+												, YOUX
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.unitId}
+									, #{item.isLeaf}
+												, #{item.shortName}
+												, #{item.isLiveAgent}
+												, #{item.platformPort}
+												, #{item.interfaceId}
+												, #{item.unitCode}
+												, #{item.platformIp}
+												, #{item.parentUnitId}
+												, #{item.deleteFlag}
+												, #{item.deleteTime}
+												, #{item.timestamp}
+												, #{item.hasPlatform}
+												, #{item.unitName}
+												, #{item.sortOrder}
+												, #{item.unitAlias}
+												, #{item.rmsIp}
+																		, #{item.createTime}
+												, #{item.describe}
+												, #{item.classificationCode}
+												, #{item.valid}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.UnitStructDcs">
+		UPDATE FY_DANWJG SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="isLeaf != null">SHIFYZJD = #{isLeaf},</if>
+								<if test="shortName != null">DANWJC = #{shortName},</if>
+								<if test="isLiveAgent != null">SHIFZBDL = #{isLiveAgent},</if>
+								<if test="platformPort != null">PINGTDK = #{platformPort},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="unitCode != null">DAIM = #{unitCode},</if>
+								<if test="platformIp != null">PINGTIP = #{platformIp},</if>
+								<if test="parentUnitId != null">SHANGJDWID = #{parentUnitId},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="hasPlatform != null">SHIFYPT = #{hasPlatform},</if>
+								<if test="unitName != null">DANWMC = #{unitName},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="unitAlias != null">DANWBM = #{unitAlias},</if>
+								<if test="rmsIp != null">ZIYUANGLXTIP = #{rmsIp},</if>
+												<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="describe != null">MIAOS = #{describe},</if>
+								<if test="classificationCode != null">FJM = #{classificationCode},</if>
+								<if test="valid != null">YOUX = #{valid},</if>
+				</trim>
+		WHERE DANWID = #{unitId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_DANWJG where DANWID = #{id}
+	</delete>
+	<delete id="deleteAll">
+	 DELETE FROM FY_DANWJG
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_DANWJG where DANWID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.UnitStructDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_DANWJG
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_DANWJG
+		WHERE DANWID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_DANWJG
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_DANWJG
+		WHERE DANWID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.UnitStructDcs" resultType="java.lang.Integer">
+		select count(DANWID) from
+		FY_DANWJG 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_DANWJG
+	</select>
+	</mapper>

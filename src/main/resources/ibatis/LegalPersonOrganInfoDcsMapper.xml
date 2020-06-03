@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.LegalPersonOrganInfoDcsDao">
+
+	<sql id="columns">
+		ZHENGZLX,SONGDDZ,DANWXZ,GUOJHDQ,CHUANZ,DAIBRZJZL,ZHENGZZT,TESHY,ZUZJGDM,ZHENGZHM,ZHUYBSJGSZD,JIEKBS,ZHUCD,QITLXDH,SHANCSJ,QITLXFF,YOUZBM,FADDBR,YUASTID,CHUANGJSJ,FARDW,SHANCBJ,DIZ,XIANSSX,DIANZYX,SHOUJHM,SHIJC,DAIBRZJHM
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.LegalPersonOrganInfoDcs" id="resultMap">
+				<result column="ZHENGZLX" property="certificateType" />
+				<result column="SONGDDZ" property="serveAddress" />
+				<result column="DANWXZ" property="organizationProperty" />
+				<result column="GUOJHDQ" property="countryRegion" />
+				<result column="CHUANZ" property="fax" />
+				<result column="DAIBRZJZL" property="representativeCertificateType" />
+				<result column="ZHENGZZT" property="certificateState" />
+				<result column="TESHY" property="specialIndustry" />
+				<result column="ZUZJGDM" property="organizationalInstitutionNum" />
+				<result column="ZHENGZHM" property="certificateNum" />
+				<result column="ZHUYBSJGSZD" property="mainOfficeAddress" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="ZHUCD" property="registerPlace" />
+				<result column="QITLXDH" property="otherContactPhone" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="QITLXFF" property="otherContactMethod" />
+				<result column="YOUZBM" property="postcode" />
+				<result column="FADDBR" property="legalRepresentative" />
+				<result column="YUASTID" property="entityId" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="FARDW" property="corporateOrganization" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="DIZ" property="address" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="DIANZYX" property="email" />
+				<result column="SHOUJHM" property="phoneNum" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="DAIBRZJHM" property="representativeCertificateNum" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="certificateType != null">AND ZHENGZLX = #{certificateType}</if>
+						<if test="serveAddress != null">AND SONGDDZ = #{serveAddress}</if>
+						<if test="organizationProperty != null">AND DANWXZ = #{organizationProperty}</if>
+						<if test="countryRegion != null">AND GUOJHDQ = #{countryRegion}</if>
+						<if test="fax != null">AND CHUANZ = #{fax}</if>
+						<if test="representativeCertificateType != null">AND DAIBRZJZL = #{representativeCertificateType}</if>
+						<if test="certificateState != null">AND ZHENGZZT = #{certificateState}</if>
+						<if test="specialIndustry != null">AND TESHY = #{specialIndustry}</if>
+						<if test="organizationalInstitutionNum != null">AND ZUZJGDM = #{organizationalInstitutionNum}</if>
+						<if test="certificateNum != null">AND ZHENGZHM = #{certificateNum}</if>
+						<if test="mainOfficeAddress != null">AND ZHUYBSJGSZD = #{mainOfficeAddress}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="registerPlace != null">AND ZHUCD = #{registerPlace}</if>
+						<if test="otherContactPhone != null">AND QITLXDH = #{otherContactPhone}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="otherContactMethod != null">AND QITLXFF = #{otherContactMethod}</if>
+						<if test="postcode != null">AND YOUZBM = #{postcode}</if>
+						<if test="legalRepresentative != null">AND FADDBR = #{legalRepresentative}</if>
+						<if test="entityId != null">AND YUASTID = #{entityId}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="corporateOrganization != null">AND FARDW = #{corporateOrganization}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="address != null">AND DIZ = #{address}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="email != null">AND DIANZYX = #{email}</if>
+						<if test="phoneNum != null">AND SHOUJHM = #{phoneNum}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="representativeCertificateNum != null">AND DAIBRZJHM = #{representativeCertificateNum}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.LegalPersonOrganInfoDcs">
+		INSERT INTO FY_FARHFFRZZXX (YUASTID
+									<if test="certificateType != null">,ZHENGZLX</if>
+												<if test="serveAddress != null">,SONGDDZ</if>
+												<if test="organizationProperty != null">,DANWXZ</if>
+												<if test="countryRegion != null">,GUOJHDQ</if>
+												<if test="fax != null">,CHUANZ</if>
+												<if test="representativeCertificateType != null">,DAIBRZJZL</if>
+												<if test="certificateState != null">,ZHENGZZT</if>
+												<if test="specialIndustry != null">,TESHY</if>
+												<if test="organizationalInstitutionNum != null">,ZUZJGDM</if>
+												<if test="certificateNum != null">,ZHENGZHM</if>
+												<if test="mainOfficeAddress != null">,ZHUYBSJGSZD</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="registerPlace != null">,ZHUCD</if>
+												<if test="otherContactPhone != null">,QITLXDH</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="otherContactMethod != null">,QITLXFF</if>
+												<if test="postcode != null">,YOUZBM</if>
+												<if test="legalRepresentative != null">,FADDBR</if>
+																		<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="corporateOrganization != null">,FARDW</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="address != null">,DIZ</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="email != null">,DIANZYX</if>
+												<if test="phoneNum != null">,SHOUJHM</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="representativeCertificateNum != null">,DAIBRZJHM</if>
+								)VALUES(#{entityId}
+									<if test="certificateType != null">,#{certificateType}</if>
+												<if test="serveAddress != null">,#{serveAddress}</if>
+												<if test="organizationProperty != null">,#{organizationProperty}</if>
+												<if test="countryRegion != null">,#{countryRegion}</if>
+												<if test="fax != null">,#{fax}</if>
+												<if test="representativeCertificateType != null">,#{representativeCertificateType}</if>
+												<if test="certificateState != null">,#{certificateState}</if>
+												<if test="specialIndustry != null">,#{specialIndustry}</if>
+												<if test="organizationalInstitutionNum != null">,#{organizationalInstitutionNum}</if>
+												<if test="certificateNum != null">,#{certificateNum}</if>
+												<if test="mainOfficeAddress != null">,#{mainOfficeAddress}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="registerPlace != null">,#{registerPlace}</if>
+												<if test="otherContactPhone != null">,#{otherContactPhone}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="otherContactMethod != null">,#{otherContactMethod}</if>
+												<if test="postcode != null">,#{postcode}</if>
+												<if test="legalRepresentative != null">,#{legalRepresentative}</if>
+																		<if test="createTime != null">,#{createTime}</if>
+												<if test="corporateOrganization != null">,#{corporateOrganization}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="address != null">,#{address}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="email != null">,#{email}</if>
+												<if test="phoneNum != null">,#{phoneNum}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="representativeCertificateNum != null">,#{representativeCertificateNum}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_FARHFFRZZXX (YUASTID
+									, ZHENGZLX
+												, SONGDDZ
+												, DANWXZ
+												, GUOJHDQ
+												, CHUANZ
+												, DAIBRZJZL
+												, ZHENGZZT
+												, TESHY
+												, ZUZJGDM
+												, ZHENGZHM
+												, ZHUYBSJGSZD
+												, JIEKBS
+												, ZHUCD
+												, QITLXDH
+												, SHANCSJ
+												, QITLXFF
+												, YOUZBM
+												, FADDBR
+																		, CHUANGJSJ
+												, FARDW
+												, SHANCBJ
+												, DIZ
+												, XIANSSX
+												, DIANZYX
+												, SHOUJHM
+												, SHIJC
+												, DAIBRZJHM
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.entityId}
+									, #{item.certificateType}
+												, #{item.serveAddress}
+												, #{item.organizationProperty}
+												, #{item.countryRegion}
+												, #{item.fax}
+												, #{item.representativeCertificateType}
+												, #{item.certificateState}
+												, #{item.specialIndustry}
+												, #{item.organizationalInstitutionNum}
+												, #{item.certificateNum}
+												, #{item.mainOfficeAddress}
+												, #{item.interfaceId}
+												, #{item.registerPlace}
+												, #{item.otherContactPhone}
+												, #{item.deleteTime}
+												, #{item.otherContactMethod}
+												, #{item.postcode}
+												, #{item.legalRepresentative}
+																		, #{item.createTime}
+												, #{item.corporateOrganization}
+												, #{item.deleteFlag}
+												, #{item.address}
+												, #{item.sortOrder}
+												, #{item.email}
+												, #{item.phoneNum}
+												, #{item.timestamp}
+												, #{item.representativeCertificateNum}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.LegalPersonOrganInfoDcs">
+		UPDATE FY_FARHFFRZZXX SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="certificateType != null">ZHENGZLX = #{certificateType},</if>
+								<if test="serveAddress != null">SONGDDZ = #{serveAddress},</if>
+								<if test="organizationProperty != null">DANWXZ = #{organizationProperty},</if>
+								<if test="countryRegion != null">GUOJHDQ = #{countryRegion},</if>
+								<if test="fax != null">CHUANZ = #{fax},</if>
+								<if test="representativeCertificateType != null">DAIBRZJZL = #{representativeCertificateType},</if>
+								<if test="certificateState != null">ZHENGZZT = #{certificateState},</if>
+								<if test="specialIndustry != null">TESHY = #{specialIndustry},</if>
+								<if test="organizationalInstitutionNum != null">ZUZJGDM = #{organizationalInstitutionNum},</if>
+								<if test="certificateNum != null">ZHENGZHM = #{certificateNum},</if>
+								<if test="mainOfficeAddress != null">ZHUYBSJGSZD = #{mainOfficeAddress},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="registerPlace != null">ZHUCD = #{registerPlace},</if>
+								<if test="otherContactPhone != null">QITLXDH = #{otherContactPhone},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="otherContactMethod != null">QITLXFF = #{otherContactMethod},</if>
+								<if test="postcode != null">YOUZBM = #{postcode},</if>
+								<if test="legalRepresentative != null">FADDBR = #{legalRepresentative},</if>
+												<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="corporateOrganization != null">FARDW = #{corporateOrganization},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="address != null">DIZ = #{address},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="email != null">DIANZYX = #{email},</if>
+								<if test="phoneNum != null">SHOUJHM = #{phoneNum},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="representativeCertificateNum != null">DAIBRZJHM = #{representativeCertificateNum},</if>
+				</trim>
+		WHERE YUASTID = #{entityId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_FARHFFRZZXX where YUASTID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_FARHFFRZZXX where YUASTID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.LegalPersonOrganInfoDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FARHFFRZZXX
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FARHFFRZZXX
+		WHERE YUASTID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FARHFFRZZXX
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FARHFFRZZXX
+		WHERE YUASTID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.LegalPersonOrganInfoDcs" resultType="java.lang.Integer">
+		select count(YUASTID) from
+		FY_FARHFFRZZXX 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(xianssx) from
+		FY_FARHFFRZZXX
+	</select>
+	</mapper>

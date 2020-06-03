@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.LiveProtocolDcsDao">
+
+	<sql id="columns">
+		KAITXXID,ZHIBXY
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.LiveProtocolDcs" id="resultMap">
+				<result column="KAITXXID" property="trialInfoID" />
+				<result column="ZHIBXY" property="liveLog" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="trialInfoID != null">AND KAITXXID = #{trialInfoID}</if>
+						<if test="liveLog != null">AND ZHIBXY = #{liveLog}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.LiveProtocolDcs">
+		INSERT INTO FY_ZHIBXY (KAITXXID
+															<if test="liveLog != null">,ZHIBXY</if>
+								)VALUES(#{trialInfoID}
+															<if test="liveLog != null">,#{liveLog}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_ZHIBXY (KAITXXID
+															, ZHIBXY
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.trialInfoID}
+															, #{item.liveLog}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.LiveProtocolDcs">
+		UPDATE FY_ZHIBXY SET
+		 <trim suffix="" suffixOverrides=",">
+										<if test="liveLog != null">ZHIBXY = #{liveLog},</if>
+				</trim>
+		WHERE KAITXXID = #{trialInfoID}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_ZHIBXY where KAITXXID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_ZHIBXY where KAITXXID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.LiveProtocolDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIBXY
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIBXY
+		WHERE KAITXXID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIBXY
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIBXY
+		WHERE KAITXXID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.LiveProtocolDcs" resultType="java.lang.Integer">
+		select count(KAITXXID) from
+		FY_ZHIBXY 
+		<include refid="where_sql" />
+	</select>
+	
+	</mapper>

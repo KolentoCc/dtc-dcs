@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.CourtUserDcsDao">
+
+	<sql id="columns">
+		DENGLM,ZZMM,FAYRYID,FAGDJ,FAJDJ,ZHENGSBZ,WENHCD,YOUX,photoUrl,XINGM,JIEKBS,SHOUJIHM,FABBB,ZHIWMC,DENGLMM,XINGB,SHANCSJ,SUOSBM,FENJHM,HUNYZK,CHUSRQ,CHUANGJSJ,SHANCBJ,XIANSSX,DIANZYX,BUMMC,MINGZ,SHENFZHM,DAIM,JISTXZH,SHIJC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.CourtUserDcs" id="resultMap">
+				<result column="DENGLM" property="loginName" />
+				<result column="ZZMM" property="politicStatus" />
+				<result column="FAYRYID" property="userId" />
+				<result column="FAGDJ" property="judgeLevel" />
+				<result column="FAJDJ" property="bailiffLevel" />
+				<result column="ZHENGSBZ" property="formalEstablishment" />
+				<result column="WENHCD" property="educationLevel" />
+				<result column="YOUX" property="valid" />
+				<result column="photoUrl" property="photoURL" />
+				<result column="XINGM" property="userName" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="SHOUJIHM" property="phoneNum" />
+				<result column="FABBB" property="version" />
+				<result column="ZHIWMC" property="jobName" />
+				<result column="DENGLMM" property="loginPwd" />
+				<result column="XINGB" property="sex" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="SUOSBM" property="departmentId" />
+				<result column="FENJHM" property="extension" />
+				<result column="HUNYZK" property="maritalStatus" />
+				<result column="CHUSRQ" property="birthday" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="DIANZYX" property="email" />
+				<result column="BUMMC" property="departmentName" />
+				<result column="MINGZ" property="nation" />
+				<result column="SHENFZHM" property="identificationNum" />
+				<result column="DAIM" property="unitCode" />
+				<result column="JISTXZH" property="imAccount" />
+				<result column="SHIJC" property="timestamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="loginName != null">AND DENGLM = #{loginName}</if>
+						<if test="politicStatus != null">AND ZZMM = #{politicStatus}</if>
+						<if test="userId != null">AND FAYRYID = #{userId}</if>
+						<if test="judgeLevel != null">AND FAGDJ = #{judgeLevel}</if>
+						<if test="bailiffLevel != null">AND FAJDJ = #{bailiffLevel}</if>
+						<if test="formalEstablishment != null">AND ZHENGSBZ = #{formalEstablishment}</if>
+						<if test="educationLevel != null">AND WENHCD = #{educationLevel}</if>
+						<if test="valid != null">AND YOUX = #{valid}</if>
+						<if test="photoURL != null">AND photoUrl = #{photoURL}</if>
+						<if test="userName != null">AND XINGM = #{userName}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="phoneNum != null">AND SHOUJIHM = #{phoneNum}</if>
+						<if test="version != null">AND FABBB = #{version}</if>
+						<if test="jobName != null">AND ZHIWMC = #{jobName}</if>
+						<if test="loginPwd != null">AND DENGLMM = #{loginPwd}</if>
+						<if test="sex != null">AND XINGB = #{sex}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="departmentId != null">AND SUOSBM = #{departmentId}</if>
+						<if test="extension != null">AND FENJHM = #{extension}</if>
+						<if test="maritalStatus != null">AND HUNYZK = #{maritalStatus}</if>
+						<if test="birthday != null">AND CHUSRQ = #{birthday}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="email != null">AND DIANZYX = #{email}</if>
+						<if test="departmentName != null">AND BUMMC = #{departmentName}</if>
+						<if test="nation != null">AND MINGZ = #{nation}</if>
+						<if test="identificationNum != null">AND SHENFZHM = #{identificationNum}</if>
+						<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+						<if test="imAccount != null">AND JISTXZH = #{imAccount}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtUserDcs">
+		INSERT INTO FY_FAYRY (FAYRYID
+									<if test="loginName != null">,DENGLM</if>
+												<if test="politicStatus != null">,ZZMM</if>
+																		<if test="judgeLevel != null">,FAGDJ</if>
+												<if test="bailiffLevel != null">,FAJDJ</if>
+												<if test="formalEstablishment != null">,ZHENGSBZ</if>
+												<if test="educationLevel != null">,WENHCD</if>
+												<if test="valid != null">,YOUX</if>
+												<if test="photoURL != null">,photoUrl</if>
+												<if test="userName != null">,XINGM</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="phoneNum != null">,SHOUJIHM</if>
+												<if test="version != null">,FABBB</if>
+												<if test="jobName != null">,ZHIWMC</if>
+												<if test="loginPwd != null">,DENGLMM</if>
+												<if test="sex != null">,XINGB</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="departmentId != null">,SUOSBM</if>
+												<if test="extension != null">,FENJHM</if>
+												<if test="maritalStatus != null">,HUNYZK</if>
+												<if test="birthday != null">,CHUSRQ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="email != null">,DIANZYX</if>
+												<if test="departmentName != null">,BUMMC</if>
+												<if test="nation != null">,MINGZ</if>
+												<if test="identificationNum != null">,SHENFZHM</if>
+												<if test="unitCode != null">,DAIM</if>
+												<if test="imAccount != null">,JISTXZH</if>
+												<if test="timestamp != null">,SHIJC</if>
+								)VALUES(#{userId}
+									<if test="loginName != null">,#{loginName}</if>
+												<if test="politicStatus != null">,#{politicStatus}</if>
+																		<if test="judgeLevel != null">,#{judgeLevel}</if>
+												<if test="bailiffLevel != null">,#{bailiffLevel}</if>
+												<if test="formalEstablishment != null">,#{formalEstablishment}</if>
+												<if test="educationLevel != null">,#{educationLevel}</if>
+												<if test="valid != null">,#{valid}</if>
+												<if test="photoURL != null">,#{photoURL}</if>
+												<if test="userName != null">,#{userName}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="phoneNum != null">,#{phoneNum}</if>
+												<if test="version != null">,#{version}</if>
+												<if test="jobName != null">,#{jobName}</if>
+												<if test="loginPwd != null">,#{loginPwd}</if>
+												<if test="sex != null">,#{sex}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="departmentId != null">,#{departmentId}</if>
+												<if test="extension != null">,#{extension}</if>
+												<if test="maritalStatus != null">,#{maritalStatus}</if>
+												<if test="birthday != null">,#{birthday}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="email != null">,#{email}</if>
+												<if test="departmentName != null">,#{departmentName}</if>
+												<if test="nation != null">,#{nation}</if>
+												<if test="identificationNum != null">,#{identificationNum}</if>
+												<if test="unitCode != null">,#{unitCode}</if>
+												<if test="imAccount != null">,#{imAccount}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_FAYRY (FAYRYID
+									, DENGLM
+												, ZZMM
+																		, FAGDJ
+												, FAJDJ
+												, ZHENGSBZ
+												, WENHCD
+												, YOUX
+												, photoUrl
+												, XINGM
+												, JIEKBS
+												, SHOUJIHM
+												, FABBB
+												, ZHIWMC
+												, DENGLMM
+												, XINGB
+												, SHANCSJ
+												, SUOSBM
+												, FENJHM
+												, HUNYZK
+												, CHUSRQ
+												, CHUANGJSJ
+												, SHANCBJ
+												, XIANSSX
+												, DIANZYX
+												, BUMMC
+												, MINGZ
+												, SHENFZHM
+												, DAIM
+												, JISTXZH
+												, SHIJC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.userId}
+									, #{item.loginName}
+												, #{item.politicStatus}
+																		, #{item.judgeLevel}
+												, #{item.bailiffLevel}
+												, #{item.formalEstablishment}
+												, #{item.educationLevel}
+												, #{item.valid}
+												, #{item.photoURL}
+												, #{item.userName}
+												, #{item.interfaceId}
+												, #{item.phoneNum}
+												, #{item.version}
+												, #{item.jobName}
+												, #{item.loginPwd}
+												, #{item.sex}
+												, #{item.deleteTime}
+												, #{item.departmentId}
+												, #{item.extension}
+												, #{item.maritalStatus}
+												, #{item.birthday}
+												, #{item.createTime}
+												, #{item.deleteFlag}
+												, #{item.sortOrder}
+												, #{item.email}
+												, #{item.departmentName}
+												, #{item.nation}
+												, #{item.identificationNum}
+												, #{item.unitCode}
+												, #{item.imAccount}
+												, #{item.timestamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtUserDcs">
+		UPDATE FY_FAYRY SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="loginName != null">DENGLM = #{loginName},</if>
+								<if test="politicStatus != null">ZZMM = #{politicStatus},</if>
+												<if test="judgeLevel != null">FAGDJ = #{judgeLevel},</if>
+								<if test="bailiffLevel != null">FAJDJ = #{bailiffLevel},</if>
+								<if test="formalEstablishment != null">ZHENGSBZ = #{formalEstablishment},</if>
+								<if test="educationLevel != null">WENHCD = #{educationLevel},</if>
+								<if test="valid != null">YOUX = #{valid},</if>
+								<if test="photoURL != null">photoUrl = #{photoURL},</if>
+								<if test="userName != null">XINGM = #{userName},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="phoneNum != null">SHOUJIHM = #{phoneNum},</if>
+								<if test="version != null">FABBB = #{version},</if>
+								<if test="jobName != null">ZHIWMC = #{jobName},</if>
+								<if test="loginPwd != null">DENGLMM = #{loginPwd},</if>
+								<if test="sex != null">XINGB = #{sex},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="departmentId != null">SUOSBM = #{departmentId},</if>
+								<if test="extension != null">FENJHM = #{extension},</if>
+								<if test="maritalStatus != null">HUNYZK = #{maritalStatus},</if>
+								<if test="birthday != null">CHUSRQ = #{birthday},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="email != null">DIANZYX = #{email},</if>
+								<if test="departmentName != null">BUMMC = #{departmentName},</if>
+								<if test="nation != null">MINGZ = #{nation},</if>
+								<if test="identificationNum != null">SHENFZHM = #{identificationNum},</if>
+								<if test="unitCode != null">DAIM = #{unitCode},</if>
+								<if test="imAccount != null">JISTXZH = #{imAccount},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+				</trim>
+		WHERE FAYRYID = #{userId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_FAYRY where FAYRYID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_FAYRY where FAYRYID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtUserDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FAYRY
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FAYRY
+		WHERE FAYRYID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FAYRY
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FAYRY
+		WHERE FAYRYID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtUserDcs" resultType="java.lang.Integer">
+		select count(FAYRYID) from
+		FY_FAYRY 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_FAYRY
+	</select>
+	</mapper>

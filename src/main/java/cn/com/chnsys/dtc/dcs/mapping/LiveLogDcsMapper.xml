@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.LiveLogDcsDao">
+
+	<sql id="columns">
+		ANJID,BOFFS,SHANCSJ,TINGSID,BOFYH,YONGHID,CHUANGJSJ,SHANCBJ,KEHDIP,XIANSSX,RIZID,ANH,JIEKBS,BOFJSSJ,SHIJC,BOFKSSJ
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.LiveLogDcs" id="resultMap">
+				<result column="ANJID" property="caseId" />
+				<result column="BOFFS" property="playWay" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="TINGSID" property="openCourtInfoId" />
+				<result column="BOFYH" property="playUserName" />
+				<result column="YONGHID" property="playUserId" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="KEHDIP" property="clientIP" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="RIZID" property="logId" />
+				<result column="ANH" property="caseNum" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="BOFJSSJ" property="playEndTime" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="BOFKSSJ" property="playStartTime" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="caseId != null">AND ANJID = #{caseId}</if>
+						<if test="playWay != null">AND BOFFS = #{playWay}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="openCourtInfoId != null">AND TINGSID = #{openCourtInfoId}</if>
+						<if test="playUserName != null">AND BOFYH = #{playUserName}</if>
+						<if test="playUserId != null">AND YONGHID = #{playUserId}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="clientIP != null">AND KEHDIP = #{clientIP}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="logId != null">AND RIZID = #{logId}</if>
+						<if test="caseNum != null">AND ANH = #{caseNum}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="playEndTime != null">AND BOFJSSJ = #{playEndTime}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="playStartTime != null">AND BOFKSSJ = #{playStartTime}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.LiveLogDcs">
+		INSERT INTO FY_ZHIBRZ (RIZID
+									<if test="caseId != null">,ANJID</if>
+												<if test="playWay != null">,BOFFS</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="openCourtInfoId != null">,TINGSID</if>
+												<if test="playUserName != null">,BOFYH</if>
+												<if test="playUserId != null">,YONGHID</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="clientIP != null">,KEHDIP</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+																		<if test="caseNum != null">,ANH</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="playEndTime != null">,BOFJSSJ</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="playStartTime != null">,BOFKSSJ</if>
+								)VALUES(#{logId}
+									<if test="caseId != null">,#{caseId}</if>
+												<if test="playWay != null">,#{playWay}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="openCourtInfoId != null">,#{openCourtInfoId}</if>
+												<if test="playUserName != null">,#{playUserName}</if>
+												<if test="playUserId != null">,#{playUserId}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="clientIP != null">,#{clientIP}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+																		<if test="caseNum != null">,#{caseNum}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="playEndTime != null">,#{playEndTime}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="playStartTime != null">,#{playStartTime}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_ZHIBRZ (RIZID
+									, ANJID
+												, BOFFS
+												, SHANCSJ
+												, TINGSID
+												, BOFYH
+												, YONGHID
+												, CHUANGJSJ
+												, SHANCBJ
+												, KEHDIP
+												, XIANSSX
+																		, ANH
+												, JIEKBS
+												, BOFJSSJ
+												, SHIJC
+												, BOFKSSJ
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.logId}
+									, #{item.caseId}
+												, #{item.playWay}
+												, #{item.deleteTime}
+												, #{item.openCourtInfoId}
+												, #{item.playUserName}
+												, #{item.playUserId}
+												, #{item.createTime}
+												, #{item.deleteFlag}
+												, #{item.clientIP}
+												, #{item.sortOrder}
+																		, #{item.caseNum}
+												, #{item.interfaceId}
+												, #{item.playEndTime}
+												, #{item.timestamp}
+												, #{item.playStartTime}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.LiveLogDcs">
+		UPDATE FY_ZHIBRZ SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="caseId != null">ANJID = #{caseId},</if>
+								<if test="playWay != null">BOFFS = #{playWay},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="openCourtInfoId != null">TINGSID = #{openCourtInfoId},</if>
+								<if test="playUserName != null">BOFYH = #{playUserName},</if>
+								<if test="playUserId != null">YONGHID = #{playUserId},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="clientIP != null">KEHDIP = #{clientIP},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+												<if test="caseNum != null">ANH = #{caseNum},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="playEndTime != null">BOFJSSJ = #{playEndTime},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="playStartTime != null">BOFKSSJ = #{playStartTime},</if>
+				</trim>
+		WHERE RIZID = #{logId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_ZHIBRZ where RIZID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_ZHIBRZ where RIZID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.LiveLogDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIBRZ
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIBRZ
+		WHERE RIZID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIBRZ
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_ZHIBRZ
+		WHERE RIZID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.LiveLogDcs" resultType="java.lang.Integer">
+		select count(RIZID) from
+		FY_ZHIBRZ 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_ZHIBRZ
+	</select>
+	</mapper>

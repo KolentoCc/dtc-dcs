@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.TrialVideoDcsDao">
+
+	<sql id="columns">
+		DIAOYFS,SHANCSJ,KAISSJ,WENJM,HUAMLX,CUNCLJID,JIESSJ,SHIJ,CHUANGJSJ,XINHMC,SHANCBJ,KAITXXID,XIANSSX,BOFJLJ,SHIPSC,WENJDX,CUNCJLJ,JIEKBS,XIEYLX,SHIJC,KAITLXXXID,FABBB,
+		JUEDLJ
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.TrialVideoDcs" id="resultMap">
+				<result column="DIAOYFS" property="invokStyle" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="KAISSJ" property="startTime" />
+				<result column="WENJM" property="fileName" />
+				<result column="HUAMLX" property="pictureType" />
+				<result column="CUNCLJID" property="storageId" />
+				<result column="JIESSJ" property="endTime" />
+				<result column="SHIJ" property="perspective" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="XINHMC" property="signalName" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="KAITXXID" property="openCourtInfoId" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="BOFJLJ" property="playBasePath" />
+				<result column="SHIPSC" property="videoDuration" />
+				<result column="WENJDX" property="fileSize" />
+				<result column="CUNCJLJ" property="storageBasePath" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="XIEYLX" property="protocolType" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="KAITLXXXID" property="videoId" />
+				<result column="FABBB" property="version" />
+				<result column="JUEDLJ" property="absolutePath" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="invokStyle != null">AND DIAOYFS = #{invokStyle}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="startTime != null">AND KAISSJ = #{startTime}</if>
+						<if test="fileName != null">AND WENJM = #{fileName}</if>
+						<if test="pictureType != null">AND HUAMLX = #{pictureType}</if>
+						<if test="storageId != null">AND CUNCLJID = #{storageId}</if>
+						<if test="endTime != null">AND JIESSJ = #{endTime}</if>
+						<if test="perspective != null">AND SHIJ = #{perspective}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="signalName != null">AND XINHMC = #{signalName}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="openCourtInfoId != null">AND KAITXXID = #{openCourtInfoId}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="playBasePath != null">AND BOFJLJ = #{playBasePath}</if>
+						<if test="videoDuration != null">AND SHIPSC = #{videoDuration}</if>
+						<if test="fileSize != null">AND WENJDX = #{fileSize}</if>
+						<if test="storageBasePath != null">AND CUNCJLJ = #{storageBasePath}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="protocolType != null">AND XIEYLX = #{protocolType}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="videoId != null">AND KAITLXXXID = #{videoId}</if>
+						<if test="version != null">AND FABBB = #{version}</if>
+						<if test="absolutePath != null">AND JUEDLJ = #{absolutePath}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialVideoDcs">
+		INSERT INTO FY_KAITLXXX (KAITLXXXID
+									<if test="invokStyle != null">,DIAOYFS</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="startTime != null">,KAISSJ</if>
+												<if test="fileName != null">,WENJM</if>
+												<if test="pictureType != null">,HUAMLX</if>
+												<if test="storageId != null">,CUNCLJID</if>
+												<if test="endTime != null">,JIESSJ</if>
+												<if test="perspective != null">,SHIJ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="signalName != null">,XINHMC</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="openCourtInfoId != null">,KAITXXID</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="playBasePath != null">,BOFJLJ</if>
+												<if test="videoDuration != null">,SHIPSC</if>
+												<if test="fileSize != null">,WENJDX</if>
+												<if test="storageBasePath != null">,CUNCJLJ</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="protocolType != null">,XIEYLX</if>
+												<if test="timestamp != null">,SHIJC</if>
+																		<if test="version != null">,FABBB</if>
+												<if test="absolutePath != null">,JUEDLJ</if>
+								)VALUES(#{videoId}
+									<if test="invokStyle != null">,#{invokStyle}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="startTime != null">,#{startTime}</if>
+												<if test="fileName != null">,#{fileName}</if>
+												<if test="pictureType != null">,#{pictureType}</if>
+												<if test="storageId != null">,#{storageId}</if>
+												<if test="endTime != null">,#{endTime}</if>
+												<if test="perspective != null">,#{perspective}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="signalName != null">,#{signalName}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="openCourtInfoId != null">,#{openCourtInfoId}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="playBasePath != null">,#{playBasePath}</if>
+												<if test="videoDuration != null">,#{videoDuration}</if>
+												<if test="fileSize != null">,#{fileSize}</if>
+												<if test="storageBasePath != null">,#{storageBasePath}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="protocolType != null">,#{protocolType}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+																		<if test="version != null">,#{version}</if>
+												<if test="absolutePath != null">,#{absolutePath}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_KAITLXXX (KAITLXXXID
+									, DIAOYFS
+												, SHANCSJ
+												, KAISSJ
+												, WENJM
+												, HUAMLX
+												, CUNCLJID
+												, JIESSJ
+												, SHIJ
+												, CHUANGJSJ
+												, XINHMC
+												, SHANCBJ
+												, KAITXXID
+												, XIANSSX
+												, BOFJLJ
+												, SHIPSC
+												, WENJDX
+												, CUNCJLJ
+												, JIEKBS
+												, XIEYLX
+												, SHIJC
+																		, FABBB
+																		, JUEDLJ
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.videoId}
+									, #{item.invokStyle}
+												, #{item.deleteTime}
+												, #{item.startTime}
+												, #{item.fileName}
+												, #{item.pictureType}
+												, #{item.storageId}
+												, #{item.endTime}
+												, #{item.perspective}
+												, #{item.createTime}
+												, #{item.signalName}
+												, #{item.deleteFlag}
+												, #{item.openCourtInfoId}
+												, #{item.sortOrder}
+												, #{item.playBasePath}
+												, #{item.videoDuration}
+												, #{item.fileSize}
+												, #{item.storageBasePath}
+												, #{item.interfaceId}
+												, #{item.protocolType}
+												, #{item.timestamp}
+																		, #{item.version}
+																		, #{item.absolutePath}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialVideoDcs">
+		UPDATE FY_KAITLXXX SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="invokStyle != null">DIAOYFS = #{invokStyle},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="startTime != null">KAISSJ = #{startTime},</if>
+								<if test="fileName != null">WENJM = #{fileName},</if>
+								<if test="pictureType != null">HUAMLX = #{pictureType},</if>
+								<if test="storageId != null">CUNCLJID = #{storageId},</if>
+								<if test="endTime != null">JIESSJ = #{endTime},</if>
+								<if test="perspective != null">SHIJ = #{perspective},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="signalName != null">XINHMC = #{signalName},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="openCourtInfoId != null">KAITXXID = #{openCourtInfoId},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="playBasePath != null">BOFJLJ = #{playBasePath},</if>
+								<if test="videoDuration != null">SHIPSC = #{videoDuration},</if>
+								<if test="fileSize != null">WENJDX = #{fileSize},</if>
+								<if test="storageBasePath != null">CUNCJLJ = #{storageBasePath},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="protocolType != null">XIEYLX = #{protocolType},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+												<if test="version != null">FABBB = #{version},</if>
+												<if test="absolutePath != null">JUEDLJ = #{absolutePath},</if>
+				</trim>
+		WHERE KAITLXXXID = #{videoId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_KAITLXXX where KAITLXXXID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_KAITLXXX where KAITLXXXID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialVideoDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_KAITLXXX
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_KAITLXXX
+		WHERE KAITLXXXID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_KAITLXXX
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_KAITLXXX
+		WHERE KAITLXXXID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialVideoDcs" resultType="java.lang.Integer">
+		select count(KAITLXXXID) from
+		FY_KAITLXXX 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_KAITLXXX
+	</select>
+	</mapper>

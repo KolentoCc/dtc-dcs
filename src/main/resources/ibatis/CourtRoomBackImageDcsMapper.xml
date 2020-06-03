@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.CourtRoomBackImageDcsDao">
+
+	<sql id="columns">
+		CHUANGJSJ,XIANSSZ,TUPDZ,SHANCSJ,SHANCBJ,XIANSSX,TUPGXSJ,FATID,JIEKBS,SHIJC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.CourtRoomBackImageDcs" id="resultMap">
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="XIANSSZ" property="displaySetting" />
+				<result column="TUPDZ" property="pictureLocation" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="TUPGXSJ" property="pictureUpdateTime" />
+				<result column="FATID" property="courtRoomId" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="SHIJC" property="timestamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="displaySetting != null">AND XIANSSZ = #{displaySetting}</if>
+						<if test="pictureLocation != null">AND TUPDZ = #{pictureLocation}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="pictureUpdateTime != null">AND TUPGXSJ = #{pictureUpdateTime}</if>
+						<if test="courtRoomId != null">AND FATID = #{courtRoomId}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomBackImageDcs">
+		INSERT INTO FY_FATBJTP (FATID
+									<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="displaySetting != null">,XIANSSZ</if>
+												<if test="pictureLocation != null">,TUPDZ</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="pictureUpdateTime != null">,TUPGXSJ</if>
+																		<if test="interfaceId != null">,JIEKBS</if>
+												<if test="timestamp != null">,SHIJC</if>
+								)VALUES(#{courtRoomId}
+									<if test="createTime != null">,#{createTime}</if>
+												<if test="displaySetting != null">,#{displaySetting}</if>
+												<if test="pictureLocation != null">,#{pictureLocation}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="pictureUpdateTime != null">,#{pictureUpdateTime}</if>
+																		<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_FATBJTP (FATID
+									, CHUANGJSJ
+												, XIANSSZ
+												, TUPDZ
+												, SHANCSJ
+												, SHANCBJ
+												, XIANSSX
+												, TUPGXSJ
+																		, JIEKBS
+												, SHIJC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.courtRoomId}
+									, #{item.createTime}
+												, #{item.displaySetting}
+												, #{item.pictureLocation}
+												, #{item.deleteTime}
+												, #{item.deleteFlag}
+												, #{item.sortOrder}
+												, #{item.pictureUpdateTime}
+																		, #{item.interfaceId}
+												, #{item.timestamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomBackImageDcs">
+		UPDATE FY_FATBJTP SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="displaySetting != null">XIANSSZ = #{displaySetting},</if>
+								<if test="pictureLocation != null">TUPDZ = #{pictureLocation},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="pictureUpdateTime != null">TUPGXSJ = #{pictureUpdateTime},</if>
+												<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+				</trim>
+		WHERE FATID = #{courtRoomId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_FATBJTP where FATID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_FATBJTP where FATID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomBackImageDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATBJTP
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATBJTP
+		WHERE FATID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATBJTP
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_FATBJTP
+		WHERE FATID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomBackImageDcs" resultType="java.lang.Integer">
+		select count(FATID) from
+		FY_FATBJTP 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(xianssx) from
+		FY_FATBJTP
+	</select>
+	</mapper>

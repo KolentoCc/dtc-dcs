@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.TrialLiveDcsDao">
+
+	<sql id="columns">
+		KAITZBXXID,DIAOYFS,SHANCSJ,ZHIBXY,HUAMLX,SHIJ,CHUANGJSJ,XINHMC,SHANCBJ,KAITXXID,XIANSSX,JIEKBS,XIEYLX,SHIJC,FABBB
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.TrialLiveDcs" id="resultMap">
+				<result column="KAITZBXXID" property="trialLiveId" />
+				<result column="DIAOYFS" property="invokStyle" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="ZHIBXY" property="liveAddress" />
+				<result column="HUAMLX" property="pictureType" />
+				<result column="SHIJ" property="perspective" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="XINHMC" property="signalName" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="KAITXXID" property="openCourtInfoId" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="XIEYLX" property="protocolType" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="FABBB" property="version" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="trialLiveId != null">AND KAITZBXXID = #{trialLiveId}</if>
+						<if test="invokStyle != null">AND DIAOYFS = #{invokStyle}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="liveAddress != null">AND ZHIBXY = #{liveAddress}</if>
+						<if test="pictureType != null">AND HUAMLX = #{pictureType}</if>
+						<if test="perspective != null">AND SHIJ = #{perspective}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="signalName != null">AND XINHMC = #{signalName}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="openCourtInfoId != null">AND KAITXXID = #{openCourtInfoId}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="protocolType != null">AND XIEYLX = #{protocolType}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="version != null">AND FABBB = #{version}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialLiveDcs">
+		INSERT INTO fy_kaitzbxx (KAITZBXXID
+															<if test="invokStyle != null">,DIAOYFS</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="liveAddress != null">,ZHIBXY</if>
+												<if test="pictureType != null">,HUAMLX</if>
+												<if test="perspective != null">,SHIJ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="signalName != null">,XINHMC</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="openCourtInfoId != null">,KAITXXID</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="protocolType != null">,XIEYLX</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="version != null">,FABBB</if>
+								)VALUES(#{trialLiveId}
+															<if test="invokStyle != null">,#{invokStyle}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="liveAddress != null">,#{liveAddress}</if>
+												<if test="pictureType != null">,#{pictureType}</if>
+												<if test="perspective != null">,#{perspective}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="signalName != null">,#{signalName}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="openCourtInfoId != null">,#{openCourtInfoId}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="protocolType != null">,#{protocolType}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="version != null">,#{version}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO fy_kaitzbxx (KAITZBXXID
+															, DIAOYFS
+												, SHANCSJ
+												, ZHIBXY
+												, HUAMLX
+												, SHIJ
+												, CHUANGJSJ
+												, XINHMC
+												, SHANCBJ
+												, KAITXXID
+												, XIANSSX
+												, JIEKBS
+												, XIEYLX
+												, SHIJC
+												, FABBB
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.trialLiveId}
+															, #{item.invokStyle}
+												, #{item.deleteTime}
+												, #{item.liveAddress}
+												, #{item.pictureType}
+												, #{item.perspective}
+												, #{item.createTime}
+												, #{item.signalName}
+												, #{item.deleteFlag}
+												, #{item.openCourtInfoId}
+												, #{item.sortOrder}
+												, #{item.interfaceId}
+												, #{item.protocolType}
+												, #{item.timestamp}
+												, #{item.version}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialLiveDcs">
+		UPDATE fy_kaitzbxx SET
+		 <trim suffix="" suffixOverrides=",">
+										<if test="invokStyle != null">DIAOYFS = #{invokStyle},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="liveAddress != null">ZHIBXY = #{liveAddress},</if>
+								<if test="pictureType != null">HUAMLX = #{pictureType},</if>
+								<if test="perspective != null">SHIJ = #{perspective},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="signalName != null">XINHMC = #{signalName},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="openCourtInfoId != null">KAITXXID = #{openCourtInfoId},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="protocolType != null">XIEYLX = #{protocolType},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="version != null">FABBB = #{version},</if>
+				</trim>
+		WHERE KAITZBXXID = #{trialLiveId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		fy_kaitzbxx where KAITZBXXID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		fy_kaitzbxx where KAITZBXXID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialLiveDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_kaitzbxx
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_kaitzbxx
+		WHERE KAITZBXXID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_kaitzbxx
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_kaitzbxx
+		WHERE KAITZBXXID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialLiveDcs" resultType="java.lang.Integer">
+		select count(KAITZBXXID) from
+		fy_kaitzbxx 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(xianssx) from
+		fy_kaitzbxx
+	</select>
+	</mapper>

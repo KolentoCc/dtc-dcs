@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.CourtRoomDcsDao">
+
+	<sql id="columns">
+		SHANCSJ,XINHLX,TINGSZJIP,FATZT,SHIJYXIP,FATID,YOUX,JIANSRQ,CHUANGJSJ,SHANCBJ,XIANSSX,FATMC,FATFBL,FENGMS,CHENGJCS,FATLX,FATBM,JIEKBS,DAIM,SHIJC
+	</sql>
+
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs" id="resultMap">
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="XINHLX" property="signalType" />
+				<result column="TINGSZJIP" property="masterServerIp" />
+				<result column="FATZT" property="courtState" />
+				<result column="SHIJYXIP" property="judgeIP" />
+				<result column="FATID" property="courtRoomId" />
+				<result column="YOUX" property="valid" />
+				<result column="JIANSRQ" property="constructionDate" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="FATMC" property="courtRoomName" />
+				<result column="FATFBL" property="resolution" />
+				<result column="FENGMS" property="splitMode" />
+				<result column="CHENGJCS" property="firm" />
+				<result column="FATLX" property="courtRoomType" />
+				<result column="FATBM" property="courtRoomCode" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="DAIM" property="unitCode" />
+				<result column="SHIJC" property="timestamp" />
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="signalType != null">AND XINHLX = #{signalType}</if>
+						<if test="masterServerIp != null">AND TINGSZJIP = #{masterServerIp}</if>
+						<if test="courtState != null">AND FATZT = #{courtState}</if>
+						<if test="judgeIP != null">AND SHIJYXIP = #{judgeIP}</if>
+						<if test="courtRoomId != null">AND FATID = #{courtRoomId}</if>
+						<if test="valid != null">AND YOUX = #{valid}</if>
+						<if test="constructionDate != null">AND JIANSRQ = #{constructionDate}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="courtRoomName != null">AND FATMC = #{courtRoomName}</if>
+						<if test="resolution != null">AND FATFBL = #{resolution}</if>
+						<if test="splitMode != null">AND FENGMS = #{splitMode}</if>
+						<if test="firm != null">AND CHENGJCS = #{firm}</if>
+						<if test="courtRoomType != null">AND FATLX = #{courtRoomType}</if>
+						<if test="courtRoomCode != null">AND FATBM = #{courtRoomCode}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs">
+		INSERT INTO fy_fat (FATID
+									<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="signalType != null">,XINHLX</if>
+												<if test="masterServerIp != null">,TINGSZJIP</if>
+												<if test="courtState != null">,FATZT</if>
+												<if test="judgeIP != null">,SHIJYXIP</if>
+																		<if test="valid != null">,YOUX</if>
+												<if test="constructionDate != null">,JIANSRQ</if>
+												<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+												<if test="courtRoomName != null">,FATMC</if>
+												<if test="resolution != null">,FATFBL</if>
+												<if test="splitMode != null">,FENGMS</if>
+												<if test="firm != null">,CHENGJCS</if>
+												<if test="courtRoomType != null">,FATLX</if>
+												<if test="courtRoomCode != null">,FATBM</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="unitCode != null">,DAIM</if>
+												<if test="timestamp != null">,SHIJC</if>
+								)VALUES(#{courtRoomId}
+									<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="signalType != null">,#{signalType}</if>
+												<if test="masterServerIp != null">,#{masterServerIp}</if>
+												<if test="courtState != null">,#{courtState}</if>
+												<if test="judgeIP != null">,#{judgeIP}</if>
+																		<if test="valid != null">,#{valid}</if>
+												<if test="constructionDate != null">,#{constructionDate}</if>
+												<if test="createTime != null">,#{createTime}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+												<if test="courtRoomName != null">,#{courtRoomName}</if>
+												<if test="resolution != null">,#{resolution}</if>
+												<if test="splitMode != null">,#{splitMode}</if>
+												<if test="firm != null">,#{firm}</if>
+												<if test="courtRoomType != null">,#{courtRoomType}</if>
+												<if test="courtRoomCode != null">,#{courtRoomCode}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="unitCode != null">,#{unitCode}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO fy_fat (FATID
+									, SHANCSJ
+												, XINHLX
+												, TINGSZJIP
+												, FATZT
+												, SHIJYXIP
+																		, YOUX
+												, JIANSRQ
+												, CHUANGJSJ
+												, SHANCBJ
+												, XIANSSX
+												, FATMC
+												, FATFBL
+												, FENGMS
+												, CHENGJCS
+												, FATLX
+												, FATBM
+												, JIEKBS
+												, DAIM
+												, SHIJC
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.courtRoomId}
+									, #{item.deleteTime}
+												, #{item.signalType}
+												, #{item.masterServerIp}
+												, #{item.courtState}
+												, #{item.judgeIP}
+																		, #{item.valid}
+												, #{item.constructionDate}
+												, #{item.createTime}
+												, #{item.deleteFlag}
+												, #{item.sortOrder}
+												, #{item.courtRoomName}
+												, #{item.resolution}
+												, #{item.splitMode}
+												, #{item.firm}
+												, #{item.courtRoomType}
+												, #{item.courtRoomCode}
+												, #{item.interfaceId}
+												, #{item.unitCode}
+												, #{item.timestamp}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs">
+		UPDATE fy_fat SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="signalType != null">XINHLX = #{signalType},</if>
+								<if test="masterServerIp != null">TINGSZJIP = #{masterServerIp},</if>
+								<if test="courtState != null">FATZT = #{courtState},</if>
+								<if test="judgeIP != null">SHIJYXIP = #{judgeIP},</if>
+												<if test="valid != null">YOUX = #{valid},</if>
+								<if test="constructionDate != null">JIANSRQ = #{constructionDate},</if>
+								<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+								<if test="courtRoomName != null">FATMC = #{courtRoomName},</if>
+								<if test="resolution != null">FATFBL = #{resolution},</if>
+								<if test="splitMode != null">FENGMS = #{splitMode},</if>
+								<if test="firm != null">CHENGJCS = #{firm},</if>
+								<if test="courtRoomType != null">FATLX = #{courtRoomType},</if>
+								<if test="courtRoomCode != null">FATBM = #{courtRoomCode},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="unitCode != null">DAIM = #{unitCode},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+				</trim>
+		WHERE FATID = #{courtRoomId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		fy_fat where FATID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		fy_fat where FATID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_fat
+		<include refid="where_sql" />
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_fat
+		WHERE FATID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_fat
+		WHERE daim = #{0} AND jiekbs = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM fy_fat
+		WHERE FATID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.CourtRoomDcs" resultType="java.lang.Integer">
+		select count(FATID) from
+		fy_fat 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(xianssx) from
+		fy_fat
+	</select>
+	</mapper>

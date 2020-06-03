@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.chnsys.dtc.dcs.dao.TrialDcsDao">
+
+	<sql id="columns">
+		YIGKSP,SHENPZZCY,YUDJSSJ,SHUJYID,ANJID,ZHIBZT,SHANCBJ,SHIPWJYGD,KAITCS,SHIJJSSJ,SHIJKSSJ,ANH,TIXSMC,YOUXIAO,FATID,BUGKKT,SHUJY,KAITFS,KAITDD,JIEKBS,DAIM,SHANCSJ,TINGC,KAITZT,YUDKSSJ,SHIJC,TINGSMS,FABBB,DURSP,XIANSSX,KAITXXID,CHUANGJSJ,FATYT,
+		DIANBXY,ZHIBXY,PAIQLX,HULWKT,PINGTCS,TONGBBJ
+	</sql>
+	
+	<sql id="column">
+	 ANH,FATID,DAIM,TINGC,YUDKSSJ,YUDJSSJ,KAITXXID
+	</sql>
+    
+    <resultMap type="cn.com.chnsys.dtc.dcs.entity.TrialDcs" id="result">
+                <result column="ANH" property="caseNum" />
+                <result column="FATID" property="courtRoomId" />
+                <result column="DAIM" property="unitCode" />
+                <result column="TINGC" property="courtOrder" />
+                <result column="YUDKSSJ" property="scheduledStartTime" />
+                <result column="YUDJSSJ" property="scheduledEndTime" />
+                <result column="KAITXXID" property="trialId"/>
+    
+    </resultMap>
+	<resultMap type="cn.com.chnsys.dtc.dcs.entity.TrialDcs" id="resultMap">
+				<result column="YIGKSP" property="publicVideo" />
+				<result column="SHENPZZCY" property="judicialOrganMember" />
+				<result column="YUDJSSJ" property="scheduledEndTime" />
+				<result column="ANJID" property="caseId" />
+				<result column="SHUJYID" property="clerkId" />
+				<result column="ZHIBZT" property="liveState" />
+				<result column="SHANCBJ" property="deleteFlag" />
+				<result column="SHIPWJYGD" property="videoArchived" />
+				<result column="KAITCS" property="courtPremises" />
+				<result column="SHIJJSSJ" property="actualEndTime" />
+				<result column="ANH" property="caseNum" />
+				<result column="SHIJKSSJ" property="actualStartTime" />
+				<result column="TIXSMC" property="arraignmentRoom" />
+				<result column="YOUXIAO" property="valid" />
+				<result column="FATID" property="courtRoomId" />
+				<result column="BUGKKT" property="notPublicOpenCourt" />
+				<result column="SHUJY" property="clerk" />
+				<result column="KAITFS" property="openCourtStyle" />
+				<result column="KAITDD" property="openCourtLocation" />
+				<result column="JIEKBS" property="interfaceId" />
+				<result column="DAIM" property="unitCode" />
+				<result column="SHANCSJ" property="deleteTime" />
+				<result column="TINGC" property="courtOrder" />
+				<result column="KAITZT" property="trialState" />
+				<result column="YUDKSSJ" property="scheduledStartTime" />
+				<result column="TINGSMS" property="trialModel" />
+				<result column="SHIJC" property="timestamp" />
+				<result column="FABBB" property="version" />
+				<result column="DURSP" property="soleTrial" />
+				<result column="XIANSSX" property="sortOrder" />
+				<result column="KAITXXID" property="trialId" />
+				<result column="CHUANGJSJ" property="createTime" />
+				<result column="FATYT" property="purposeOfCourt" />
+				<result column="DIANBXY" property="thirdDemandPlayProtocol" />
+				<result column="ZHIBXY" property="thirdLivePlayProtocol" />
+				<result column="PAIQLX" property="trialType" />
+				<result column="HULWKT" property="isInternetTrial" />
+				<result column="PINGTCS" property="platformVendor"/>
+				<result column="TONGBBJ" property="synchronizationSign"/>
+			</resultMap>
+
+	<sql id="where_sql">
+		<where>1=1
+						<if test="publicVideo != null">AND YIGKSP = #{publicVideo}</if>
+						<if test="judicialOrganMember != null">AND SHENPZZCY = #{judicialOrganMember}</if>
+						<if test="scheduledEndTime != null">AND YUDJSSJ = #{scheduledEndTime}</if>
+						<if test="caseId != null">AND ANJID = #{caseId}</if>
+						<if test="clerkId != null">AND SHUJYID = #{clerkId}</if>
+						<if test="liveState != null">AND ZHIBZT = #{liveState}</if>
+						<if test="deleteFlag != null">AND SHANCBJ = #{deleteFlag}</if>
+						<if test="videoArchived != null">AND SHIPWJYGD = #{videoArchived}</if>
+						<if test="courtPremises != null">AND KAITCS = #{courtPremises}</if>
+						<if test="actualEndTime != null">AND SHIJJSSJ = #{actualEndTime}</if>
+						<if test="caseNum != null">AND ANH = #{caseNum}</if>
+						<if test="actualStartTime != null">AND SHIJKSSJ = #{actualStartTime}</if>
+						<if test="arraignmentRoom != null">AND TIXSMC = #{arraignmentRoom}</if>
+						<if test="valid != null">AND YOUXIAO = #{valid}</if>
+						<if test="courtRoomId != null">AND FATID = #{courtRoomId}</if>
+						<if test="notPublicOpenCourt != null">AND BUGKKT = #{notPublicOpenCourt}</if>
+						<if test="clerk != null">AND SHUJY = #{clerk}</if>
+						<if test="openCourtStyle != null">AND KAITFS = #{openCourtStyle}</if>
+						<if test="openCourtLocation != null">AND KAITDD = #{openCourtLocation}</if>
+						<if test="interfaceId != null">AND JIEKBS = #{interfaceId}</if>
+						<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+						<if test="deleteTime != null">AND SHANCSJ = #{deleteTime}</if>
+						<if test="courtOrder != null">AND TINGC = #{courtOrder}</if>
+						<if test="trialState != null">AND KAITZT = #{trialState}</if>
+						<if test="scheduledStartTime != null">AND YUDKSSJ = #{scheduledStartTime}</if>
+						<if test="trialModel != null">AND TINGSMS = #{trialModel}</if>
+						<if test="timestamp != null">AND SHIJC = #{timestamp}</if>
+						<if test="version != null">AND FABBB = #{version}</if>
+						<if test="soleTrial != null">AND DURSP = #{soleTrial}</if>
+						<if test="sortOrder != null">AND XIANSSX = #{sortOrder}</if>
+						<if test="trialId != null">AND KAITXXID = #{trialId}</if>
+						<if test="createTime != null">AND CHUANGJSJ = #{createTime}</if>
+						<if test="purposeOfCourt != null">AND FATYT = #{purposeOfCourt}</if>
+						<if test="thirdDemandPlayProtocol != null">AND DIANBXY = #{thirdDemandPlayProtocol}</if>
+						<if test="thirdLivePlayProtocol != null">AND ZHIBXY = #{thirdLivePlayProtocol}</if>
+						<if test="trialType != null">AND PAIQLX = #{trialType}</if>
+						<if test="isInternetTrial != null">AND HULWKT = #{isInternetTrial}</if>
+						<if test="platformVendor != null">AND PINGTCS = #{platformVendor}</if>
+						<if test="synchronizationSign != null">AND TONGBBJ = #{synchronizationSign}</if>
+						<if test="unitCodeList != null and unitCodeList.size() > 0">
+							and FY_KAITXX.DAIM IN
+							<foreach collection="unitCodeList" item="item" open="("
+								separator="," close=")">
+								#{item}
+							</foreach>
+					    </if>
+					</where>
+	</sql>
+
+	<insert id="insertRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialDcs">
+		INSERT INTO FY_KAITXX (KAITXXID
+									<if test="publicVideo != null">,YIGKSP</if>
+												<if test="judicialOrganMember != null">,SHENPZZCY</if>
+												<if test="scheduledEndTime != null">,YUDJSSJ</if>
+												<if test="caseId != null">,ANJID</if>
+												<if test="clerkId != null">,SHUJYID</if>
+												<if test="liveState != null">,ZHIBZT</if>
+												<if test="deleteFlag != null">,SHANCBJ</if>
+												<if test="videoArchived != null">,SHIPWJYGD</if>
+												<if test="courtPremises != null">,KAITCS</if>
+												<if test="actualEndTime != null">,SHIJJSSJ</if>
+												<if test="caseNum != null">,ANH</if>
+												<if test="actualStartTime != null">,SHIJKSSJ</if>
+												<if test="arraignmentRoom != null">,TIXSMC</if>
+												<if test="valid != null">,YOUXIAO</if>
+												<if test="courtRoomId != null">,FATID</if>
+												<if test="notPublicOpenCourt != null">,BUGKKT</if>
+												<if test="clerk != null">,SHUJY</if>
+												<if test="openCourtStyle != null">,KAITFS</if>
+												<if test="openCourtLocation != null">,KAITDD</if>
+												<if test="interfaceId != null">,JIEKBS</if>
+												<if test="unitCode != null">,DAIM</if>
+												<if test="deleteTime != null">,SHANCSJ</if>
+												<if test="courtOrder != null">,TINGC</if>
+												<if test="trialState != null">,KAITZT</if>
+												<if test="scheduledStartTime != null">,YUDKSSJ</if>
+												<if test="trialModel != null">,TINGSMS</if>
+												<if test="timestamp != null">,SHIJC</if>
+												<if test="version != null">,FABBB</if>
+												<if test="soleTrial != null">,DURSP</if>
+												<if test="sortOrder != null">,XIANSSX</if>
+																		<if test="createTime != null">,CHUANGJSJ</if>
+												<if test="purposeOfCourt != null">,FATYT</if>
+												<if test="thirdDemandPlayProtocol != null">,DIANBXY</if>
+												<if test="thirdLivePlayProtocol != null">,ZHIBXY</if>
+												<if test="trialType != null">,PAIQLX</if>
+												<if test="isInternetTrial != null">,HULWKT</if>
+												<if test="platformVendor != null">,PINGTCS</if>
+											    <if test="synchronizationSign != null">, TONGBBJ</if>
+								)VALUES(#{trialId}
+									<if test="publicVideo != null">,#{publicVideo}</if>
+												<if test="judicialOrganMember != null">,#{judicialOrganMember}</if>
+												<if test="scheduledEndTime != null">,#{scheduledEndTime}</if>
+												<if test="caseId != null">,#{caseId}</if>
+												<if test="clerkId != null">,#{clerkId}</if>
+												<if test="liveState != null">,#{liveState}</if>
+												<if test="deleteFlag != null">,#{deleteFlag}</if>
+												<if test="videoArchived != null">,#{videoArchived}</if>
+												<if test="courtPremises != null">,#{courtPremises}</if>
+												<if test="actualEndTime != null">,#{actualEndTime}</if>
+												<if test="caseNum != null">,#{caseNum}</if>
+												<if test="actualStartTime != null">,#{actualStartTime}</if>
+												<if test="arraignmentRoom != null">,#{arraignmentRoom}</if>
+												<if test="valid != null">,#{valid}</if>
+												<if test="courtRoomId != null">,#{courtRoomId}</if>
+												<if test="notPublicOpenCourt != null">,#{notPublicOpenCourt}</if>
+												<if test="clerk != null">,#{clerk}</if>
+												<if test="openCourtStyle != null">,#{openCourtStyle}</if>
+												<if test="openCourtLocation != null">,#{openCourtLocation}</if>
+												<if test="interfaceId != null">,#{interfaceId}</if>
+												<if test="unitCode != null">,#{unitCode}</if>
+												<if test="deleteTime != null">,#{deleteTime}</if>
+												<if test="courtOrder != null">,#{courtOrder}</if>
+												<if test="trialState != null">,#{trialState}</if>
+												<if test="scheduledStartTime != null">,#{scheduledStartTime}</if>
+												<if test="trialModel != null">,#{trialModel}</if>
+												<if test="timestamp != null">,#{timestamp}</if>
+												<if test="version != null">,#{version}</if>
+												<if test="soleTrial != null">,#{soleTrial}</if>
+												<if test="sortOrder != null">,#{sortOrder}</if>
+																		<if test="createTime != null">,#{createTime}</if>
+												<if test="purposeOfCourt != null">,#{purposeOfCourt}</if>
+												<if test="thirdDemandPlayProtocol != null">,#{thirdDemandPlayProtocol}</if>
+												<if test="thirdLivePlayProtocol != null">,#{thirdLivePlayProtocol}</if>
+												<if test="trialType != null">,#{trialType}</if>
+												<if test="isInternetTrial != null">,#{isInternetTrial}</if>
+												<if test="platformVendor != null">, #{platformVendor}</if>
+												<if test="synchronizationSign != null">, #{synchronizationSign}</if>
+								)
+	</insert>
+	
+	<insert id="insertRecords" parameterType="java.util.List">
+		INSERT INTO FY_KAITXX (KAITXXID
+									, YIGKSP
+												, SHENPZZCY
+												, YUDJSSJ
+												, ANJID
+												, SHUJYID
+												, ZHIBZT
+												, SHANCBJ
+												, SHIPWJYGD
+												, KAITCS
+												, SHIJJSSJ
+												, ANH
+												, SHIJKSSJ
+												, TIXSMC
+												, YOUXIAO
+												, FATID
+												, BUGKKT
+												, SHUJY
+												, KAITFS
+												, KAITDD
+												, JIEKBS
+												, DAIM
+												, SHANCSJ
+												, TINGC
+												, KAITZT
+												, YUDKSSJ
+												, TINGSMS
+												, SHIJC
+												, FABBB
+												, DURSP
+												, XIANSSX
+																		, CHUANGJSJ
+												, FATYT
+												, DIANBXY
+												, ZHIBXY
+												, PAIQLX
+												, HULWKT
+												,PINTCS
+												, TONGBBJ
+								)VALUES
+		   <foreach collection="list" item="item" index="index" separator="," >  
+       		(#{item.trialId}
+									, #{item.publicVideo}
+												, #{item.judicialOrganMember}
+												, #{item.scheduledEndTime}
+												, #{item.caseId}
+												, #{item.clerkId}
+												, #{item.liveState}
+												, #{item.deleteFlag}
+												, #{item.videoArchived}
+												, #{item.courtPremises}
+												, #{item.actualEndTime}
+												, #{item.caseNum}
+												, #{item.actualStartTime}
+												, #{item.arraignmentRoom}
+												, #{item.valid}
+												, #{item.courtRoomId}
+												, #{item.notPublicOpenCourt}
+												, #{item.clerk}
+												, #{item.openCourtStyle}
+												, #{item.openCourtLocation}
+												, #{item.interfaceId}
+												, #{item.unitCode}
+												, #{item.deleteTime}
+												, #{item.courtOrder}
+												, #{item.trialState}
+												, #{item.scheduledStartTime}
+												, #{item.trialModel}
+												, #{item.timestamp}
+												, #{item.version}
+												, #{item.soleTrial}
+												, #{item.sortOrder}
+																		, #{item.createTime}
+												, #{item.purposeOfCourt}
+												, #{item.thirdDemandPlayProtocol}
+												, #{item.thirdLivePlayProtocol}
+												, #{item.trialType}
+											    , #{isInternetTrial}
+											    , #{platformVendor}
+											    , #{item.synchronizationSign}
+						)
+    		</foreach>  
+	</insert>
+
+	<update id="updateRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialDcs">
+		UPDATE FY_KAITXX SET
+		 <trim suffix="" suffixOverrides=",">
+						<if test="publicVideo != null">YIGKSP = #{publicVideo},</if>
+								<if test="judicialOrganMember != null">SHENPZZCY = #{judicialOrganMember},</if>
+								<if test="scheduledEndTime != null">YUDJSSJ = #{scheduledEndTime},</if>
+								<if test="caseId != null">ANJID = #{caseId},</if>
+								<if test="clerkId != null">SHUJYID = #{clerkId},</if>
+								<if test="liveState != null">ZHIBZT = #{liveState},</if>
+								<if test="deleteFlag != null">SHANCBJ = #{deleteFlag},</if>
+								<if test="videoArchived != null">SHIPWJYGD = #{videoArchived},</if>
+								<if test="courtPremises != null">KAITCS = #{courtPremises},</if>
+								<if test="actualEndTime != null">SHIJJSSJ = #{actualEndTime},</if>
+								<if test="caseNum != null">ANH = #{caseNum},</if>
+								<if test="actualStartTime != null">SHIJKSSJ = #{actualStartTime},</if>
+								<if test="arraignmentRoom != null">TIXSMC = #{arraignmentRoom},</if>
+								<if test="valid != null">YOUXIAO = #{valid},</if>
+								<if test="courtRoomId != null">FATID = #{courtRoomId},</if>
+								<if test="notPublicOpenCourt != null">BUGKKT = #{notPublicOpenCourt},</if>
+								<if test="clerk != null">SHUJY = #{clerk},</if>
+								<if test="openCourtStyle != null">KAITFS = #{openCourtStyle},</if>
+								<if test="openCourtLocation != null">KAITDD = #{openCourtLocation},</if>
+								<if test="interfaceId != null">JIEKBS = #{interfaceId},</if>
+								<if test="unitCode != null">DAIM = #{unitCode},</if>
+								<if test="deleteTime != null">SHANCSJ = #{deleteTime},</if>
+								<if test="courtOrder != null">TINGC = #{courtOrder},</if>
+								<if test="trialState != null">KAITZT = #{trialState},</if>
+								<if test="scheduledStartTime != null">YUDKSSJ = #{scheduledStartTime},</if>
+								<if test="trialModel != null">TINGSMS = #{trialModel},</if>
+								<if test="timestamp != null">SHIJC = #{timestamp},</if>
+								<if test="version != null">FABBB = #{version},</if>
+								<if test="soleTrial != null">DURSP = #{soleTrial},</if>
+								<if test="sortOrder != null">XIANSSX = #{sortOrder},</if>
+												<if test="createTime != null">CHUANGJSJ = #{createTime},</if>
+								<if test="purposeOfCourt != null">FATYT = #{purposeOfCourt},</if>
+								<if test="thirdDemandPlayProtocol != null">DIANBXY = #{thirdDemandPlayProtocol},</if>
+								<if test="thirdLivePlayProtocol != null">ZHIBXY = #{thirdLivePlayProtocol},</if>
+								<if test="trialType != null">PAIQLX = #{trialType},</if>
+								<if test="isInternetTrial != null">HULWKT = #{isInternetTrial},</if>
+								<if test="platformVendor != null">PINGTCS = #{platformVendor},</if>
+								<if test="synchronizationSign != null">TONGBBJ = #{synchronizationSign},</if>
+				</trim>
+		WHERE KAITXXID = #{trialId}
+	</update>
+
+	<delete id="deleteRecordById" parameterType="string">
+		DELETE FROM
+		FY_KAITXX where KAITXXID = #{id}
+	</delete>
+	
+	<delete id="deleteRecordsByIds">
+		DELETE FROM
+		FY_KAITXX where KAITXXID in (
+		 <foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</delete>
+	
+	<select id="getRecords" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialDcs" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_KAITXX
+		<include refid="where_sql" />
+		<if test="orderBy != null and orderBy.size > 0">
+			ORDER BY
+			<foreach collection="orderBy" item="item" separator=",">
+				<choose>
+					<when test="item.property == 'scheduledStartTime'">YUDKSSJ ${item.orderMode}</when>
+					<when test="item.property == 'actualStartTime'">SHIJKSSJ ${item.orderMode}</when>
+				</choose>
+			</foreach>
+		</if>
+		ORDER BY YUDKSSJ DESC
+		
+	</select>
+	<select id="getTrials" resultMap="result">
+		SELECT
+		<include refid="column" />
+		FROM FY_KAITXX
+		WHERE SHANCBJ=#{deleteFlag}
+		<if test="caseNum != null">AND ANH = #{caseNum}</if>
+		<if test="unitCode != null">AND DAIM = #{unitCode}</if>
+		<if test="courtRoomId != null">AND FATID = #{courtRoomId}</if>
+		<if test="trialState != null">AND KAITZT = #{trialState}</if>
+		<if test="unitCodeList != null and unitCodeList.size() > 0">
+			and FY_KAITXX.DAIM IN
+			<foreach collection="unitCodeList" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		ORDER BY YUDKSSJ DESC limit #{offset},#{limit}
+	</select>
+
+	<select id="getRecordById" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_KAITXX
+		WHERE KAITXXID = #{id}
+	</select>
+
+	<select id="getRecordByInterfaceId" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_KAITXX
+		WHERE DAIM = #{0} AND JIEKBS = #{1}
+	</select>
+	
+	<select id="getRecordsByIds"  resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_KAITXX
+		WHERE KAITXXID in  (
+		<foreach collection="array" item="id" index="index" separator="," >  
+		 #{id}
+   		 </foreach>)
+	</select>
+
+	<select id="getTotalRecord" parameterType="cn.com.chnsys.dtc.dcs.entity.TrialDcs" resultType="java.lang.Integer">
+		select count(KAITXXID) from
+		FY_KAITXX 
+		<include refid="where_sql" />
+	</select>
+	
+		<select id="getMaxRecord" resultType="java.lang.Integer">
+		select max(XIANSSX) from
+		FY_KAITXX
+	</select>
+	
+	<select id="getCurrentDayTrials" parameterType="string" resultMap="resultMap">
+		SELECT
+		<include refid="columns" />
+		FROM FY_KAITXX
+		WHERE DATE_FORMAT(YUDKSSJ,'%Y-%m-%d') = #{date}
+	</select>
+	
+	<select id="selectTrialsPrepare">
+		select 
+		<include refid="columns" />
+		from FY_KAITXX
+		<include refid="where_sql" />
+		<foreach collection="array" item="sortObj" index="index" separator="," >
+			ORDER BY #{sortField}, #{sortOrder}
+		</foreach>
+	</select>
+	
+	<select id="selectTrialsNow">
+		select 
+		<include refid="columns" />
+		from FY_KAITXX
+		<include refid="where_sql" />
+		<foreach collection="array" item="sortObj" index="index" separator="," >
+			ORDER BY #{sortField}, #{sortOrder}
+		</foreach>
+	</select>
+	
+	<select id="selectTrialsAdjourn">
+		select 
+		<include refid="columns" />
+		from FY_KAITXX
+		<include refid="where_sql" />
+		<foreach collection="array" item="sortObj" index="index" separator="," >
+			ORDER BY #{sortField}, #{sortOrder}
+		</foreach>
+	</select>
+	
+	<select id="selectTrialsClose">
+		select 
+		<include refid="columns" />
+		from FY_KAITXX
+		<include refid="where_sql" />
+		<foreach collection="array" item="sortObj" index="index" separator="," >
+			ORDER BY #{sortField}, #{sortOrder}
+		</foreach>
+	</select>
+	
+	<select id="selectTrialsOthers">
+		select 
+		<include refid="columns" />
+		from FY_KAITXX
+		<include refid="where_sql" />
+		<foreach collection="array" item="sortObj" index="index" separator="," >
+			ORDER BY #{sortField}, #{sortOrder}
+		</foreach>
+	</select>
+	
+	<resultMap
+		type="cn.com.chnsys.dtc.dcs.entity.InTimeTrialNumEntity"
+		id="resultMapWithCourtInfo">
+		<result column="PAIQSL" property="scheduleNum" />
+		<result column="TIMEKEY" property="time" />
+		<result column="KAITZT" property="courtState" />
+		<result column="DAIM" property="courtCode" />
+		<result column="KAITFS" property="courtMeans" />
+		<result column="DANWMC" property="courtName" />
+		<result column="DANWJC" property="courtShortName" />
+		<result column="PAIQLX" property="trialType" />
+	</resultMap>
+	
+	<select id="getInTimeTrialNumByQueryParams" resultMap="resultMapWithCourtInfo">
+	
+	SELECT PAIQSL,TIMEKEY,KAITZT,P.DAIM,KAITFS,PAIQLX,DANWMC,DANWJC FROM
+		((SELECT COUNT(KAITXXID) AS PAIQSL,
+		DATE_FORMAT(SHIJKSSJ
+		<choose>
+				<when test="DateRange == 'DAY' ">,"%Y%m%d"</when>
+				<when test="DateRange == 'MONTH' ">,"%Y%m"</when>
+				<otherwise>,"%Y%m%d"</otherwise>
+		</choose>
+		) AS TIMEKEY,
+		KAITZT,FY_KAITXX.DAIM,KAITFS,PAIQLX
+		FROM FY_KAITXX left join FY_FAT
+		ON FY_KAITXX.FATID = FY_FAT.FATID 
+		WHERE FY_KAITXX.DAIM
+		IN (
+		<foreach collection="courtCodes" item="court" index="index"
+			separator=",">
+			#{court}
+		</foreach>
+		) AND FY_KAITXX.SHANCBJ=1 
+		<choose>
+			<when test="groupType != null and groupType == 1">
+				AND ((YUDKSSJ BETWEEN #{startTime} AND #{endTime}) OR (SHIJKSSJ BETWEEN #{startTime} AND #{endTime}))
+			</when>
+			<otherwise>
+				<choose>
+					<when test="trialState == 1">AND YUDKSSJ BETWEEN #{startTime} AND #{endTime}</when>
+					<otherwise>AND SHIJKSSJ BETWEEN #{startTime} AND #{endTime}</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+		<if test="trialType != null">AND PAIQLX = #{trialType}</if>
+		<if test="trialState != null">AND KAITZT = #{trialState}</if>
+		<if test="trialStates != null">AND KAITZT IN (
+		<foreach collection="trialStates" item="item" index="index"
+			separator=",">
+			#{item}
+		</foreach>)</if>
+		<if test="openCourtStyle != null">AND KAITFS = #{openCourtStyle}</if>	
+		<if test="openCourtStyles != null">AND KAITFS IN (
+		<foreach collection="openCourtStyles" item="item" index="index"
+			separator=",">
+			#{item}
+		</foreach>)</if>
+		<if test="isInternetTrial != null">AND HULWKT = #{isInternetTrial}</if>
+		<if test="courtRoomType != null">AND FY_FAT.FATLX = #{courtRoomType}</if>
+		 GROUP BY DAIM
+ 		<if test="groupType != null">
+			<choose>
+				<when test="groupType==1">,KAITZT</when>
+				<when test="groupType==2">,KAITFS</when>
+				<when test="groupType==3">,PAIQLX</when>
+				<otherwise></otherwise>
+			</choose>
+		</if>
+		<if test="isMergeByDateRange == 0">,TIMEKEY</if>) P LEFT JOIN fy_danwjg D on P.DAIM = D.DAIM)
+	</select>
+	
+	
+	<select id="totalTrialByDateRange" resultType="java.lang.Long">
+		SELECT COUNT(KAITXXID) from
+		FY_KAITXX where DATE_FORMAT(YUDKSSJ,"%Y-%m-%d") between #{startDate} and #{endDate} and SHANCBJ != 2
+	</select>
+	
+	<select id="totalTrialByDateRangeAndCourtCode" resultType="java.lang.Long">
+		SELECT COUNT(KAITXXID) from
+		FY_KAITXX where (DATE_FORMAT(YUDKSSJ,"%Y-%m-%d") between #{startDate} and #{endDate} and SHANCBJ != 2)
+		<if test="courtCode != null">AND DAIM = #{courtCode}</if>
+	</select>
+	
+	<select id="getTrialIdByStartEndDate" resultType="java.lang.String">
+		select KAITXXID from
+		FY_KAITXX where DATE_FORMAT(YUDKSSJ,"%Y-%m-%d") between #{startDate} and #{endDate} and SHANCBJ != 2
+	</select>
+	
+	<select id="getTrialIdByStartEndDateAndCourtCode" resultType="java.lang.String">
+		select KAITXXID from
+		FY_KAITXX where (DATE_FORMAT(YUDKSSJ,"%Y-%m-%d") between #{startDate} and #{endDate} and SHANCBJ != 2)
+		<if test="courtCode != null">AND DAIM = #{courtCode}</if>
+	</select>
+	
+	<select id="getEarliestDate" resultMap="resultMap">
+		select 
+		<include refid="columns"/>
+		from
+		FY_KAITXX order by YUDKSSJ ASC limit 1
+	</select>
+	
+	<select id="getProvinceLivingTrialInfo" parameterType="cn.com.chnsys.dtc.dcs.vo.ProvinceLivingTrialInfoVo" resultMap="provinceLivingTrialInfoResultMap">
+		SELECT FY_KAITXX.`KAITXXID`, FY_KAITXX.`ANJID`, fy_kaitzbxx.`KAITZBXXID`, fy_anay.`ANJAYID`, fy_yuastml.`YUASTMLID`, 
+		
+		FY_KAITXX.`TINGC`, fy_anjxx.`ANJLX`,fy_yuastml.`MINGC`, fy_yuastml.`SUSDWMC`,fy_anay.`ANYMC`,FY_KAITXX.`KAITDD`,
+		FY_KAITXX.`YUDKSSJ`,FY_KAITXX.`DAIM`,fy_kaitzbxx.`ZHIBXY`,fy_kaitzbxx.`HUAMLX`,fy_anjxx.`ANH`
+		
+		FROM FY_KAITXX
+		LEFT JOIN fy_anjxx ON FY_KAITXX.`ANJID` =  fy_anjxx.`ANJID` 
+		LEFT JOIN fy_kaitzbxx ON FY_KAITXX.`KAITXXID` = fy_kaitzbxx.`KAITXXID` 
+		LEFT JOIN fy_anay ON  FY_KAITXX.`ANJID` =  fy_anay.`ANJID` 
+		LEFT JOIN fy_yuastml ON FY_KAITXX.`ANJID` = fy_yuastml.`AJID`  
+		WHERE 
+		FY_KAITXX.`SHANCBJ` = 1  AND FY_KAITXX.`KAITZT` = #{trialState}
+		LIMIT #{offset}, #{limit};
+	</select>
+	<select id="totalProvinceLivingTrialInfo" parameterType="cn.com.chnsys.dtc.dcs.vo.ProvinceLivingTrialInfoVo" resultType="java.lang.Integer">
+		SELECT count(FY_KAITXX.`KAITXXID`)
+		
+		FROM FY_KAITXX
+		LEFT JOIN fy_anjxx ON FY_KAITXX.`ANJID` =  fy_anjxx.`ANJID` 
+		LEFT JOIN fy_kaitzbxx ON FY_KAITXX.`KAITXXID` = fy_kaitzbxx.`KAITXXID` 
+		LEFT JOIN fy_anay ON  FY_KAITXX.`ANJID` =  fy_anay.`ANJID` 
+		LEFT JOIN fy_yuastml ON FY_KAITXX.`ANJID` = fy_yuastml.`AJID`  
+		WHERE 
+		FY_KAITXX.`SHANCBJ` = 1  AND FY_KAITXX.`KAITZT` = #{trialState}
+	</select>
+	
+    <resultMap type="cn.com.chnsys.dtc.dcs.dto.ProvinceLivingTrialInfoDto" id="provinceLivingTrialInfoResultMap">
+                <result column="TINGC" property="courtOrder" />
+                <result column="YUDKSSJ" property="scheduledStartTime" />
+                <result column="KAITXXID" property="trialId" />
+                <result column="DAIM" property="unitCode" />
+                <result column="KAITDD" property="openCourtLocation" />
+                <result column="ANJID" property="caseId" />
+                <result column="ANH" property="caseNum"/>
+                <result column="ANJLX" property="caseType" />
+                <result column="KAITZBXXID" property="trialLiveId" />
+                <result column="ZHIBXY" property="liveAddress" />
+                <result column="HUAMLX" property="pictureType" />
+                <result column="ANJAYID" property="caseCauseId" />
+                <result column="ANYMC" property="causeName" />
+                <result column="YUASTMLID" property="participateCaseEntityListID"/>
+                <result column="SUSDWMC" property="elitigation" />
+                <result column="MINGC" property="name" />
+    </resultMap>
+	</mapper>
